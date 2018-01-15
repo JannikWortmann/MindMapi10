@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="NodeCustomView" customModule="MindMapi10" customModuleProvider="target">
+            <connections>
+                <outlet property="btnIncomeEdge" destination="Tbf-d4-l3S" id="N6F-QF-zgn"/>
+                <outlet property="btnOutgoingEdge" destination="FMO-hh-Vmu" id="foP-Pd-xXT"/>
+                <outlet property="contentView" destination="iN0-l3-epB" id="cmI-S6-m7f"/>
+                <outlet property="mainLabel" destination="vIU-cU-XRE" id="jfY-dM-3Nz"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="200" height="150"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="N" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vIU-cU-XRE">
+                    <rect key="frame" x="94" y="65.5" width="12" height="19.5"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MtH-I2-FRy">
+                    <rect key="frame" x="16" y="108" width="40" height="40"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <state key="normal" backgroundImage="note"/>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sSR-bq-rfA">
+                    <rect key="frame" x="80" y="108" width="40" height="40"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <state key="normal" backgroundImage="pdf2Icon"/>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ppd-j7-wrK">
+                    <rect key="frame" x="144" y="108" width="40" height="40"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <state key="normal" backgroundImage="RefsIcon"/>
+                </button>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="RedCircle" translatesAutoresizingMaskIntoConstraints="NO" id="KWD-Ea-Ikg">
+                    <rect key="frame" x="5" y="5" width="10" height="10"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                </imageView>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FMO-hh-Vmu">
+                    <rect key="frame" x="165" y="5" width="25" height="25"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <state key="normal" backgroundImage="Link"/>
+                </button>
+                <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tbf-d4-l3S">
+                    <rect key="frame" x="165" y="5" width="25" height="25"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <state key="normal" backgroundImage="incoming"/>
+                </button>
+            </subviews>
+            <color key="backgroundColor" red="0.87143061630023855" green="0.99253501331485894" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+            <constraints>
+                <constraint firstItem="vIU-cU-XRE" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="I93-CG-c8m"/>
+                <constraint firstItem="vIU-cU-XRE" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="TF1-H8-kzh"/>
+                <constraint firstItem="vIU-cU-XRE" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="TxQ-Jr-oDO"/>
+                <constraint firstItem="vIU-cU-XRE" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="hZZ-1R-K4Q"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <point key="canvasLocation" x="17" y="-91"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="Link" width="192" height="192"/>
+        <image name="RedCircle" width="1024" height="1024"/>
+        <image name="RefsIcon" width="2400" height="2400"/>
+        <image name="incoming" width="256" height="256"/>
+        <image name="note" width="512" height="512"/>
+        <image name="pdf2Icon" width="512" height="512"/>
+    </resources>
+</document>

@@ -13,6 +13,10 @@
 		9494A70820092C74003968D2 /* MindMapi10.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9494A70620092C74003968D2 /* MindMapi10.xcdatamodeld */; };
 		9494A70A20092C74003968D2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9494A70920092C74003968D2 /* Assets.xcassets */; };
 		9494A70D20092C74003968D2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9494A70B20092C74003968D2 /* LaunchScreen.storyboard */; };
+		9494A71820094744003968D2 /* UIBezierPath+Arrow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9494A71620094744003968D2 /* UIBezierPath+Arrow.swift */; };
+		9494A71920094744003968D2 /* NodeCustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9494A71720094744003968D2 /* NodeCustomView.swift */; };
+		9494A71C20094887003968D2 /* NodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9494A71B20094887003968D2 /* NodeViewController.swift */; };
+		9494A723200949E3003968D2 /* NodeCustomView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9494A722200949E3003968D2 /* NodeCustomView.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +28,10 @@
 		9494A70920092C74003968D2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9494A70C20092C74003968D2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9494A70E20092C74003968D2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9494A71620094744003968D2 /* UIBezierPath+Arrow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIBezierPath+Arrow.swift"; sourceTree = "<group>"; };
+		9494A71720094744003968D2 /* NodeCustomView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NodeCustomView.swift; sourceTree = "<group>"; };
+		9494A71B20094887003968D2 /* NodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NodeViewController.swift; sourceTree = "<group>"; };
+		9494A722200949E3003968D2 /* NodeCustomView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NodeCustomView.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +64,7 @@
 		9494A6FE20092C74003968D2 /* MindMapi10 */ = {
 			isa = PBXGroup;
 			children = (
+				9494A71A2009476C003968D2 /* Map */,
 				9494A6FF20092C74003968D2 /* AppDelegate.swift */,
 				9494A70120092C74003968D2 /* ViewController.swift */,
 				9494A70320092C74003968D2 /* Main.storyboard */,
@@ -65,6 +74,41 @@
 				9494A70620092C74003968D2 /* MindMapi10.xcdatamodeld */,
 			);
 			path = MindMapi10;
+			sourceTree = "<group>";
+		};
+		9494A71A2009476C003968D2 /* Map */ = {
+			isa = PBXGroup;
+			children = (
+				9494A71F200948AF003968D2 /* Model */,
+				9494A71E200948A6003968D2 /* View */,
+				9494A71D20094891003968D2 /* Controller */,
+			);
+			path = Map;
+			sourceTree = "<group>";
+		};
+		9494A71D20094891003968D2 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				9494A71B20094887003968D2 /* NodeViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		9494A71E200948A6003968D2 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				9494A722200949E3003968D2 /* NodeCustomView.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		9494A71F200948AF003968D2 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				9494A71620094744003968D2 /* UIBezierPath+Arrow.swift */,
+				9494A71720094744003968D2 /* NodeCustomView.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -129,6 +173,7 @@
 				9494A70D20092C74003968D2 /* LaunchScreen.storyboard in Resources */,
 				9494A70A20092C74003968D2 /* Assets.xcassets in Resources */,
 				9494A70520092C74003968D2 /* Main.storyboard in Resources */,
+				9494A723200949E3003968D2 /* NodeCustomView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -140,7 +185,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				9494A70820092C74003968D2 /* MindMapi10.xcdatamodeld in Sources */,
+				9494A71920094744003968D2 /* NodeCustomView.swift in Sources */,
+				9494A71820094744003968D2 /* UIBezierPath+Arrow.swift in Sources */,
 				9494A70220092C74003968D2 /* ViewController.swift in Sources */,
+				9494A71C20094887003968D2 /* NodeViewController.swift in Sources */,
 				9494A70020092C74003968D2 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
