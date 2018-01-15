@@ -15,8 +15,8 @@ import UIKit
     @IBOutlet weak var btnIncomeEdge: UIButton!
     @IBOutlet var contentView: UIView!
     
-    var incommingEdgeLayers = [CAShapeLayer]()
-    var outgoingEdgeLayers = [CAShapeLayer]()
+    var incommingEdgeLayers = [Arrow]()
+    var outgoingEdgeLayers = [Arrow]()
     
     override init(frame: CGRect) {
         super.init(frame: frame)

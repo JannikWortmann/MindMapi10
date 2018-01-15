@@ -121,17 +121,18 @@ class NodeViewController: UIViewController {
             
             cursorY += (childNodesDistanceBetweenEach + nodeHeight)
         }
-    }
+    } */
     
-    func putLabelOnScreen(text:String, x: CGFloat, y:CGFloat, view: UIView){
+    func putLabelOnScreen(text:String, x: CGFloat, y:CGFloat, angle:CGFloat)-> UILabel{
         let label = UILabel(frame: CGRect(x: x, y: y, width: 120, height: 30))
-        //label.center = CGPoint(x: x, y: y)
         label.textAlignment = .center
         label.text = text
-        label.bringSubview(toFront: view)
         
-        view.addSubview(label)
-    }*/
+        self.view.addSubview(label)
+        return label
+        
+       // self.label.transform = CGAffineTransform(rotationAngle: angle)
+    }
     
     
     func drawNode(height: CGFloat, width: CGFloat, view:UIView){
@@ -198,12 +199,14 @@ class NodeViewController: UIViewController {
         let nodeIndex = draggedNode.tag
 
         // REMOVE all Links
-        draggedNode.incommingEdgeLayers.forEach{ shape in
-            shape.removeFromSuperlayer()
+        draggedNode.incommingEdgeLayers.forEach{ arrow in
+            arrow.shape.removeFromSuperlayer()
+            arrow.label.removeFromSuperview()
         }
         
-        draggedNode.outgoingEdgeLayers.forEach{ shape in
-            shape.removeFromSuperlayer()
+        draggedNode.outgoingEdgeLayers.forEach{ arrow in
+            arrow.shape.removeFromSuperlayer()
+            arrow.label.removeFromSuperview()
         }
         //
         
@@ -237,11 +240,30 @@ class NodeViewController: UIViewController {
         
         view.layer.addSublayer(shapeLayer)
         
-        from.outgoingEdgeLayers.append(shapeLayer)
-        to.incommingEdgeLayers.append(shapeLayer)
+        let arrowAngle = calculateArrowAngle(from.center, to.center)
+        let label = self.putLabelOnScreen(text: "Body Research",x:(from.center.x + to.center.x)/2 , y: (to.center.y + from.center.y)/2, angle: arrowAngle)
+        
+        from.outgoingEdgeLayers.append(Arrow(shapeLayer, label))
+        to.incommingEdgeLayers.append(Arrow(shapeLayer, label))
         
         self.view.bringSubview(toFront: from)
         self.view.bringSubview(toFront: to)
+        self.view.bringSubview(toFront: label)
+    }
+    
+    private func calculateArrowAngle(_ point1: CGPoint,_ point2: CGPoint)->CGFloat{
+        let hipotenuz = self.distance(point1, point2)
+        let cater = self.distance(point1, CGPoint(x:point2.x, y:point1.y))
+        let angle = acos(Double(cater/hipotenuz)) * 180 / .pi
+        print(angle)
+        
+        return CGFloat(angle)
+    }
+    
+    private func distance(_ a: CGPoint, _ b: CGPoint) -> CGFloat {
+        let xDist = a.x - b.x
+        let yDist = a.y - b.y
+        return CGFloat(sqrt((xDist * xDist) + (yDist * yDist)))
     }
 
 
