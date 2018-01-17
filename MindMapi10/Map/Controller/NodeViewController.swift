@@ -32,7 +32,11 @@ class NodeViewController: UIViewController {
     }
     
     @IBAction func btnAddNode(_ sender: Any) {
-        drawNode(height:150,width: 200 ,view: self.view)
+        let node = Node(width: 200,
+                        height: 150,
+                        center: CGPoint(x:self.view.frame.size.width/2, y:self.view.frame.size.height/2),
+                        title: "HCI Augmented Reality")
+        drawNode(nodeInfo: node, view: self.view)
     }
     
     
@@ -135,19 +139,19 @@ class NodeViewController: UIViewController {
     }
     
     
-    func drawNode(height: CGFloat, width: CGFloat, view:UIView){
-        let nodeHeight:CGFloat = height
-        let nodeWidth:CGFloat = width
+    func drawNode(nodeInfo: Node, view:UIView){
+        let nodeHeight:CGFloat = nodeInfo.height
+        let nodeWidth:CGFloat = nodeInfo.width
         //parentNode left-top point coordinates
-        let startingPointX = self.view.frame.size.width/2 - (nodeWidth/2)
-        let startingPointY = self.view.frame.size.height/2 - (nodeHeight/2)
+        let startingPointX = nodeInfo.center.x - (nodeInfo.width/2)
+        let startingPointY = nodeInfo.center.y - (nodeInfo.height/2)
         //
         
         let node = NodeCustomView(frame: CGRect(x:startingPointX,y:startingPointY, width:nodeWidth, height:nodeHeight))
         
         nodes.append(node)
         
-        node.mainLabel.text = "HCI Augmented Reality"
+        node.mainLabel.text = nodeInfo.title
         
         node.btnIncomeEdge.addTarget(self, action: #selector(NodeViewController.edgeToIncomeNodeAction(_:)), for: .touchUpInside)
         node.btnOutgoingEdge.addTarget(self, action: #selector(NodeViewController.edgeFromOutgoingNodeAction(_:)), for: .touchUpInside)
