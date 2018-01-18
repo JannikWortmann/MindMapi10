@@ -20,6 +20,16 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        let x = iOSPopupCreateNewMap { (title, topic) in
+            print(title, topic)
+        }
+        
+        present(x, animated: true, completion: nil)
+    }
+    
 
 }
 

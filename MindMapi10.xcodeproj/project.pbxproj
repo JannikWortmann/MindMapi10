@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		53F6E1562010B05D0093D2BF /* iOSTextfieldExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53F6E14D2010B05D0093D2BF /* iOSTextfieldExtension.swift */; };
+		53F6E1572010B05D0093D2BF /* iOSReferencesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53F6E1502010B05D0093D2BF /* iOSReferencesCell.swift */; };
+		53F6E1582010B05D0093D2BF /* iOSReferencesCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 53F6E1512010B05D0093D2BF /* iOSReferencesCell.xib */; };
+		53F6E1592010B05D0093D2BF /* iOSPDFViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53F6E1522010B05D0093D2BF /* iOSPDFViewController.swift */; };
+		53F6E15A2010B05D0093D2BF /* iOSPDFViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 53F6E1532010B05D0093D2BF /* iOSPDFViewController.xib */; };
+		53F6E15B2010B05D0093D2BF /* iOSPopupCreateNewMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53F6E1542010B05D0093D2BF /* iOSPopupCreateNewMap.swift */; };
+		53F6E15C2010B05D0093D2BF /* GlobalDefines.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53F6E1552010B05D0093D2BF /* GlobalDefines.swift */; };
 		9494A70020092C74003968D2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9494A6FF20092C74003968D2 /* AppDelegate.swift */; };
 		9494A70220092C74003968D2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9494A70120092C74003968D2 /* ViewController.swift */; };
 		9494A70520092C74003968D2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9494A70320092C74003968D2 /* Main.storyboard */; };
@@ -16,6 +23,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		53F6E14D2010B05D0093D2BF /* iOSTextfieldExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = iOSTextfieldExtension.swift; sourceTree = "<group>"; };
+		53F6E1502010B05D0093D2BF /* iOSReferencesCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = iOSReferencesCell.swift; sourceTree = "<group>"; };
+		53F6E1512010B05D0093D2BF /* iOSReferencesCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = iOSReferencesCell.xib; sourceTree = "<group>"; };
+		53F6E1522010B05D0093D2BF /* iOSPDFViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = iOSPDFViewController.swift; sourceTree = "<group>"; };
+		53F6E1532010B05D0093D2BF /* iOSPDFViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = iOSPDFViewController.xib; sourceTree = "<group>"; };
+		53F6E1542010B05D0093D2BF /* iOSPopupCreateNewMap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = iOSPopupCreateNewMap.swift; sourceTree = "<group>"; };
+		53F6E1552010B05D0093D2BF /* GlobalDefines.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlobalDefines.swift; sourceTree = "<group>"; };
 		9494A6FC20092C74003968D2 /* MindMapi10.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MindMapi10.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9494A6FF20092C74003968D2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9494A70120092C74003968D2 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -37,6 +51,37 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		53F6E14C2010B05D0093D2BF /* iOSPopups */ = {
+			isa = PBXGroup;
+			children = (
+				53F6E14D2010B05D0093D2BF /* iOSTextfieldExtension.swift */,
+				53F6E14E2010B05D0093D2BF /* iOSPDFViewController */,
+				53F6E1542010B05D0093D2BF /* iOSPopupCreateNewMap.swift */,
+				53F6E1552010B05D0093D2BF /* GlobalDefines.swift */,
+			);
+			name = iOSPopups;
+			path = ../../ResearchPaperMindMap/ResearchPaperMindMap/iOSPopups;
+			sourceTree = "<group>";
+		};
+		53F6E14E2010B05D0093D2BF /* iOSPDFViewController */ = {
+			isa = PBXGroup;
+			children = (
+				53F6E14F2010B05D0093D2BF /* iOSReferenceCell */,
+				53F6E1522010B05D0093D2BF /* iOSPDFViewController.swift */,
+				53F6E1532010B05D0093D2BF /* iOSPDFViewController.xib */,
+			);
+			path = iOSPDFViewController;
+			sourceTree = "<group>";
+		};
+		53F6E14F2010B05D0093D2BF /* iOSReferenceCell */ = {
+			isa = PBXGroup;
+			children = (
+				53F6E1502010B05D0093D2BF /* iOSReferencesCell.swift */,
+				53F6E1512010B05D0093D2BF /* iOSReferencesCell.xib */,
+			);
+			path = iOSReferenceCell;
+			sourceTree = "<group>";
+		};
 		9494A6F320092C74003968D2 = {
 			isa = PBXGroup;
 			children = (
@@ -63,6 +108,7 @@
 				9494A70B20092C74003968D2 /* LaunchScreen.storyboard */,
 				9494A70E20092C74003968D2 /* Info.plist */,
 				9494A70620092C74003968D2 /* MindMapi10.xcdatamodeld */,
+				53F6E14C2010B05D0093D2BF /* iOSPopups */,
 			);
 			path = MindMapi10;
 			sourceTree = "<group>";
@@ -127,8 +173,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				9494A70D20092C74003968D2 /* LaunchScreen.storyboard in Resources */,
+				53F6E15A2010B05D0093D2BF /* iOSPDFViewController.xib in Resources */,
 				9494A70A20092C74003968D2 /* Assets.xcassets in Resources */,
 				9494A70520092C74003968D2 /* Main.storyboard in Resources */,
+				53F6E1582010B05D0093D2BF /* iOSReferencesCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -141,7 +189,12 @@
 			files = (
 				9494A70820092C74003968D2 /* MindMapi10.xcdatamodeld in Sources */,
 				9494A70220092C74003968D2 /* ViewController.swift in Sources */,
+				53F6E15B2010B05D0093D2BF /* iOSPopupCreateNewMap.swift in Sources */,
+				53F6E1572010B05D0093D2BF /* iOSReferencesCell.swift in Sources */,
 				9494A70020092C74003968D2 /* AppDelegate.swift in Sources */,
+				53F6E15C2010B05D0093D2BF /* GlobalDefines.swift in Sources */,
+				53F6E1562010B05D0093D2BF /* iOSTextfieldExtension.swift in Sources */,
+				53F6E1592010B05D0093D2BF /* iOSPDFViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
