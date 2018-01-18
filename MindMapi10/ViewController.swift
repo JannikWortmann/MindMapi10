@@ -22,7 +22,13 @@ class ViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        let x = iOSPDFViewController()
+        let doc = iOSDocument(title: "Test Title", author: "Test Author", abstract: "Test Abstract cdihcoeiwupvnfupvnfewiuvfipewnvujnvpefunvefpwnvuwvfuipewvjefpnwvjfepvifbwcjfencjipnkdcneipncukpcdjupibfekjcdbvfpmebvpfeijkvfiedpnjbfipfjepvebcdilkszopci", url: "", pdfUrl: "")
+        
+        let ref = iOSDocument(title: "The Reference Title", author: "Test Author", abstract: "Test Abstract cdihcoeicddfunvefpwnvuwvfuipewvjefpnwvjfepvifbwcjfencjipnkdcneipncukpcdjupibfekjcdbvfpmebvpfeijkvfiedpnjbfipfjepvebcdilkszopci", url: "", pdfUrl: "")
+        
+        let refs = [ref, ref]
+        
+        let x = iOSPDFNavigationController(rootDocument: doc, references: refs)
         
         present(x, animated: true, completion: nil)
     }

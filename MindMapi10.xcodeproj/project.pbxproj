@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		53A8DFCE2010C57A006B8AFD /* iOSPDFNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53A8DFCD2010C57A006B8AFD /* iOSPDFNavigationController.swift */; };
 		53F6E1562010B05D0093D2BF /* iOSTextfieldExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53F6E14D2010B05D0093D2BF /* iOSTextfieldExtension.swift */; };
 		53F6E1572010B05D0093D2BF /* iOSReferencesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53F6E1502010B05D0093D2BF /* iOSReferencesCell.swift */; };
 		53F6E1582010B05D0093D2BF /* iOSReferencesCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 53F6E1512010B05D0093D2BF /* iOSReferencesCell.xib */; };
@@ -23,6 +24,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		53A8DFCD2010C57A006B8AFD /* iOSPDFNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSPDFNavigationController.swift; sourceTree = "<group>"; };
 		53F6E14D2010B05D0093D2BF /* iOSTextfieldExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = iOSTextfieldExtension.swift; sourceTree = "<group>"; };
 		53F6E1502010B05D0093D2BF /* iOSReferencesCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = iOSReferencesCell.swift; sourceTree = "<group>"; };
 		53F6E1512010B05D0093D2BF /* iOSReferencesCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = iOSReferencesCell.xib; sourceTree = "<group>"; };
@@ -51,6 +53,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		53A8DFCF2010C581006B8AFD /* iOSPDFViewController */ = {
+			isa = PBXGroup;
+			children = (
+				53F6E1522010B05D0093D2BF /* iOSPDFViewController.swift */,
+				53F6E1532010B05D0093D2BF /* iOSPDFViewController.xib */,
+			);
+			path = iOSPDFViewController;
+			sourceTree = "<group>";
+		};
 		53F6E14C2010B05D0093D2BF /* iOSPopups */ = {
 			isa = PBXGroup;
 			children = (
@@ -67,8 +78,8 @@
 			isa = PBXGroup;
 			children = (
 				53F6E14F2010B05D0093D2BF /* iOSReferenceCell */,
-				53F6E1522010B05D0093D2BF /* iOSPDFViewController.swift */,
-				53F6E1532010B05D0093D2BF /* iOSPDFViewController.xib */,
+				53A8DFCF2010C581006B8AFD /* iOSPDFViewController */,
+				53A8DFCD2010C57A006B8AFD /* iOSPDFNavigationController.swift */,
 			);
 			path = iOSPDFViewController;
 			sourceTree = "<group>";
@@ -188,6 +199,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9494A70820092C74003968D2 /* MindMapi10.xcdatamodeld in Sources */,
+				53A8DFCE2010C57A006B8AFD /* iOSPDFNavigationController.swift in Sources */,
 				9494A70220092C74003968D2 /* ViewController.swift in Sources */,
 				53F6E15B2010B05D0093D2BF /* iOSPopupCreateNewMap.swift in Sources */,
 				53F6E1572010B05D0093D2BF /* iOSReferencesCell.swift in Sources */,
