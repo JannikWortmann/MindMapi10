@@ -9,7 +9,6 @@
 import UIKit
 
 class ViewController: UIViewController {
-
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -23,9 +22,7 @@ class ViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        let x = iOSPopupCreateNewMap { (title, topic) in
-            print(title, topic)
-        }
+        let x = iOSPDFViewController()
         
         present(x, animated: true, completion: nil)
     }
