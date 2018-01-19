@@ -7,14 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		53A8DFCE2010C57A006B8AFD /* iOSPDFNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53A8DFCD2010C57A006B8AFD /* iOSPDFNavigationController.swift */; };
-		53F6E1562010B05D0093D2BF /* iOSTextfieldExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53F6E14D2010B05D0093D2BF /* iOSTextfieldExtension.swift */; };
-		53F6E1572010B05D0093D2BF /* iOSReferencesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53F6E1502010B05D0093D2BF /* iOSReferencesCell.swift */; };
-		53F6E1582010B05D0093D2BF /* iOSReferencesCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 53F6E1512010B05D0093D2BF /* iOSReferencesCell.xib */; };
-		53F6E1592010B05D0093D2BF /* iOSPDFViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53F6E1522010B05D0093D2BF /* iOSPDFViewController.swift */; };
-		53F6E15A2010B05D0093D2BF /* iOSPDFViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 53F6E1532010B05D0093D2BF /* iOSPDFViewController.xib */; };
-		53F6E15B2010B05D0093D2BF /* iOSPopupCreateNewMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53F6E1542010B05D0093D2BF /* iOSPopupCreateNewMap.swift */; };
-		53F6E15C2010B05D0093D2BF /* GlobalDefines.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53F6E1552010B05D0093D2BF /* GlobalDefines.swift */; };
+		532B58F3201285D10010AA79 /* iOSTextfieldExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 532B58E8201285D10010AA79 /* iOSTextfieldExtension.swift */; };
+		532B58F4201285D10010AA79 /* iOSReferencesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 532B58EB201285D10010AA79 /* iOSReferencesCell.swift */; };
+		532B58F5201285D10010AA79 /* iOSReferencesCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 532B58EC201285D10010AA79 /* iOSReferencesCell.xib */; };
+		532B58F6201285D10010AA79 /* iOSPDFViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 532B58EE201285D10010AA79 /* iOSPDFViewController.xib */; };
+		532B58F7201285D10010AA79 /* iOSPDFViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 532B58EF201285D10010AA79 /* iOSPDFViewController.swift */; };
+		532B58F8201285D10010AA79 /* iOSPDFNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 532B58F0201285D10010AA79 /* iOSPDFNavigationController.swift */; };
+		532B58F9201285D10010AA79 /* iOSPopupCreateNewMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 532B58F1201285D10010AA79 /* iOSPopupCreateNewMap.swift */; };
+		532B58FA201285D10010AA79 /* GlobalDefines.swift in Sources */ = {isa = PBXBuildFile; fileRef = 532B58F2201285D10010AA79 /* GlobalDefines.swift */; };
 		9494A70020092C74003968D2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9494A6FF20092C74003968D2 /* AppDelegate.swift */; };
 		9494A70220092C74003968D2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9494A70120092C74003968D2 /* ViewController.swift */; };
 		9494A70520092C74003968D2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9494A70320092C74003968D2 /* Main.storyboard */; };
@@ -24,14 +24,14 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		53A8DFCD2010C57A006B8AFD /* iOSPDFNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSPDFNavigationController.swift; sourceTree = "<group>"; };
-		53F6E14D2010B05D0093D2BF /* iOSTextfieldExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = iOSTextfieldExtension.swift; sourceTree = "<group>"; };
-		53F6E1502010B05D0093D2BF /* iOSReferencesCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = iOSReferencesCell.swift; sourceTree = "<group>"; };
-		53F6E1512010B05D0093D2BF /* iOSReferencesCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = iOSReferencesCell.xib; sourceTree = "<group>"; };
-		53F6E1522010B05D0093D2BF /* iOSPDFViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = iOSPDFViewController.swift; sourceTree = "<group>"; };
-		53F6E1532010B05D0093D2BF /* iOSPDFViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = iOSPDFViewController.xib; sourceTree = "<group>"; };
-		53F6E1542010B05D0093D2BF /* iOSPopupCreateNewMap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = iOSPopupCreateNewMap.swift; sourceTree = "<group>"; };
-		53F6E1552010B05D0093D2BF /* GlobalDefines.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlobalDefines.swift; sourceTree = "<group>"; };
+		532B58E8201285D10010AA79 /* iOSTextfieldExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = iOSTextfieldExtension.swift; sourceTree = "<group>"; };
+		532B58EB201285D10010AA79 /* iOSReferencesCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = iOSReferencesCell.swift; sourceTree = "<group>"; };
+		532B58EC201285D10010AA79 /* iOSReferencesCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = iOSReferencesCell.xib; sourceTree = "<group>"; };
+		532B58EE201285D10010AA79 /* iOSPDFViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = iOSPDFViewController.xib; sourceTree = "<group>"; };
+		532B58EF201285D10010AA79 /* iOSPDFViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = iOSPDFViewController.swift; sourceTree = "<group>"; };
+		532B58F0201285D10010AA79 /* iOSPDFNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = iOSPDFNavigationController.swift; sourceTree = "<group>"; };
+		532B58F1201285D10010AA79 /* iOSPopupCreateNewMap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = iOSPopupCreateNewMap.swift; sourceTree = "<group>"; };
+		532B58F2201285D10010AA79 /* GlobalDefines.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlobalDefines.swift; sourceTree = "<group>"; };
 		9494A6FC20092C74003968D2 /* MindMapi10.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MindMapi10.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9494A6FF20092C74003968D2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9494A70120092C74003968D2 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -53,44 +53,43 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		53A8DFCF2010C581006B8AFD /* iOSPDFViewController */ = {
+		532B58E7201285D10010AA79 /* iOSPopups */ = {
 			isa = PBXGroup;
 			children = (
-				53F6E1522010B05D0093D2BF /* iOSPDFViewController.swift */,
-				53F6E1532010B05D0093D2BF /* iOSPDFViewController.xib */,
+				532B58E8201285D10010AA79 /* iOSTextfieldExtension.swift */,
+				532B58E9201285D10010AA79 /* iOSPDFViewController */,
+				532B58F1201285D10010AA79 /* iOSPopupCreateNewMap.swift */,
+				532B58F2201285D10010AA79 /* GlobalDefines.swift */,
+			);
+			path = iOSPopups;
+			sourceTree = "<group>";
+		};
+		532B58E9201285D10010AA79 /* iOSPDFViewController */ = {
+			isa = PBXGroup;
+			children = (
+				532B58EA201285D10010AA79 /* iOSReferenceCell */,
+				532B58ED201285D10010AA79 /* iOSPDFViewController */,
+				532B58F0201285D10010AA79 /* iOSPDFNavigationController.swift */,
 			);
 			path = iOSPDFViewController;
 			sourceTree = "<group>";
 		};
-		53F6E14C2010B05D0093D2BF /* iOSPopups */ = {
+		532B58EA201285D10010AA79 /* iOSReferenceCell */ = {
 			isa = PBXGroup;
 			children = (
-				53F6E14D2010B05D0093D2BF /* iOSTextfieldExtension.swift */,
-				53F6E14E2010B05D0093D2BF /* iOSPDFViewController */,
-				53F6E1542010B05D0093D2BF /* iOSPopupCreateNewMap.swift */,
-				53F6E1552010B05D0093D2BF /* GlobalDefines.swift */,
-			);
-			name = iOSPopups;
-			path = ../../ResearchPaperMindMap/ResearchPaperMindMap/iOSPopups;
-			sourceTree = "<group>";
-		};
-		53F6E14E2010B05D0093D2BF /* iOSPDFViewController */ = {
-			isa = PBXGroup;
-			children = (
-				53F6E14F2010B05D0093D2BF /* iOSReferenceCell */,
-				53A8DFCF2010C581006B8AFD /* iOSPDFViewController */,
-				53A8DFCD2010C57A006B8AFD /* iOSPDFNavigationController.swift */,
-			);
-			path = iOSPDFViewController;
-			sourceTree = "<group>";
-		};
-		53F6E14F2010B05D0093D2BF /* iOSReferenceCell */ = {
-			isa = PBXGroup;
-			children = (
-				53F6E1502010B05D0093D2BF /* iOSReferencesCell.swift */,
-				53F6E1512010B05D0093D2BF /* iOSReferencesCell.xib */,
+				532B58EB201285D10010AA79 /* iOSReferencesCell.swift */,
+				532B58EC201285D10010AA79 /* iOSReferencesCell.xib */,
 			);
 			path = iOSReferenceCell;
+			sourceTree = "<group>";
+		};
+		532B58ED201285D10010AA79 /* iOSPDFViewController */ = {
+			isa = PBXGroup;
+			children = (
+				532B58EE201285D10010AA79 /* iOSPDFViewController.xib */,
+				532B58EF201285D10010AA79 /* iOSPDFViewController.swift */,
+			);
+			path = iOSPDFViewController;
 			sourceTree = "<group>";
 		};
 		9494A6F320092C74003968D2 = {
@@ -112,6 +111,7 @@
 		9494A6FE20092C74003968D2 /* MindMapi10 */ = {
 			isa = PBXGroup;
 			children = (
+				532B58E7201285D10010AA79 /* iOSPopups */,
 				9494A6FF20092C74003968D2 /* AppDelegate.swift */,
 				9494A70120092C74003968D2 /* ViewController.swift */,
 				9494A70320092C74003968D2 /* Main.storyboard */,
@@ -119,7 +119,6 @@
 				9494A70B20092C74003968D2 /* LaunchScreen.storyboard */,
 				9494A70E20092C74003968D2 /* Info.plist */,
 				9494A70620092C74003968D2 /* MindMapi10.xcdatamodeld */,
-				53F6E14C2010B05D0093D2BF /* iOSPopups */,
 			);
 			path = MindMapi10;
 			sourceTree = "<group>";
@@ -184,10 +183,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				9494A70D20092C74003968D2 /* LaunchScreen.storyboard in Resources */,
-				53F6E15A2010B05D0093D2BF /* iOSPDFViewController.xib in Resources */,
+				532B58F6201285D10010AA79 /* iOSPDFViewController.xib in Resources */,
 				9494A70A20092C74003968D2 /* Assets.xcassets in Resources */,
 				9494A70520092C74003968D2 /* Main.storyboard in Resources */,
-				53F6E1582010B05D0093D2BF /* iOSReferencesCell.xib in Resources */,
+				532B58F5201285D10010AA79 /* iOSReferencesCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -198,15 +197,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				532B58F9201285D10010AA79 /* iOSPopupCreateNewMap.swift in Sources */,
 				9494A70820092C74003968D2 /* MindMapi10.xcdatamodeld in Sources */,
-				53A8DFCE2010C57A006B8AFD /* iOSPDFNavigationController.swift in Sources */,
+				532B58F8201285D10010AA79 /* iOSPDFNavigationController.swift in Sources */,
 				9494A70220092C74003968D2 /* ViewController.swift in Sources */,
-				53F6E15B2010B05D0093D2BF /* iOSPopupCreateNewMap.swift in Sources */,
-				53F6E1572010B05D0093D2BF /* iOSReferencesCell.swift in Sources */,
+				532B58F4201285D10010AA79 /* iOSReferencesCell.swift in Sources */,
 				9494A70020092C74003968D2 /* AppDelegate.swift in Sources */,
-				53F6E15C2010B05D0093D2BF /* GlobalDefines.swift in Sources */,
-				53F6E1562010B05D0093D2BF /* iOSTextfieldExtension.swift in Sources */,
-				53F6E1592010B05D0093D2BF /* iOSPDFViewController.swift in Sources */,
+				532B58FA201285D10010AA79 /* GlobalDefines.swift in Sources */,
+				532B58F3201285D10010AA79 /* iOSTextfieldExtension.swift in Sources */,
+				532B58F7201285D10010AA79 /* iOSPDFViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

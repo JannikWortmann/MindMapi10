@@ -4,15 +4,18 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="iOSPDFViewController" customModule="ResearchPaperMindMap" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="iOSPDFViewController" customModule="MindMapi10" customModuleProvider="target">
             <connections>
+                <outlet property="cHorizontalLine" destination="lIz-Nh-fTc" id="zVC-mv-dN6"/>
                 <outlet property="cReferencesCollectionView" destination="mKK-r2-UCN" id="Cpe-5b-CPb"/>
                 <outlet property="cWebView" destination="GdR-Jh-BXG" id="MGc-0P-Iq2"/>
+                <outlet property="cWebViewBottomConstraint" destination="wPu-oF-pjs" id="dum-0Y-Ixj"/>
                 <outlet property="view" destination="2qI-ye-7Mw" id="Aqr-fs-Mzn"/>
             </connections>
         </placeholder>

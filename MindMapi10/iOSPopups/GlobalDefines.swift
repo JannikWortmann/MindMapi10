@@ -16,13 +16,10 @@ struct Fonts {
     static let gButtonFontBig = UIFont(name: "HelveticaNeue-Light", size: 30)
 }
 
-struct Document {
-    private var _title: String
-    private var _author: String
-    private var _url: String
-    private var _pdf_url: String
-    private var _references_link: String
-    private var _paper_cord_x: Float
-    private var _paper_cord_y: Float
+struct iOSDocument {
+    let title: String
+    let author: String
+    let abstract: String
+    let url: String
+    let pdfUrl: String
 }
-
