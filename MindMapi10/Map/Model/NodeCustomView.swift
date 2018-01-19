@@ -9,11 +9,19 @@
 import UIKit
 
 @IBDesignable class NodeCustomView: UIView {
-    @IBOutlet weak var mainLabel: UILabel!
+    
+    @IBOutlet weak var lblTitle: UILabel!
+    @IBOutlet weak var lblTopic: UILabel!
     
     @IBOutlet weak var btnOutgoingEdge: UIButton!
     @IBOutlet weak var btnIncomeEdge: UIButton!
     @IBOutlet var contentView: UIView!
+    
+    @IBOutlet weak var imgImportance: UIImageView!
+    
+    @IBOutlet weak var btnNotes: UIButton!
+    @IBOutlet weak var btnPdf: UIButton!
+    
     
     var incommingEdgeLayers = [Arrow]()
     var outgoingEdgeLayers = [Arrow]()

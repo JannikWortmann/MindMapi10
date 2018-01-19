@@ -12,6 +12,10 @@ import UIKit
 
 class NodeViewController: UIViewController {
     
+    var mainNodeTopic = String()
+    var mainNodeTitle = String()
+    var shouldCreateMindMap = Bool()
+    
     var nodes = [NodeCustomView]()
     var nodesRelationMap: [[Bool]] = Array(repeating: Array(repeating: false, count: 100), count: 100)
     
@@ -21,6 +25,16 @@ class NodeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        if shouldCreateMindMap {
+            let node = Node(width: 200,
+                            height: 110,
+                            center: CGPoint(x:self.view.frame.size.width/2, y:self.view.frame.size.height/2),
+                            title: "Augmented Reality", topic: "HCI", type: NodeType.main)
+            drawNode(nodeInfo: node, view: self.view)
+            
+            shouldCreateMindMap = false
+        }
+        
         // Do any additional setup after loading the view.
         
         //drawGraph(height: 150, width:200, self.view)
@@ -33,9 +47,9 @@ class NodeViewController: UIViewController {
     
     @IBAction func btnAddNode(_ sender: Any) {
         let node = Node(width: 200,
-                        height: 150,
+                        height: 110,
                         center: CGPoint(x:self.view.frame.size.width/2, y:self.view.frame.size.height/2),
-                        title: "HCI Augmented Reality")
+                        title: "Augmented Reality", topic: "HCI", type: NodeType.child)
         drawNode(nodeInfo: node, view: self.view)
     }
     
@@ -134,36 +148,16 @@ class NodeViewController: UIViewController {
         
         self.view.addSubview(label)
         return label
-        
-       // self.label.transform = CGAffineTransform(rotationAngle: angle)
     }
     
     
     func drawNode(nodeInfo: Node, view:UIView){
-        let nodeHeight:CGFloat = nodeInfo.height
-        let nodeWidth:CGFloat = nodeInfo.width
-        //parentNode left-top point coordinates
+        //top-left point's coordinates
         let startingPointX = nodeInfo.center.x - (nodeInfo.width/2)
         let startingPointY = nodeInfo.center.y - (nodeInfo.height/2)
         //
         
-        let node = NodeCustomView(frame: CGRect(x:startingPointX,y:startingPointY, width:nodeWidth, height:nodeHeight))
-        
-        nodes.append(node)
-        
-        node.mainLabel.text = nodeInfo.title
-        
-        node.btnIncomeEdge.addTarget(self, action: #selector(NodeViewController.edgeToIncomeNodeAction(_:)), for: .touchUpInside)
-        node.btnOutgoingEdge.addTarget(self, action: #selector(NodeViewController.edgeFromOutgoingNodeAction(_:)), for: .touchUpInside)
-        
-        let nodeIndex = nodes.count - 1
-        node.tag = nodeIndex
-        node.btnOutgoingEdge.tag = nodeIndex
-        node.btnIncomeEdge.tag = nodeIndex
-        
-        let panGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(NodeViewController.panGestureRecognizer(_:)))
-        node.isUserInteractionEnabled = true
-        node.addGestureRecognizer(panGestureRecognizer)
+        let node = self.initNode(nodeInfo: nodeInfo, frame: CGRect(x:startingPointX,y:startingPointY, width:nodeInfo.width, height:nodeInfo.height))
         
         view.addSubview(node)
     }
@@ -268,6 +262,38 @@ class NodeViewController: UIViewController {
         let xDist = a.x - b.x
         let yDist = a.y - b.y
         return CGFloat(sqrt((xDist * xDist) + (yDist * yDist)))
+    }
+    
+    private func initNode(nodeInfo: Node, frame: CGRect)->NodeCustomView{
+        let node = NodeCustomView(frame: frame)
+        
+        nodes.append(node)
+        let nodeIndex = nodes.count - 1
+        node.tag = nodeIndex
+        node.btnOutgoingEdge.tag = nodeIndex
+        node.btnIncomeEdge.tag = nodeIndex
+        
+        node.lblTitle.text = nodeInfo.title
+        node.lblTopic.text = nodeInfo.topic
+        
+        if nodeInfo.type == .main {
+            node.btnPdf.isHidden = true
+            node.btnNotes.isHidden = true
+            node.imgImportance.isHidden = true
+            node.contentView.backgroundColor = UIColor.orange
+        }
+        else{
+            node.lblTopic.isHidden = true
+        }
+        
+        node.btnIncomeEdge.addTarget(self, action: #selector(NodeViewController.edgeToIncomeNodeAction(_:)), for: .touchUpInside)
+        node.btnOutgoingEdge.addTarget(self, action: #selector(NodeViewController.edgeFromOutgoingNodeAction(_:)), for: .touchUpInside)
+        
+        let panGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(NodeViewController.panGestureRecognizer(_:)))
+        node.isUserInteractionEnabled = true
+        node.addGestureRecognizer(panGestureRecognizer)
+        
+        return node
     }
 
 

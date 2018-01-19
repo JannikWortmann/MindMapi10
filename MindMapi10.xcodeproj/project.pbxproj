@@ -20,6 +20,7 @@
 		9494A723200949E3003968D2 /* NodeCustomView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9494A722200949E3003968D2 /* NodeCustomView.xib */; };
 		94B16DE1200F6968000CA597 /* Node.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94B16DE0200F6968000CA597 /* Node.swift */; };
 		94B16DE32010066A000CA597 /* UIGraphDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94B16DE22010066A000CA597 /* UIGraphDelegate.swift */; };
+		94B16F6020128549000CA597 /* NodeType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94B16F5F20128549000CA597 /* NodeType.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +39,7 @@
 		9494A722200949E3003968D2 /* NodeCustomView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NodeCustomView.xib; sourceTree = "<group>"; };
 		94B16DE0200F6968000CA597 /* Node.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Node.swift; sourceTree = "<group>"; };
 		94B16DE22010066A000CA597 /* UIGraphDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIGraphDelegate.swift; sourceTree = "<group>"; };
+		94B16F5F20128549000CA597 /* NodeType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NodeType.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,6 +118,7 @@
 				9494A71720094744003968D2 /* NodeCustomView.swift */,
 				946988A5200D1CD2008C63B0 /* Arrow.swift */,
 				94B16DE0200F6968000CA597 /* Node.swift */,
+				94B16F5F20128549000CA597 /* NodeType.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -196,6 +199,7 @@
 				9494A70820092C74003968D2 /* MindMapi10.xcdatamodeld in Sources */,
 				9494A71920094744003968D2 /* NodeCustomView.swift in Sources */,
 				9494A71820094744003968D2 /* UIBezierPath+Arrow.swift in Sources */,
+				94B16F6020128549000CA597 /* NodeType.swift in Sources */,
 				94B16DE1200F6968000CA597 /* Node.swift in Sources */,
 				9494A70220092C74003968D2 /* ViewController.swift in Sources */,
 				94B16DE32010066A000CA597 /* UIGraphDelegate.swift in Sources */,
