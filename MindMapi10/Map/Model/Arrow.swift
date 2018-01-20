@@ -11,10 +11,10 @@ import UIKit
 
 public class Arrow{
     let shape: CAShapeLayer
-    let label: UILabel
+    let textField: UITextField
     
-    init(_ shape: CAShapeLayer, _ label:UILabel){
+    init(_ shape: CAShapeLayer, _ textField:UITextField){
         self.shape = shape
-        self.label = label
+        self.textField = textField
     }
 }

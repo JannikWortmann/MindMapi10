@@ -41,7 +41,7 @@ class NodeViewController: UIViewController {
             let node = Node(width: 200,
                             height: 110,
                             center: CGPoint(x:self.view.frame.size.width/2, y:self.view.frame.size.height/2),
-                            title: "Augmented Reality", topic: "HCI", type: NodeType.main)
+                            title: mainNodeTitle, topic: mainNodeTopic, type: NodeType.main)
             drawNode(nodeInfo: node, view: self.view)
             
             shouldCreateMindMap = false
@@ -62,7 +62,7 @@ class NodeViewController: UIViewController {
         visualEffect.effect = nil
         
         self.notesSubView.layer.borderWidth = 1
-        self.notesSubView.layer.cornerRadius = 5
+        self.notesSubView.layer.cornerRadius = 10
         self.notesSubView.layer.borderColor = UIColor.blue.cgColor
     }
     
@@ -79,13 +79,13 @@ class NodeViewController: UIViewController {
         animateOut()
     }
     
-    func putLabelOnScreen(text:String, x: CGFloat, y:CGFloat, angle:CGFloat)-> UILabel{
-        let label = UILabel(frame: CGRect(x: x, y: y, width: 120, height: 30))
-        label.textAlignment = .center
-        label.text = text
+    func putLabelOnScreen(text:String, x: CGFloat, y:CGFloat, angle:CGFloat)-> UITextField{
+        let textField = UITextField(frame: CGRect(x: x, y: y, width: 120, height: 30))
+        textField.textAlignment = .center
+        textField.text = text
         
-        self.view.addSubview(label)
-        return label
+        self.view.addSubview(textField)
+        return textField
     }
     
     
@@ -148,12 +148,12 @@ class NodeViewController: UIViewController {
         // REMOVE all Links
         draggedNode.incommingEdgeLayers.forEach{ arrow in
             arrow.shape.removeFromSuperlayer()
-            arrow.label.removeFromSuperview()
+            arrow.textField.removeFromSuperview()
         }
         
         draggedNode.outgoingEdgeLayers.forEach{ arrow in
             arrow.shape.removeFromSuperlayer()
-            arrow.label.removeFromSuperview()
+            arrow.textField.removeFromSuperview()
         }
         //
         
@@ -188,14 +188,14 @@ class NodeViewController: UIViewController {
         view.layer.addSublayer(shapeLayer)
         
         let arrowAngle = calculateArrowAngle(from.center, to.center)
-        let label = self.putLabelOnScreen(text: "Body Research",x:(from.center.x + to.center.x)/2 , y: (to.center.y + from.center.y)/2, angle: arrowAngle)
+        let textField = self.putLabelOnScreen(text: "Body Research",x:(from.center.x + to.center.x)/2 , y: (to.center.y + from.center.y)/2, angle: arrowAngle)
         
-        from.outgoingEdgeLayers.append(Arrow(shapeLayer, label))
-        to.incommingEdgeLayers.append(Arrow(shapeLayer, label))
+        from.outgoingEdgeLayers.append(Arrow(shapeLayer, textField))
+        to.incommingEdgeLayers.append(Arrow(shapeLayer, textField))
         
         self.view.bringSubview(toFront: from)
         self.view.bringSubview(toFront: to)
-        self.view.bringSubview(toFront: label)
+        self.view.bringSubview(toFront: textField)
     }
     
     private func initNode(nodeInfo: Node, frame: CGRect)->NodeCustomView{

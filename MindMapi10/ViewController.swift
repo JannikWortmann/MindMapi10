@@ -21,12 +21,25 @@ class ViewController: UIViewController {
     }
 
     @IBAction func createMindMapAction(_ sender: Any) {
-        // Animate and create popup window
-        // Navigate to the NodeViewController
         
+        let view = iOSPopupCreateNewMap { (title, topic) in
+            DispatchQueue.main.async(execute: {() -> Void in
+                self.dismiss(animated: true, completion: nil)
+                self.navigate(title, topic)
+            })
+        }
+        
+        present(view, animated: true, completion: nil)
+    }
+    
+    func navigate(_ title:String,_ topic:String){
         let nodeViewController = self.storyboard?.instantiateViewController(withIdentifier: "NodeViewController") as! NodeViewController
+        
         nodeViewController.shouldCreateMindMap = true
-        self.navigationController?.pushViewController(nodeViewController, animated: true)
+        nodeViewController.mainNodeTitle = title
+        nodeViewController.mainNodeTopic = topic
+        
+        navigationController?.pushViewController(nodeViewController, animated: true)
     }
     
     
