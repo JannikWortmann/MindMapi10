@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="ipad9_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="iOSPDFViewController" customModule="MindMapi10" customModuleProvider="target">
+            <connections>
+                <outlet property="cHorizontalLine" destination="lIz-Nh-fTc" id="zVC-mv-dN6"/>
+                <outlet property="cReferencesCollectionView" destination="mKK-r2-UCN" id="Cpe-5b-CPb"/>
+                <outlet property="cWebView" destination="GdR-Jh-BXG" id="MGc-0P-Iq2"/>
+                <outlet property="cWebViewBottomConstraint" destination="wPu-oF-pjs" id="dum-0Y-Ixj"/>
+                <outlet property="view" destination="2qI-ye-7Mw" id="Aqr-fs-Mzn"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="2qI-ye-7Mw">
+            <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GdR-Jh-BXG">
+                    <rect key="frame" x="0.0" y="0.0" width="768" height="863"/>
+                    <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <wkWebViewConfiguration key="configuration">
+                        <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                        <wkPreferences key="preferences"/>
+                    </wkWebViewConfiguration>
+                </wkWebView>
+                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" contentInsetAdjustmentBehavior="never" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="mKK-r2-UCN">
+                    <rect key="frame" x="0.0" y="864" width="768" height="160"/>
+                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="160" id="j6M-0z-ZWJ"/>
+                    </constraints>
+                    <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="6jz-nI-Hx2">
+                        <size key="itemSize" width="50" height="50"/>
+                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    </collectionViewFlowLayout>
+                </collectionView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lIz-Nh-fTc">
+                    <rect key="frame" x="0.0" y="863" width="768" height="1"/>
+                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="1" id="S9B-QC-pE2"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="GdR-Jh-BXG" firstAttribute="top" secondItem="2qI-ye-7Mw" secondAttribute="top" id="0V0-6D-Ncu"/>
+                <constraint firstItem="mKK-r2-UCN" firstAttribute="trailing" secondItem="MMo-uD-Mvl" secondAttribute="trailing" id="2dP-64-PlM"/>
+                <constraint firstItem="GdR-Jh-BXG" firstAttribute="leading" secondItem="MMo-uD-Mvl" secondAttribute="leading" id="Csg-Jc-KCe"/>
+                <constraint firstItem="mKK-r2-UCN" firstAttribute="top" secondItem="lIz-Nh-fTc" secondAttribute="bottom" id="NZK-z9-pSG"/>
+                <constraint firstAttribute="trailing" secondItem="lIz-Nh-fTc" secondAttribute="trailing" id="RFv-5S-BZt"/>
+                <constraint firstItem="mKK-r2-UCN" firstAttribute="bottom" secondItem="MMo-uD-Mvl" secondAttribute="bottom" id="Uao-56-Xaf"/>
+                <constraint firstItem="GdR-Jh-BXG" firstAttribute="trailing" secondItem="MMo-uD-Mvl" secondAttribute="trailing" id="eiX-nD-5Hm"/>
+                <constraint firstItem="lIz-Nh-fTc" firstAttribute="leading" secondItem="2qI-ye-7Mw" secondAttribute="leading" id="ptn-cx-3im"/>
+                <constraint firstItem="mKK-r2-UCN" firstAttribute="leading" secondItem="MMo-uD-Mvl" secondAttribute="leading" id="tya-o5-bg0"/>
+                <constraint firstItem="lIz-Nh-fTc" firstAttribute="top" secondItem="GdR-Jh-BXG" secondAttribute="bottom" id="wPu-oF-pjs"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="MMo-uD-Mvl"/>
+        </view>
+    </objects>
+</document>
