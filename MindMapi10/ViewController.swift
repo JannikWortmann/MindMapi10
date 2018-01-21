@@ -40,9 +40,9 @@ class ViewController: UIViewController {
     private func navigate(_ title:String,_ topic:String){
         let nodeViewController = self.storyboard?.instantiateViewController(withIdentifier: "NodeViewController") as! NodeViewController
         
+        nodeViewController.MindMap.title = title
+        nodeViewController.MindMap.topic = topic
         nodeViewController.shouldCreateMindMap = true
-        nodeViewController.mainNodeTitle = title
-        nodeViewController.mainNodeTopic = topic
         
         navigationController?.pushViewController(nodeViewController, animated: true)
     }

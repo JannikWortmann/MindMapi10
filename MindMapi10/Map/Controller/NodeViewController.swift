@@ -11,10 +11,15 @@
 import UIKit
 
 class NodeViewController: UIViewController {
+    // CONSTANT
+    let width:CGFloat = 200
+    let height:CGFloat = 110
+    //
     
-    var mainNodeTopic = String()
-    var mainNodeTitle = String()
+    // CREATE MIND MAP
     var shouldCreateMindMap = Bool()
+    var MindMap = Mind_map_model()
+    //
     
     // GRAPH MODEL
     var nodes = [NodeCustomView]()
@@ -31,6 +36,7 @@ class NodeViewController: UIViewController {
     @IBOutlet var notesSubView: UIView!
     @IBOutlet weak var notesSubViewTitle: UILabel!
     @IBOutlet weak var txtNotesInSubView: UITextView!
+    //
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,18 +44,10 @@ class NodeViewController: UIViewController {
         self.settings()
         
         if shouldCreateMindMap {
-            let node = Node(width: 200,
-                            height: 110,
-                            center: CGPoint(x:self.view.frame.size.width/2, y:self.view.frame.size.height/2),
-                            title: mainNodeTitle, topic: mainNodeTopic, type: NodeType.main)
-            drawNode(nodeInfo: node, view: self.view)
+            createRootNodeMindMap(mindMap: MindMap)
             
             shouldCreateMindMap = false
         }
-        
-        // Do any additional setup after loading the view.
-        
-        //drawGraph(height: 150, width:200, self.view)
     }
     
     override func didReceiveMemoryWarning() {
@@ -65,13 +63,17 @@ class NodeViewController: UIViewController {
         self.notesSubView.layer.cornerRadius = 10
         self.notesSubView.layer.borderColor = UIColor.blue.cgColor
     }
-    
-    @IBAction func btnAddNode(_ sender: Any) {
+
+    @IBAction func btnAddAction(_ sender: Any) {
         let node = Node(width: 200,
                         height: 110,
                         center: CGPoint(x:self.view.frame.size.width/2, y:self.view.frame.size.height/2),
                         title: "Augmented Reality", topic: "HCI", type: NodeType.child)
         drawNode(nodeInfo: node, view: self.view)
+    }
+    
+    
+    @IBAction func btnExportAction(_ sender: Any) {
     }
     
     
@@ -283,5 +285,23 @@ extension NodeViewController {
         }) { (success:Bool) in
             self.notesSubView.removeFromSuperview()
         }
+    }
+}
+
+extension NodeViewController {
+    func createRootNodeMindMap(mindMap: Mind_map_model){
+        
+        self.MindMap.map_cord_x = Float(self.view.frame.size.width/2)
+        self.MindMap.map_cord_y = Float(self.view.frame.size.height/2)
+        
+        let node = Node(width: self.width,
+                        height: self.height,
+                        center: CGPoint(x: CGFloat(self.MindMap.map_cord_x), y:CGFloat(self.MindMap.map_cord_y)),
+                        title: MindMap.title, topic: MindMap.topic, type: NodeType.main)
+        
+        let transaction = DBTransactions()
+        transaction.insertMindMap(model: mindMap)
+        
+        drawNode(nodeInfo: node, view: self.view)
     }
 }

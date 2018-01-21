@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -54,14 +55,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="1366"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GPB-Sw-I3A">
-                                <rect key="frame" x="489" y="134" width="46" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Add"/>
-                                <connections>
-                                    <action selector="btnAddNode:" destination="kjt-WZ-i0j" eventType="touchUpInside" id="58q-55-JEI"/>
-                                </connections>
-                            </button>
                             <visualEffectView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kwW-Xe-0yr">
                                 <rect key="frame" x="0.0" y="0.0" width="1024" height="1366"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -75,6 +68,22 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="obP-R4-UXJ"/>
                     </view>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" title="Mind Map" id="MU8-UL-y5f">
+                        <rightBarButtonItems>
+                            <barButtonItem title="Export" id="08F-gT-tKs">
+                                <connections>
+                                    <action selector="btnExportAction:" destination="kjt-WZ-i0j" id="Whq-ya-bz5"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem title="Add" width="100" id="ggY-O4-LNI">
+                                <connections>
+                                    <action selector="btnAddAction:" destination="kjt-WZ-i0j" id="6Fo-h3-MBZ"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
+                    </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <connections>
                         <outlet property="notesSubView" destination="iwR-mg-LX8" id="nZp-NF-UVR"/>
