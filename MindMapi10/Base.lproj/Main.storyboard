@@ -27,7 +27,11 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" title="Research Paper Mind Mapping" id="ZRF-UY-rnN">
-                        <barButtonItem key="leftBarButtonItem" title="Import" id="g3L-lT-Vf6"/>
+                        <barButtonItem key="leftBarButtonItem" title="Import" id="g3L-lT-Vf6">
+                            <connections>
+                                <action selector="btnImportAction:" destination="BYZ-38-t0r" id="GQq-hx-7yG"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Create" id="KOF-ZG-Yr2">
                             <connections>
                                 <action selector="createMindMapAction:" destination="BYZ-38-t0r" id="cLF-Do-ess"/>

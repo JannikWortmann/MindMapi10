@@ -32,7 +32,12 @@ class ViewController: UIViewController {
         present(view, animated: true, completion: nil)
     }
     
-    func navigate(_ title:String,_ topic:String){
+    @IBAction func btnImportAction(_ sender: Any) {
+        //TODO
+    }
+    
+    
+    private func navigate(_ title:String,_ topic:String){
         let nodeViewController = self.storyboard?.instantiateViewController(withIdentifier: "NodeViewController") as! NodeViewController
         
         nodeViewController.shouldCreateMindMap = true
@@ -41,33 +46,5 @@ class ViewController: UIViewController {
         
         navigationController?.pushViewController(nodeViewController, animated: true)
     }
-    
-    
-    /*func animateIn(){
-        self.view.addSubview(notesSubView)
-        notesSubView.center = self.view.center
-        
-        notesSubView.transform = CGAffineTransform.init(scaleX: 1.3, y: 1.3)
-        notesSubView.alpha = 0
-        
-        UIView.animate(withDuration: 0.4){
-            self.visualEffect.effect = self.effect
-            self.visualEffect.isUserInteractionEnabled = true
-            self.notesSubView.alpha = 1
-            self.notesSubView.transform = CGAffineTransform.identity
-        }
-    }
-    
-    func animateOut(){
-        UIView.animate(withDuration: 0.3, animations: {
-            self.notesSubView.transform = CGAffineTransform.init(scaleX: 1.3, y: 1.3)
-            self.notesSubView.alpha = 0
-            
-            self.visualEffect.effect = nil
-            self.visualEffect.isUserInteractionEnabled = false
-        }) { (success:Bool) in
-            self.notesSubView.removeFromSuperview()
-        }
-    }*/
 }
 
