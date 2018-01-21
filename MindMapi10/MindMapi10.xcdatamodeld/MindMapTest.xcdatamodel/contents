@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="13772" systemVersion="17C205" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Importance" representedClassName=".Importance" syncable="YES">
+        <attribute name="id" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="level" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="paper" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Paper" inverseName="importance" inverseEntity="Paper" syncable="YES"/>
+    </entity>
+    <entity name="Mind_map" representedClassName=".Mind_map" syncable="YES">
+        <attribute name="creation_date" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="map_cord_x" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="map_cord_y" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="topic" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="user_id" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="paper" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Paper" inverseName="mind_map" inverseEntity="Paper" syncable="YES"/>
+        <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="mind_map" inverseEntity="User" syncable="YES"/>
+    </entity>
+    <entity name="Note" representedClassName=".Note" syncable="YES">
+        <attribute name="added_date" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="content" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="paper_id" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="paper" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Paper" inverseName="note" inverseEntity="Paper" syncable="YES"/>
+    </entity>
+    <entity name="Paper" representedClassName=".Paper" syncable="YES">
+        <attribute name="abstract" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="added_date" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="author" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="importance_id" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="is_active" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="is_reference" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="mind_map_id" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="paper_cord_x" optional="YES" attributeType="Float" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="paper_cord_y" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="pdf_url" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="storage_type_id" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="url" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="importance" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Importance" inverseName="paper" inverseEntity="Importance" syncable="YES"/>
+        <relationship name="mind_map" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Mind_map" inverseName="paper" inverseEntity="Mind_map" syncable="YES"/>
+        <relationship name="note" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Note" inverseName="paper" inverseEntity="Note" syncable="YES"/>
+        <relationship name="paper" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Paper_mapping" inverseName="paper" inverseEntity="Paper_mapping" syncable="YES"/>
+        <relationship name="paper_reference" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Reference_mapping" inverseName="paper_reference" inverseEntity="Reference_mapping" syncable="YES"/>
+        <relationship name="storage" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Storage" inverseName="paper" inverseEntity="Storage" syncable="YES"/>
+        <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="paper" inverseEntity="User" syncable="YES"/>
+    </entity>
+    <entity name="Paper_mapping" representedClassName=".Paper_mapping" syncable="YES">
+        <attribute name="connected_to_id" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="is_root_level" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="mind_map_id" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="paper_id" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="relation_text" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="paper" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Paper" inverseName="paper" inverseEntity="Paper" syncable="YES"/>
+    </entity>
+    <entity name="Reference_mapping" representedClassName=".Reference_mapping" syncable="YES">
+        <attribute name="paper_id" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="reference_id" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="paper_reference" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Paper" inverseName="paper_reference" inverseEntity="Paper" syncable="YES"/>
+    </entity>
+    <entity name="Storage" representedClassName=".Storage" syncable="YES">
+        <attribute name="id" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="paper" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Paper" inverseName="storage" inverseEntity="Paper" syncable="YES"/>
+    </entity>
+    <entity name="User" representedClassName=".User" syncable="YES">
+        <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="institution" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="is_active" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="join_date" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="password" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="surname" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="mind_map" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Mind_map" inverseName="user" inverseEntity="Mind_map" syncable="YES"/>
+        <relationship name="paper" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Paper" inverseName="user" inverseEntity="Paper" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Importance" positionX="-83" positionY="54" width="128" height="88"/>
+        <element name="Mind_map" positionX="-153" positionY="-288" width="128" height="180"/>
+        <element name="Note" positionX="-657" positionY="-21" width="128" height="120"/>
+        <element name="Paper" positionX="-378" positionY="33" width="128" height="360"/>
+        <element name="Paper_mapping" positionX="-38" positionY="200" width="128" height="135"/>
+        <element name="Reference_mapping" positionX="-486" positionY="-189" width="128" height="90"/>
+        <element name="Storage" positionX="-81" positionY="-63" width="128" height="90"/>
+        <element name="User" positionX="-686" positionY="-333" width="128" height="193"/>
+    </elements>
+</model>
