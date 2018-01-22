@@ -23,6 +23,7 @@ public class DBImportExport {
             let textRead = try Data(contentsOf: filePath)
             let json = try? JSONSerialization.jsonObject(with: textRead, options: [])
             print("Read text from import file")
+            print(filePath)
             print(textRead)
             
             let new_map_id = db.getNewID(forEntity: "Mind_map")

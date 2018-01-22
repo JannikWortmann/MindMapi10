@@ -172,7 +172,12 @@ class NodeViewController: UIViewController {
     @objc func popupNotes(_ sender: UIButton){
         let node = nodes[sender.tag]
         
-        txtNotesInSubView.text = "1. Custome Note."//"- " + nodes.joined(separator: "\n- ")
+        var text = String()
+        node.document.notes.forEach{note in
+            text.append("\n \(note.content!)")
+        }
+        
+        txtNotesInSubView.text = text
         notesSubViewTitle.text = node.lblTitle.text
         self.view.bringSubview(toFront: self.visualEffect)
         //txtNotesInSubView.sizeToFit()
@@ -354,12 +359,14 @@ extension NodeViewController{
         node.tag = nodeIndex
         node.btnOutgoingEdge.tag = nodeIndex
         node.btnIncomeEdge.tag = nodeIndex
+        node.btnNotes.tag = nodeIndex
     }
     
     private func initiateNodeActions(node: NodeCustomView){
         node.btnIncomeEdge.addTarget(self, action: #selector(NodeViewController.edgeToIncomeNodeAction(_:)), for: .touchUpInside)
         node.btnOutgoingEdge.addTarget(self, action: #selector(NodeViewController.edgeFromOutgoingNodeAction(_:)), for: .touchUpInside)
-        node.btnNotes.addTarget(self, action: #selector(NodeViewController.popupNotes(_:)), for: .touchUpInside)
+        node.btnNotes.addTarget(self, action:
+            #selector(NodeViewController.popupNotes(_:)), for: .touchUpInside)
         
         let panGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(NodeViewController.panGestureRecognizer(_:)))
         node.isUserInteractionEnabled = true
