@@ -1,19 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="jgw-0r-231">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13528" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="jgw-0r-231">
     <device id="ipad12_9" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13526"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="HelveticaNeue.ttc">
+            <string>HelveticaNeue</string>
+            <string>HelveticaNeue-Italic</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--Research Paper Mind Mapping-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="MindMapi10" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ViewController" id="BYZ-38-t0r" customClass="ViewController" customModule="MindMapi10" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="1366"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -22,6 +29,90 @@
                                 <rect key="frame" x="0.0" y="1107" width="1024" height="259"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="e7b-QX-bFa">
+                                <rect key="frame" x="0.0" y="78" width="1024" height="1006"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="MapCell" rowHeight="194" id="jPT-QW-U4t" customClass="MapCell" customModule="MindMapi10" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="1024" height="194"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="jPT-QW-U4t" id="KbQ-1r-yvl">
+                                            <rect key="frame" x="0.0" y="0.0" width="1024" height="193.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="NgV-TG-8lw">
+                                                    <rect key="frame" x="0.0" y="20" width="1004" height="153.5"/>
+                                                    <subviews>
+                                                        <stackView opaque="NO" contentMode="scaleAspectFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="57V-rL-j4U">
+                                                            <rect key="frame" x="0.0" y="0.0" width="170" height="153.5"/>
+                                                            <subviews>
+                                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mind map 1" translatesAutoresizingMaskIntoConstraints="NO" id="pKh-WB-Yxl">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="170" height="153.5"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="height" relation="lessThanOrEqual" constant="170" id="JSl-Z9-sQL"/>
+                                                                        <constraint firstAttribute="width" constant="170" id="PNr-T2-OXY"/>
+                                                                    </constraints>
+                                                                </imageView>
+                                                            </subviews>
+                                                        </stackView>
+                                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="cAn-BU-eSN">
+                                                            <rect key="frame" x="180" y="0.0" width="824" height="153.5"/>
+                                                            <subviews>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Etg-XI-RXh">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="824" height="38"/>
+                                                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="25"/>
+                                                                    <nil key="textColor"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="topic" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xfe-Z0-nkw">
+                                                                    <rect key="frame" x="0.0" y="58" width="824" height="37.5"/>
+                                                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
+                                                                    <nil key="textColor"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="96x-R4-7sa">
+                                                                    <rect key="frame" x="0.0" y="115.5" width="824" height="38"/>
+                                                                    <subviews>
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Created: 21-Jan-2018" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pcf-K1-bHm">
+                                                                            <rect key="frame" x="0.0" y="0.0" width="412" height="38"/>
+                                                                            <fontDescription key="fontDescription" name="HelveticaNeue-Italic" family="Helvetica Neue" pointSize="16"/>
+                                                                            <nil key="textColor"/>
+                                                                            <nil key="highlightedColor"/>
+                                                                        </label>
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="12 papers" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HSX-Su-qog">
+                                                                            <rect key="frame" x="412" y="0.0" width="412" height="38"/>
+                                                                            <fontDescription key="fontDescription" name="HelveticaNeue-Italic" family="Helvetica Neue" pointSize="20"/>
+                                                                            <nil key="textColor"/>
+                                                                            <nil key="highlightedColor"/>
+                                                                        </label>
+                                                                    </subviews>
+                                                                </stackView>
+                                                            </subviews>
+                                                        </stackView>
+                                                    </subviews>
+                                                </stackView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="NgV-TG-8lw" secondAttribute="bottom" constant="20" id="Jk9-H3-MLF"/>
+                                                <constraint firstItem="NgV-TG-8lw" firstAttribute="leading" secondItem="KbQ-1r-yvl" secondAttribute="leading" id="b56-TJ-Pqe"/>
+                                                <constraint firstAttribute="trailing" secondItem="NgV-TG-8lw" secondAttribute="trailing" constant="20" id="eNg-Fh-2Vd"/>
+                                                <constraint firstItem="NgV-TG-8lw" firstAttribute="top" secondItem="KbQ-1r-yvl" secondAttribute="top" constant="20" id="k3q-QV-yR3"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="lblDateMap" destination="Pcf-K1-bHm" id="P1q-bf-jar"/>
+                                            <outlet property="lblPapersMap" destination="HSX-Su-qog" id="e2J-lb-MfQ"/>
+                                            <outlet property="lblTitleMap" destination="Etg-XI-RXh" id="47r-er-vvW"/>
+                                            <outlet property="lblTopicMap" destination="Xfe-Z0-nkw" id="62d-eG-0r5"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="u9G-YP-L8f"/>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="XAf-wI-Wsb"/>
+                                </connections>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -29,7 +120,7 @@
                     <navigationItem key="navigationItem" title="Research Paper Mind Mapping" id="ZRF-UY-rnN">
                         <barButtonItem key="leftBarButtonItem" title="Import" id="g3L-lT-Vf6">
                             <connections>
-                                <action selector="btnImportAction:" destination="BYZ-38-t0r" id="GQq-hx-7yG"/>
+                                <segue destination="0QL-80-IKV" kind="show" id="dk2-Ef-Hlq"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Create" id="KOF-ZG-Yr2">
@@ -39,7 +130,8 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <segue destination="kjt-WZ-i0j" kind="show" id="RJv-m8-eNN"/>
+                        <outlet property="tableView" destination="e7b-QX-bFa" id="1yM-Wb-vi0"/>
+                        <segue destination="kjt-WZ-i0j" kind="show" identifier="ViewController" id="RJv-m8-eNN"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -123,6 +215,85 @@ esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat n
             </objects>
             <point key="canvasLocation" x="1736.1328125" y="10.980966325036603"/>
         </scene>
+        <!--Import a Mind Map-->
+        <scene sceneID="qNv-yJ-Nfe">
+            <objects>
+                <viewController title="Import a Mind Map" id="0QL-80-IKV" customClass="ImportViewController" customModule="MindMapi10" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ZoN-Ml-HQh">
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="1366"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="zwN-i1-iwT">
+                                <rect key="frame" x="20" y="84" width="984" height="1302"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="dPe-ss-ef3">
+                                    <size key="itemSize" width="322" height="280"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ImportCell" id="zHn-Cf-fr0" customClass="ImportCell" customModule="MindMapi10" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="322" height="280"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                            <rect key="frame" x="0.0" y="0.0" width="322" height="280"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Kpe-v6-KQn">
+                                                    <rect key="frame" x="0.0" y="0.0" width="322" height="272"/>
+                                                    <subviews>
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" image="file" translatesAutoresizingMaskIntoConstraints="NO" id="XfN-eM-kDe">
+                                                            <rect key="frame" x="97" y="0.0" width="128" height="130"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" relation="lessThanOrEqual" constant="130" id="5bJ-CC-sJw"/>
+                                                                <constraint firstAttribute="width" relation="lessThanOrEqual" constant="130" id="V7X-Ev-RG7"/>
+                                                            </constraints>
+                                                        </imageView>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="file name.ext" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fiw-Sb-zRE">
+                                                            <rect key="frame" x="107" y="130" width="108.5" height="134"/>
+                                                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="19"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                </stackView>
+                                            </subviews>
+                                        </view>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="Kpe-v6-KQn" secondAttribute="trailing" id="3z6-rn-rBj"/>
+                                            <constraint firstAttribute="bottomMargin" secondItem="Kpe-v6-KQn" secondAttribute="bottom" constant="8" id="YpM-2x-tcJ"/>
+                                            <constraint firstItem="Kpe-v6-KQn" firstAttribute="leading" secondItem="zHn-Cf-fr0" secondAttribute="leading" id="ksx-oH-cmW"/>
+                                            <constraint firstItem="Kpe-v6-KQn" firstAttribute="top" secondItem="zHn-Cf-fr0" secondAttribute="top" id="rZy-lO-Vet"/>
+                                        </constraints>
+                                        <connections>
+                                            <outlet property="lblFileName" destination="Fiw-Sb-zRE" id="uyE-PN-Ezw"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="0QL-80-IKV" id="YT5-lN-sDg"/>
+                                    <outlet property="delegate" destination="0QL-80-IKV" id="aWF-pm-2d7"/>
+                                </connections>
+                            </collectionView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="zwN-i1-iwT" firstAttribute="leading" secondItem="Jxf-c1-Xfg" secondAttribute="leading" constant="20" id="2eR-cr-Nzi"/>
+                            <constraint firstItem="zwN-i1-iwT" firstAttribute="bottom" secondItem="Jxf-c1-Xfg" secondAttribute="bottom" constant="20" id="G3L-jE-jim"/>
+                            <constraint firstItem="zwN-i1-iwT" firstAttribute="trailing" secondItem="Jxf-c1-Xfg" secondAttribute="trailing" constant="-20" id="SJp-59-c6G"/>
+                            <constraint firstItem="zwN-i1-iwT" firstAttribute="top" secondItem="Jxf-c1-Xfg" secondAttribute="top" constant="20" id="sEI-kL-kSi"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Jxf-c1-Xfg"/>
+                    </view>
+                    <connections>
+                        <outlet property="collectionView" destination="zwN-i1-iwT" id="9mv-LS-gXS"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ANg-rr-sY5" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1048.828125" y="720.79062957540259"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="FCQ-q1-Yzf">
             <objects>
@@ -144,5 +315,7 @@ esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat n
     </scenes>
     <resources>
         <image name="RWTH-Aachen-University" width="1691" height="458"/>
+        <image name="file" width="128" height="128"/>
+        <image name="mind map 1" width="800" height="531"/>
     </resources>
 </document>

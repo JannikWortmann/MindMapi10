@@ -15,6 +15,7 @@ class NodeViewController: UIViewController {
     var mainNodeTopic = String()
     var mainNodeTitle = String()
     var shouldCreateMindMap = Bool()
+    var mind_map = Mind_map_model()
     
     // GRAPH MODEL
     var nodes = [NodeCustomView]()

@@ -50,6 +50,9 @@
 		94E9BCF12014A696002F45B6 /* Mind_map_model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94E9BCEE2014A695002F45B6 /* Mind_map_model.swift */; };
 		94E9BCF22014A696002F45B6 /* Document_model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94E9BCEF2014A695002F45B6 /* Document_model.swift */; };
 		94E9BCF52014AC04002F45B6 /* MindMapi10.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 94E9BCF32014AC04002F45B6 /* MindMapi10.xcdatamodeld */; };
+		CD0868682014D582004CD3B2 /* MapCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD0868672014D582004CD3B2 /* MapCell.swift */; };
+		CD957BEF20153C400025367F /* ImportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD957BEE20153C400025367F /* ImportViewController.swift */; };
+		CD957BF1201546C50025367F /* ImportCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD957BF0201546C50025367F /* ImportCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -98,6 +101,9 @@
 		94E9BCEE2014A695002F45B6 /* Mind_map_model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Mind_map_model.swift; sourceTree = "<group>"; };
 		94E9BCEF2014A695002F45B6 /* Document_model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Document_model.swift; sourceTree = "<group>"; };
 		94E9BCF42014AC04002F45B6 /* MindMapTest.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MindMapTest.xcdatamodel; sourceTree = "<group>"; };
+		CD0868672014D582004CD3B2 /* MapCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapCell.swift; sourceTree = "<group>"; };
+		CD957BEE20153C400025367F /* ImportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportViewController.swift; sourceTree = "<group>"; };
+		CD957BF0201546C50025367F /* ImportCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -159,6 +165,7 @@
 			isa = PBXGroup;
 			children = (
 				9494A71B20094887003968D2 /* NodeViewController.swift */,
+				CD957BEE20153C400025367F /* ImportViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -166,7 +173,9 @@
 		9494A71E200948A6003968D2 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				CD0868672014D582004CD3B2 /* MapCell.swift */,
 				9494A722200949E3003968D2 /* NodeCustomView.xib */,
+				CD957BF0201546C50025367F /* ImportCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -344,8 +353,10 @@
 				94E9BCB02014A300002F45B6 /* DBImportExport.swift in Sources */,
 				94E9BC8F2013D21C002F45B6 /* iOSPopupCreateNewMap.swift in Sources */,
 				94E9BC8E2013D21C002F45B6 /* GlobalDefines.swift in Sources */,
+				CD957BEF20153C400025367F /* ImportViewController.swift in Sources */,
 				94E9BC882013D21C002F45B6 /* iOSReferencesCell.swift in Sources */,
 				94E9BCDD2014A682002F45B6 /* Reference_mapping.swift in Sources */,
+				CD957BF1201546C50025367F /* ImportCell.swift in Sources */,
 				94E9BCF52014AC04002F45B6 /* MindMapi10.xcdatamodeld in Sources */,
 				94E9BCEA2014A682002F45B6 /* Paper.swift in Sources */,
 				94E9BCEC2014A682002F45B6 /* Mind_map.swift in Sources */,
@@ -357,6 +368,7 @@
 				94E9BCE02014A682002F45B6 /* PaperProperties.swift in Sources */,
 				94E9BCF12014A696002F45B6 /* Mind_map_model.swift in Sources */,
 				94E9BCDE2014A682002F45B6 /* StorageProperties.swift in Sources */,
+				CD0868682014D582004CD3B2 /* MapCell.swift in Sources */,
 				94B16F6020128549000CA597 /* NodeType.swift in Sources */,
 				94E9BCE12014A682002F45B6 /* UserProperties.swift in Sources */,
 				94E9BC8C2013D21C002F45B6 /* iOSPDFNavigationController.swift in Sources */,
@@ -515,10 +527,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 83QYJ4DFQQ;
+				DEVELOPMENT_TEAM = 5VTCNKYM8M;
 				INFOPLIST_FILE = MindMapi10/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.halt.MindMapi10;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jona.MindMapi10;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -530,10 +543,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 83QYJ4DFQQ;
+				DEVELOPMENT_TEAM = 5VTCNKYM8M;
 				INFOPLIST_FILE = MindMapi10/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.halt.MindMapi10;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jona.MindMapi10;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

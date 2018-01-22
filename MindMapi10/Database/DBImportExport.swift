@@ -15,9 +15,10 @@ public class DBImportExport {
     var mind_map_mappings = [[String: Any]]()
     let db = DBTransactions()
     
-    public func importMindMap(mind_map_title: String) {
-        guard let documentDirectoryPath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else { return }
-        let filePath = documentDirectoryPath.appendingPathComponent(mind_map_title + ".json")
+    public func importMindMap(mind_map_title: String) -> Mind_map_model {
+        var return_model = Mind_map_model()
+        guard let documentDirectoryPath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else { return return_model }
+        let filePath = documentDirectoryPath.appendingPathComponent(mind_map_title)
         do{
             let textRead = try Data(contentsOf: filePath)
             let json = try? JSONSerialization.jsonObject(with: textRead, options: [])
@@ -193,11 +194,15 @@ public class DBImportExport {
                         }
                     }
                     ad.saveContext()
+                    return_model = db.getMindMap(mind_map_id: new_map_id)
+                    return return_model
                 }
             }
         }catch {
             print(error)
         }
+        
+        return return_model
     }
     
     public func exportMindMap(mind_map_id: Int32) {
