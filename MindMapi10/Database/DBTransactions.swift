@@ -265,6 +265,16 @@ public class DBTransactions {
                 temp_map_model.id = map.id as Int32
                 temp_map_model.title = map.title as String!
                 temp_map_model.topic = map.topic as String!
+                
+                temp_map_model.map_cord_x = map.map_cord_x as Float
+                temp_map_model.map_cord_y = map.map_cord_y as Float
+                
+                mind_map_mappings = [Paper_mapping]()
+                
+                getPaperMappingsForMindMap(mind_map_id: map.id)
+                
+                temp_map_model.mappings = mind_map_mappings
+                temp_map_model.papers = getPapersForMindMap(mind_map_id: map.id)
                 returnedMaps.append(temp_map_model)
             }
         } catch {

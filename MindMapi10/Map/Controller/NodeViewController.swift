@@ -19,6 +19,7 @@ class NodeViewController: UIViewController {
     // CREATE MIND MAP
     var shouldCreateMindMap = Bool()
     var MindMap = Mind_map_model()
+    let transaction = DBTransactions()
     //
     
     // GRAPH MODEL
@@ -38,22 +39,53 @@ class NodeViewController: UIViewController {
     @IBOutlet weak var txtNotesInSubView: UITextView!
     //
     
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.settings()
+        /*//TEST ---------------------
+        let g = GenerateData()
+        g.deleteGeneratedData()
         
-        if shouldCreateMindMap {
-            createRootNodeMindMap(mindMap: MindMap)
+        let importexport: DBImportExport = DBImportExport()
+        importexport.importMindMap(mind_map_title: "Haptic Feedback")
+        
+        let db = DBTransactions()
+        let list = db.listMindMaps()
+        MindMap = list.first!
+        
+        shouldCreateMindMap = false */
+        //----------------
+        
+        createMindMap(mindMap: MindMap, isNewMap: shouldCreateMindMap)
             
-            shouldCreateMindMap = false
-        }
+        shouldCreateMindMap = false
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    //IBACTIONS
+    @IBAction func btnAddAction(_ sender: Any) {
+        //TODO
+    }
+    
+    
+    @IBAction func btnExportAction(_ sender: Any) {
+        let export = DBImportExport()
+        export.exportMindMap(mind_map_id: MindMap.id)
+    }
+    
+    
+    @IBAction func btnCloseNotes(_ sender: Any) {
+        animateOut()
+    }
+    //
+    
     
     func settings(){
         effect = visualEffect.effect
@@ -62,23 +94,6 @@ class NodeViewController: UIViewController {
         self.notesSubView.layer.borderWidth = 1
         self.notesSubView.layer.cornerRadius = 10
         self.notesSubView.layer.borderColor = UIColor.blue.cgColor
-    }
-
-    @IBAction func btnAddAction(_ sender: Any) {
-        let node = Node(width: 200,
-                        height: 110,
-                        center: CGPoint(x:self.view.frame.size.width/2, y:self.view.frame.size.height/2),
-                        title: "Augmented Reality", topic: "HCI", type: NodeType.child)
-        drawNode(nodeInfo: node, view: self.view)
-    }
-    
-    
-    @IBAction func btnExportAction(_ sender: Any) {
-    }
-    
-    
-    @IBAction func btnCloseNotes(_ sender: Any) {
-        animateOut()
     }
     
     func putLabelOnScreen(text:String, x: CGFloat, y:CGFloat, angle:CGFloat)-> UITextField{
@@ -90,16 +105,36 @@ class NodeViewController: UIViewController {
         return textField
     }
     
-    
-    func drawNode(nodeInfo: Node, view:UIView){
+    func drawMindMap(_ mindMap: Mind_map_model,_ view:UIView){
         //top-left point's coordinates
-        let startingPointX = nodeInfo.center.x - (nodeInfo.width/2)
-        let startingPointY = nodeInfo.center.y - (nodeInfo.height/2)
+        let startingPointX = CGFloat(mindMap.map_cord_x) - (self.width/2)
+        let startingPointY = CGFloat(mindMap.map_cord_y) - (self.height/2)
         //
         
-        let node = self.initNode(nodeInfo: nodeInfo, frame: CGRect(x:startingPointX,y:startingPointY, width:nodeInfo.width, height:nodeInfo.height))
+        let rootNode = self.initRootNode(nodeInfo: mindMap, frame: CGRect(x:startingPointX,y:startingPointY, width:self.width, height:self.height))
+        view.addSubview(rootNode)
         
-        view.addSubview(node)
+        mindMap.papers.forEach { doc in
+            let node = self.initNode(nodeinfo: doc, frame: CGRect(x:CGFloat(doc.paper_cord_x),y: CGFloat(doc.paper_cord_y), width:self.width, height:self.height))
+            view.addSubview(node)
+        }
+        
+        mindMap.mappings.forEach{ mapping in
+            if mapping.is_root_level == 1 {
+                self.edgeFromNode = rootNode
+                self.edgeToNode = nodes.first(where: {$0.document.id == mapping.connected_to_id})!
+            }
+            else{
+                self.edgeFromNode = nodes.first(where: {$0.document.id == mapping.paper_id})!
+                self.edgeToNode = nodes.first(where: {$0.document.id == mapping.connected_to_id})!
+            }
+            
+            nodesRelationMap[edgeFromNode.tag][edgeToNode.tag] = true
+            nodesRelationMap[edgeToNode.tag][edgeFromNode.tag] = true
+            
+            self.drawArrow(from: self.edgeFromNode, to: self.edgeToNode, text:mapping.relation_text!, tailWidth: 2, headWidth: 6, headLength: 9)
+        }
+        
     }
     
     @objc func edgeToIncomeNodeAction(_ sender: UIButton){
@@ -108,7 +143,7 @@ class NodeViewController: UIViewController {
         nodesRelationMap[edgeFromNode.tag][edgeToNode.tag] = true
         nodesRelationMap[edgeToNode.tag][edgeFromNode.tag] = true
         
-        self.drawArrow(from: self.edgeFromNode, to: self.edgeToNode, tailWidth: 2, headWidth: 6, headLength: 9)
+        self.drawArrow(from: self.edgeFromNode, to: self.edgeToNode, text:"Background", tailWidth: 2, headWidth: 6, headLength: 9)
         
         for index in 0..<nodes.count{
             nodes[index].btnOutgoingEdge.isHidden = false
@@ -171,7 +206,7 @@ class NodeViewController: UIViewController {
                 nodes.forEach{ node in
                     if node.tag == index {
                         edgeToNode = node
-                         self.drawArrow(from: self.edgeFromNode, to: self.edgeToNode, tailWidth: 2, headWidth: 6, headLength: 9)
+                        self.drawArrow(from: self.edgeFromNode, to: self.edgeToNode, text:" ", tailWidth: 2, headWidth: 6, headLength: 9)
                     }
                 }
             }
@@ -179,7 +214,7 @@ class NodeViewController: UIViewController {
         //
     }
     
-    private func drawArrow(from: NodeCustomView, to: NodeCustomView, tailWidth: CGFloat, headWidth: CGFloat, headLength: CGFloat ){
+    private func drawArrow(from: NodeCustomView, to: NodeCustomView, text:String, tailWidth: CGFloat, headWidth: CGFloat, headLength: CGFloat ){
         let arrow = UIBezierPath.arrow(from: from.center, to: to.center, tailWidth: tailWidth, headWidth: headWidth, headLength: headLength)
         
         let shapeLayer = CAShapeLayer()
@@ -190,7 +225,7 @@ class NodeViewController: UIViewController {
         view.layer.addSublayer(shapeLayer)
         
         let arrowAngle = calculateArrowAngle(from.center, to.center)
-        let textField = self.putLabelOnScreen(text: "Body Research",x:(from.center.x + to.center.x)/2 , y: (to.center.y + from.center.y)/2, angle: arrowAngle)
+        let textField = self.putLabelOnScreen(text: text,x:(from.center.x + to.center.x)/2 , y: (to.center.y + from.center.y)/2, angle: arrowAngle)
         
         from.outgoingEdgeLayers.append(Arrow(shapeLayer, textField))
         to.incommingEdgeLayers.append(Arrow(shapeLayer, textField))
@@ -200,38 +235,7 @@ class NodeViewController: UIViewController {
         self.view.bringSubview(toFront: textField)
     }
     
-    private func initNode(nodeInfo: Node, frame: CGRect)->NodeCustomView{
-        let node = NodeCustomView(frame: frame)
-        
-        nodes.append(node)
-        let nodeIndex = nodes.count - 1
-        node.tag = nodeIndex
-        node.btnOutgoingEdge.tag = nodeIndex
-        node.btnIncomeEdge.tag = nodeIndex
-        
-        node.lblTitle.text = nodeInfo.title
-        node.lblTopic.text = nodeInfo.topic
-        
-        if nodeInfo.type == .main {
-            node.btnPdf.isHidden = true
-            node.btnNotes.isHidden = true
-            node.imgImportance.isHidden = true
-            node.contentView.backgroundColor = UIColor.orange
-        }
-        else{
-            node.lblTopic.isHidden = true
-        }
-        
-        node.btnIncomeEdge.addTarget(self, action: #selector(NodeViewController.edgeToIncomeNodeAction(_:)), for: .touchUpInside)
-        node.btnOutgoingEdge.addTarget(self, action: #selector(NodeViewController.edgeFromOutgoingNodeAction(_:)), for: .touchUpInside)
-        node.btnNotes.addTarget(self, action: #selector(NodeViewController.popupNotes(_:)), for: .touchUpInside)
-        
-        let panGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(NodeViewController.panGestureRecognizer(_:)))
-        node.isUserInteractionEnabled = true
-        node.addGestureRecognizer(panGestureRecognizer)
-        
-        return node
-    }
+    
     /*
     // MARK: - Navigation
 
@@ -242,6 +246,8 @@ class NodeViewController: UIViewController {
     }
     */
 }
+
+// MATH OPERATIONS
 extension NodeViewController {
     private func calculateArrowAngle(_ point1: CGPoint,_ point2: CGPoint)->CGFloat{
         let hipotenuz = self.distance(point1, point2)
@@ -259,6 +265,7 @@ extension NodeViewController {
     }
 }
 
+// ANIMATION
 extension NodeViewController {
     func animateIn(){
         self.view.addSubview(notesSubView)
@@ -288,20 +295,72 @@ extension NodeViewController {
     }
 }
 
+// DB LOGIC
 extension NodeViewController {
-    func createRootNodeMindMap(mindMap: Mind_map_model){
+    func createMindMap(mindMap: Mind_map_model, isNewMap:Bool){
         
-        self.MindMap.map_cord_x = Float(self.view.frame.size.width/2)
-        self.MindMap.map_cord_y = Float(self.view.frame.size.height/2)
+        if isNewMap{
+            self.MindMap.map_cord_x = Float(self.view.frame.size.width/2)
+            self.MindMap.map_cord_y = Float(self.view.frame.size.height/2)
+            
+            transaction.insertMindMap(model: mindMap)
+        }
         
-        let node = Node(width: self.width,
-                        height: self.height,
-                        center: CGPoint(x: CGFloat(self.MindMap.map_cord_x), y:CGFloat(self.MindMap.map_cord_y)),
-                        title: MindMap.title, topic: MindMap.topic, type: NodeType.main)
-        
-        let transaction = DBTransactions()
-        transaction.insertMindMap(model: mindMap)
-        
-        drawNode(nodeInfo: node, view: self.view)
+        self.drawMindMap(self.MindMap, self.view)
     }
 }
+
+// NODE INIT
+extension NodeViewController{
+    func initRootNode(nodeInfo: Mind_map_model, frame: CGRect)->NodeCustomView{
+        let node = NodeCustomView(frame: frame)
+        
+        nodes.append(node)
+        self.initiateNodeIndexTagMapping(node:node)
+        
+        node.lblTitle.text = nodeInfo.title
+        node.lblTopic.text = nodeInfo.topic
+        
+        node.btnPdf.isHidden = true
+        node.btnNotes.isHidden = true
+        node.imgImportance.isHidden = true
+        node.contentView.backgroundColor = UIColor.orange
+        
+        self.initiateNodeActions(node: node)
+        
+        return node
+    }
+    
+    func initNode(nodeinfo: Document, frame:CGRect)->NodeCustomView{
+        let node = NodeCustomView(frame: frame)
+        
+        nodes.append(node)
+        self.initiateNodeIndexTagMapping(node:node)
+        
+        node.lblTitle.text = nodeinfo.title
+        node.lblTopic.isHidden = true
+        node.document = nodeinfo
+        
+        self.initiateNodeActions(node: node)
+        
+        return node
+    }
+    
+    private func initiateNodeIndexTagMapping(node:NodeCustomView){
+        let nodeIndex = nodes.count - 1
+        node.tag = nodeIndex
+        node.btnOutgoingEdge.tag = nodeIndex
+        node.btnIncomeEdge.tag = nodeIndex
+    }
+    
+    private func initiateNodeActions(node: NodeCustomView){
+        node.btnIncomeEdge.addTarget(self, action: #selector(NodeViewController.edgeToIncomeNodeAction(_:)), for: .touchUpInside)
+        node.btnOutgoingEdge.addTarget(self, action: #selector(NodeViewController.edgeFromOutgoingNodeAction(_:)), for: .touchUpInside)
+        node.btnNotes.addTarget(self, action: #selector(NodeViewController.popupNotes(_:)), for: .touchUpInside)
+        
+        let panGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(NodeViewController.panGestureRecognizer(_:)))
+        node.isUserInteractionEnabled = true
+        node.addGestureRecognizer(panGestureRecognizer)
+    }
+}
+

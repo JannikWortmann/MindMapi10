@@ -51,8 +51,8 @@ public class GenerateData: UIViewController {
         }
     }
     
-    //generate test data
-    func generateTestData(){
+    //generate data about importance, storage and 1 user
+    func generateData() {
         let storage = Storage(context: context)
         storage.id = 1
         storage.name = "ACM"
@@ -83,7 +83,7 @@ public class GenerateData: UIViewController {
         user.surname = "Hebaj"
         user.email = "jona@g.c"
         user.institution = "RWTH"
-
+        
         let mind_map = Mind_map(context: context)
         mind_map.id = 1
         mind_map.title = "Haptic Feedback Title"
@@ -132,35 +132,35 @@ public class GenerateData: UIViewController {
         paper2.paper_cord_y = 3.8
         paper2.is_reference = 0
         
-//        let paper3 = Paper(context: context)
-//        paper3.id = 3
-//        paper3.title = "Haptic Feedback paper 3"
-//        paper3.author = "Author3 Surname"
-//        paper3.abstract = "This is abstract"
-//        paper3.storage_type_id = 1
-//        paper3.url = "www.this.that3"
-//        paper3.pdf_url = "www.this.pdf3"
-//        paper3.importance_id = 1
-//        paper3.is_active = 1
-//        paper3.mind_map_id = 1
-//        paper3.paper_cord_x = 3.9
-//        paper3.paper_cord_y = 3.9
-//        paper3.is_reference = 1
-//
-//        let paper4 = Paper(context: context)
-//        paper4.id = 4
-//        paper4.title = "Haptic Feedback paper 4"
-//        paper4.author = "Author4 Surname"
-//        paper4.abstract = "This is abstract"
-//        paper4.storage_type_id = 1
-//        paper4.url = "www.this.that4"
-//        paper4.pdf_url = "www.this.pdf4"
-//        paper4.importance_id = 1
-//        paper4.is_active = 1
-//        paper4.mind_map_id = 1
-//        paper4.paper_cord_x = 3.94
-//        paper4.paper_cord_y = 3.94
-//        paper4.is_reference = 1
+        let paper3 = Paper(context: context)
+        paper3.id = 3
+        paper3.title = "Haptic Feedback paper 3"
+        paper3.author = "Author3 Surname"
+        paper3.abstract = "This is abstract"
+        paper3.storage_type_id = 1
+        paper3.url = "www.this.that3"
+        paper3.pdf_url = "www.this.pdf3"
+        paper3.importance_id = 1
+        paper3.is_active = 1
+        paper3.mind_map_id = 1
+        paper3.paper_cord_x = 3.9
+        paper3.paper_cord_y = 3.9
+        paper3.is_reference = 1
+        
+        let paper4 = Paper(context: context)
+        paper4.id = 4
+        paper4.title = "Haptic Feedback paper 4"
+        paper4.author = "Author4 Surname"
+        paper4.abstract = "This is abstract"
+        paper4.storage_type_id = 1
+        paper4.url = "www.this.that4"
+        paper4.pdf_url = "www.this.pdf4"
+        paper4.importance_id = 1
+        paper4.is_active = 1
+        paper4.mind_map_id = 1
+        paper4.paper_cord_x = 3.94
+        paper4.paper_cord_y = 3.94
+        paper4.is_reference = 1
         
         //SECOND MIND MAP
         let mind_map2 = Mind_map(context: context)
@@ -186,20 +186,20 @@ public class GenerateData: UIViewController {
         paper5.paper_cord_y = 7.55
         paper5.is_reference = 0
         
-//        let paper6 = Paper(context: context)
-//        paper6.id = 6
-//        paper6.title = "Force Input Paper 6"
-//        paper6.author = "Author6 Surname"
-//        paper6.abstract = "This is abstract"
-//        paper6.storage_type_id = 1
-//        paper6.url = "www.this.that6"
-//        paper6.pdf_url = "www.this.pdf6"
-//        paper6.importance_id = 1
-//        paper6.is_active = 1
-//        paper6.mind_map_id = 2
-//        paper6.paper_cord_x = 7.6
-//        paper6.paper_cord_y = 7.6
-//        paper6.is_reference = 1
+        let paper6 = Paper(context: context)
+        paper6.id = 6
+        paper6.title = "Force Input Paper 6"
+        paper6.author = "Author6 Surname"
+        paper6.abstract = "This is abstract"
+        paper6.storage_type_id = 1
+        paper6.url = "www.this.that6"
+        paper6.pdf_url = "www.this.pdf6"
+        paper6.importance_id = 1
+        paper6.is_active = 1
+        paper6.mind_map_id = 2
+        paper6.paper_cord_x = 7.6
+        paper6.paper_cord_y = 7.6
+        paper6.is_reference = 1
         
         let paper7 = Paper(context: context)
         paper7.id = 7
@@ -231,41 +231,56 @@ public class GenerateData: UIViewController {
         ref2.connected_to_id = 2
         ref2.relation_text = "Rel2"
         
-//        let ref3 = Paper_mapping(context: context)
-//        ref3.mind_map_id = 1
-//        ref3.is_root_level = 0
-//        ref3.paper_id = 2
-//        ref3.connected_to_id = 3
-//        ref3.relation_text = "Rel3"
+        //        let ref3 = Paper_mapping(context: context)
+        //        ref3.mind_map_id = 1
+        //        ref3.is_root_level = 0
+        //        ref3.paper_id = 2
+        //        ref3.connected_to_id = 3
+        //        ref3.relation_text = "Rel3"
         
-//        let ref4 = Paper_mapping(context: context)
-//        ref4.mind_map_id = 1
-//        ref4.is_root_level = 0
-//        ref4.paper_id = 2
-//        ref4.connected_to_id = 4
-//        ref4.relation_text = "Rel4"
+        //        let ref4 = Paper_mapping(context: context)
+        //        ref4.mind_map_id = 1
+        //        ref4.is_root_level = 0
+        //        ref4.paper_id = 2
+        //        ref4.connected_to_id = 4
+        //        ref4.relation_text = "Rel4"
         
         let ref5 = Paper_mapping(context: context)
-        ref5.mind_map_id = 1
+        ref5.mind_map_id = 2
         ref5.is_root_level = 1
         ref5.paper_id = 2
         ref5.connected_to_id = 5
         ref5.relation_text = "Rel5"
         
         let ref6 = Paper_mapping(context: context)
-        ref6.mind_map_id = 1
+        ref6.mind_map_id = 2
         ref6.is_root_level = 1
         ref6.paper_id = 2
         ref6.connected_to_id = 7
         ref6.relation_text = "Rel6"
         
-//        let ref7 = Paper_mapping(context: context)
-//        ref7.mind_map_id = 1
-//        ref7.is_root_level = 0
-//        ref7.paper_id = 5
-//        ref7.connected_to_id = 6
-//        ref7.relation_text = "Rel7"
+        //        let ref7 = Paper_mapping(context: context)
+        //        ref7.mind_map_id = 1
+        //        ref7.is_root_level = 0
+        //        ref7.paper_id = 5
+        //        ref7.connected_to_id = 6
+        //        ref7.relation_text = "Rel7"
+        
+        //References
+        
+        let pr = Reference_mapping(context: context)
+        pr.paper_id = 2
+        pr.reference_id = 3
+        
+        let pr2 = Reference_mapping(context: context)
+        pr2.paper_id = 2
+        pr2.reference_id = 4
+        
+        let pr3 = Reference_mapping(context: context)
+        pr3.paper_id = 5
+        pr3.reference_id = 6
         
         ad.saveContext()
     }
 }
+

@@ -10,6 +10,7 @@ import UIKit
 
 @IBDesignable class NodeCustomView: UIView {
     
+    //IBACTIONS
     @IBOutlet weak var lblTitle: UILabel!
     @IBOutlet weak var lblTopic: UILabel!
     
@@ -21,10 +22,15 @@ import UIKit
     
     @IBOutlet weak var btnNotes: UIButton!
     @IBOutlet weak var btnPdf: UIButton!
+    //
     
+    //VARIABLES
+    var document = Document()
     
     var incommingEdgeLayers = [Arrow]()
     var outgoingEdgeLayers = [Arrow]()
+    //
+    
     
     override init(frame: CGRect) {
         super.init(frame: frame)
