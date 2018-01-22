@@ -19,6 +19,16 @@ class ViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        let doc = iOSDocument(title: "HCI Test", author: "i10 Dev Team", abstract: "Ein kuryer Text der alles yusammenfasst", url: "", pdfUrl: "")
+        
+        let ctr = iOSPDFNavigationController(rootDocument: doc, references: [doc, doc])
+        
+        present(ctr, animated: true, completion: nil)
+    }
 
     @IBAction func createMindMapAction(_ sender: Any) {
         

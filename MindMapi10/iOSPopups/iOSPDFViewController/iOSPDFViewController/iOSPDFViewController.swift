@@ -34,7 +34,6 @@ class iOSPDFViewController: UIViewController, UICollectionViewDataSource, UIColl
         
         self.navigationItem.title = rootDocument.title
         
-        
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -71,6 +70,11 @@ class iOSPDFViewController: UIViewController, UICollectionViewDataSource, UIColl
         cReferencesCollectionView.register(UINib(nibName: "iOSReferencesCell", bundle: nil), forCellWithReuseIdentifier: "cell")
         cReferencesCollectionView.dataSource = self
         cReferencesCollectionView.delegate = self
+        
+        
+        let req = URLRequest(url: URL(string: "http://delivery.acm.org/10.1145/210000/202671/P073.pdf?ip=134.61.95.65&id=202671&acc=ACTIVE%20SERVICE&key=575DA4752A380C0F%2E4D4702B0C3E38B35%2E4D4702B0C3E38B35%2E4D4702B0C3E38B35&__acm__=1516652647_6f456b4ed697681a81478ca5dca6dac9")!)
+        
+        cWebView.load(req)
         
     }
 }
