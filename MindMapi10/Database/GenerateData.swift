@@ -10,22 +10,22 @@ import UIKit
 import CoreData
 
 public class GenerateData: UIViewController {
-    //delete generated test data
+    //delete generated test data for user, storage, importance and mind map related tables
     func deleteGeneratedData(){
         let fetchRequest1 = NSFetchRequest<NSFetchRequestResult>(entityName: "User")
         deleteGeneratedDataBasedOnRequest(fetchRequest: fetchRequest1)
-        
-        let fetchRequest2 = NSFetchRequest<NSFetchRequestResult>(entityName: "Paper")
-        deleteGeneratedDataBasedOnRequest(fetchRequest: fetchRequest2)
-        
-        let fetchRequest5 = NSFetchRequest<NSFetchRequestResult>(entityName: "Mind_map")
-        deleteGeneratedDataBasedOnRequest(fetchRequest: fetchRequest5)
         
         let fetchRequest3 = NSFetchRequest<NSFetchRequestResult>(entityName: "Storage")
         deleteGeneratedDataBasedOnRequest(fetchRequest: fetchRequest3)
         
         let fetchRequest4 = NSFetchRequest<NSFetchRequestResult>(entityName: "Importance")
         deleteGeneratedDataBasedOnRequest(fetchRequest: fetchRequest4)
+        
+        let fetchRequest2 = NSFetchRequest<NSFetchRequestResult>(entityName: "Paper")
+        deleteGeneratedDataBasedOnRequest(fetchRequest: fetchRequest2)
+        
+        let fetchRequest5 = NSFetchRequest<NSFetchRequestResult>(entityName: "Mind_map")
+        deleteGeneratedDataBasedOnRequest(fetchRequest: fetchRequest5)
         
         let fetchRequest6 = NSFetchRequest<NSFetchRequestResult>(entityName: "Paper_mapping")
         deleteGeneratedDataBasedOnRequest(fetchRequest: fetchRequest6)
@@ -50,8 +50,7 @@ public class GenerateData: UIViewController {
             //error handling
         }
     }
-    
-    //generate data about importance, storage and 1 user
+    //generate data about importance, storage and 1 user and two mind maps - with mappings and references
     func generateData() {
         let storage = Storage(context: context)
         storage.id = 1
@@ -283,4 +282,3 @@ public class GenerateData: UIViewController {
         ad.saveContext()
     }
 }
-

@@ -15,19 +15,20 @@ public class DBImportExport {
     var mind_map_mappings = [[String: Any]]()
     let db = DBTransactions()
     
-    public func importMindMap(mind_map_title: String) {
-        guard let documentDirectoryPath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else { return }
-        let filePath = documentDirectoryPath.appendingPathComponent(mind_map_title + ".json")
+    public func importMindMap(mind_map_title: String) -> Mind_map_model {
+        var return_model = Mind_map_model()
+        guard let documentDirectoryPath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else { return return_model }
+        let filePath = documentDirectoryPath.appendingPathComponent(mind_map_title)
         do{
             let textRead = try Data(contentsOf: filePath)
             let json = try? JSONSerialization.jsonObject(with: textRead, options: [])
-            print("URL is: \(filePath)")
+            print("Read text from import file")
             print(textRead)
             
             let new_map_id = db.getNewID(forEntity: "Mind_map")
             var new_paper_id = db.getNewID(forEntity: "Paper")
             var new_note_id = db.getNewID(forEntity: "Note")
-                        
+            
             var papers: [String: Any]?
             var mappings: [String: Any]?
             var paperIDChangeDict = [Int32:Int32]()
@@ -127,7 +128,7 @@ public class DBImportExport {
                             let reference = Reference_mapping(context: context)
                             reference.paper_id = paperIDChangeDict[el[0]]!
                             reference.reference_id = paperIDChangeDict[el[1]]!
-                        
+                            
                             ad.saveContext()
                         }
                     }
@@ -193,11 +194,15 @@ public class DBImportExport {
                         }
                     }
                     ad.saveContext()
+                    return_model = db.getMindMap(mind_map_id: new_map_id)
+                    return return_model
                 }
             }
         }catch {
             print(error)
         }
+        
+        return return_model
     }
     
     public func exportMindMap(mind_map_id: Int32) {
@@ -274,7 +279,7 @@ public class DBImportExport {
             print("\(error)")
         }
     }
-   
+    
     
     //helping function to export a mind map -> gets the papers hierachical relations/mappings
     private func getPaperMappings(mind_map_id: Int32) {
@@ -367,11 +372,11 @@ public class DBImportExport {
         let ref_dictionary = [
             "paper_id": reference_object.value(forKey: "paper_id") as! Int32,
             "reference_id": reference_object.value(forKey: "reference_id") as! Int32
-        ] as [String: Any]
+            ] as [String: Any]
         
         return ref_dictionary
     }
-
+    
     
     //helping function to export a mind map -> saves an NSDictionary to a JSON file
     func saveMindMapToJSONFile(mind_map: NSDictionary, mind_map_title: String){
@@ -395,3 +400,4 @@ public class DBImportExport {
         }
     }
 }
+

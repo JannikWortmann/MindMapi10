@@ -12,6 +12,7 @@ import CoreData
 public class DBTransactions {
     
     var mind_map_mappings = [Paper_mapping]()
+    var formatter = DateFormatter()
     
     // INSERT INTO DATABASE A MIND MAP
     func insertMindMap(model: Mind_map_model) -> Int32 {
@@ -74,6 +75,7 @@ public class DBTransactions {
     
     //FETCH MIND MAP AS MIND_MAP_MODEL CLASS
     func getMindMap(mind_map_id: Int32) -> Mind_map_model {
+        formatter.dateFormat = "dd-MM-yyyy"
         let map_model = Mind_map_model()
         let fetch_mind_map = NSFetchRequest<NSFetchRequestResult>(entityName: "Mind_map")
         fetch_mind_map.predicate = NSPredicate(format: "id = %d", mind_map_id)
@@ -93,6 +95,8 @@ public class DBTransactions {
             map_model.topic = mind_map[0].value(forKey: "topic") as! String
             map_model.map_cord_x = mind_map[0].value(forKey: "map_cord_x") as! Float
             map_model.map_cord_y = mind_map[0].value(forKey: "map_cord_y") as! Float
+            map_model.creation_date = formatter.string(from: mind_map[0].value(forKey: "creation_date") as! Date)
+            
             map_model.mappings = mind_map_mappings
             map_model.papers = map_papers
             
@@ -129,7 +133,7 @@ public class DBTransactions {
         fetch_mapping.predicate = NSPredicate(format: "mind_map_id = %d AND paper_id = %d AND is_root_level = 0", mind_map_id, connected)
         do{
             let mappings = try context.fetch(fetch_mapping) as! [Paper_mapping]
-        
+            
             for map in mappings  {
                 mind_map_mappings.append(map)
                 getPaperMappingsForMindMap(connected: map.value(forKey: "connected_to_id") as! Int32, mind_map_id: mind_map_id)
@@ -244,18 +248,19 @@ public class DBTransactions {
         let fetch_paper = NSFetchRequest<NSFetchRequestResult>(entityName: "Paper")
         fetch_paper.predicate = NSPredicate(format: "id = %d", paper_id)
         //TODO: request references for paper
-
-//        do {
-//            let paper = try context.fetch(fetch_paper) as! [Paper]
-//        } catch {
-//            let error = error as NSError
-//            print("\(error)")
-//        }
+        
+        //        do {
+        //            let paper = try context.fetch(fetch_paper) as! [Paper]
+        //        } catch {
+        //            let error = error as NSError
+        //            print("\(error)")
+        //        }
         
     }
     
     //LIST MIND MAPS FOR THE HOME SCREEN
     func listMindMaps() -> [Mind_map_model] {
+        formatter.dateFormat = "dd-MM-yyyy"
         var returnedMaps = [Mind_map_model]()
         let fetch_maps = NSFetchRequest<NSFetchRequestResult>(entityName: "Mind_map")
         do {
@@ -265,16 +270,14 @@ public class DBTransactions {
                 temp_map_model.id = map.id as Int32
                 temp_map_model.title = map.title as String!
                 temp_map_model.topic = map.topic as String!
-                
+                temp_map_model.creation_date = formatter.string(from: map.creation_date! as Date)
+                temp_map_model.papers = getPapersForMindMap(mind_map_id: map.id)
                 temp_map_model.map_cord_x = map.map_cord_x as Float
                 temp_map_model.map_cord_y = map.map_cord_y as Float
-                
                 mind_map_mappings = [Paper_mapping]()
-                
                 getPaperMappingsForMindMap(mind_map_id: map.id)
-                
                 temp_map_model.mappings = mind_map_mappings
-                temp_map_model.papers = getPapersForMindMap(mind_map_id: map.id)
+                
                 returnedMaps.append(temp_map_model)
             }
         } catch {
@@ -329,7 +332,7 @@ public class DBTransactions {
         return 1
     }
     
-    //create mappings between papers
+    //CREATE MAPPINGS BETWEEN PAPERS
     //if you are connecting the main node to a paper -> is_root = 1 otherwise is_root = 0
     func addConnection(mind_map_id: Int32, from: Int32, to: Int32, text: String, is_root: Int16) {
         let mapping = Paper_mapping(context: context)
@@ -342,31 +345,78 @@ public class DBTransactions {
         ad.saveContext()
     }
     
-    //FUNCTIONS THAT NEED REVIEW - INCOMPLETE
+    //UPDATE MAPPINGS BETWEEM PAPERS - the text between two connected papers
+    func updateConnectionText(mind_map_id: Int32, from: Int32, to: Int32, is_root: Int16, text: String) {
+        //searching for a connection between root and a paper
+        if is_root == 1 {
+            let fetch_mapping = NSFetchRequest<NSFetchRequestResult>(entityName: "Paper_mapping")
+            fetch_mapping.predicate = NSPredicate(format: "mind_map_id = %d AND paper_id = %d AND connected_to_id = %d AND is_root_level = %d", mind_map_id, from, to, is_root)
+            do {
+                let map = try context.fetch(fetch_mapping) as! [Paper_mapping]
+                if map.count > 0 {
+                    map[0].setValue(text, forKey: "relation_text")
+                }
+            } catch {
+                let error = error as NSError
+                print("\(error)")
+            }
+        } else if is_root == 0 {
+            let fetch_mapping1 = NSFetchRequest<NSFetchRequestResult>(entityName: "Paper_mapping")
+            fetch_mapping1.predicate = NSPredicate(format: "mind_map_id = %d AND paper_id = %d AND connected_to_id = %d AND is_root_level = %d", mind_map_id, from, to, is_root)
+            
+            let fetch_mapping2 = NSFetchRequest<NSFetchRequestResult>(entityName: "Paper_mapping")
+            fetch_mapping2.predicate = NSPredicate(format: "mind_map_id = %d AND paper_id = %d AND connected_to_id = %d AND is_root_level = %d", mind_map_id, to, from, is_root)
+            
+            do {
+                let map1 = try context.fetch(fetch_mapping1) as! [Paper_mapping]
+                if map1.count > 0 {
+                    map1[0].setValue(text, forKey: "relation_text")
+                } else {
+                    let map2 = try context.fetch(fetch_mapping2) as! [Paper_mapping]
+                    if map2.count > 0 {
+                        map2[0].setValue(text, forKey: "relation_text")
+                    }
+                }
+            } catch {
+                let error = error as NSError
+                print("\(error)")
+            }
+        }
+    }
     
-    // UPDATE MIND MAP
-    func updateMindMap(mind_map_id: Int32, model: Mind_map_model) {
+    // UPDATE MIND MAP TITLE
+    func updateMindMap(mind_map_id: Int32, title: String) {
         let fetch_mind_map = NSFetchRequest<NSFetchRequestResult>(entityName: "Mind_map")
         fetch_mind_map.predicate = NSPredicate(format: "id = %d", mind_map_id)
         
         do {
             //fetch the mind map
             let mind_map = try context.fetch(fetch_mind_map) as! [NSManagedObject]
-            if model.title.isEmpty == false {
-                mind_map[0].setValue(model.title, forKey: "title")
-            }
-            if model.topic.isEmpty == false {
-                mind_map[0].setValue(model.topic, forKey: "topic")
-            }
-            
+            mind_map[0].setValue(title, forKey: "title")
             ad.saveContext()
         } catch {
             let error = error as NSError
             print("\(error)")
         }
-        
     }
     
+    //UPDATE MIND MAP TOPIC
+    func updateMindMap(mind_map_id: Int32, topic: String) {
+        let fetch_mind_map = NSFetchRequest<NSFetchRequestResult>(entityName: "Mind_map")
+        fetch_mind_map.predicate = NSPredicate(format: "id = %d", mind_map_id)
+        
+        do {
+            //fetch the mind map
+            let mind_map = try context.fetch(fetch_mind_map) as! [NSManagedObject]
+            mind_map[0].setValue(topic, forKey: "topic")
+            ad.saveContext()
+        } catch {
+            let error = error as NSError
+            print("\(error)")
+        }
+    }
+    
+    //FUNCTIONS THAT NEED REVIEW - INCOMPLETE
     func deletePaper(paper_id: Int32) {
         let fetch_paper = NSFetchRequest<NSFetchRequestResult>(entityName: "Paper")
         fetch_paper.predicate = NSPredicate(format: "id = %d", paper_id)
@@ -383,3 +433,4 @@ public class DBTransactions {
     }
     
 }
+

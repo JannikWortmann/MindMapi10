@@ -15,10 +15,11 @@ public class Mind_map_model {
     private var _topic: String
     private var _map_cord_x: Float
     private var _map_cord_y: Float
+    private var _creation_date: String
     
     private var _papers: [Document]
     private var _mappings: [Paper_mapping]
- 
+    
     init() {
         _id = 0
         _title = ""
@@ -27,9 +28,10 @@ public class Mind_map_model {
         _map_cord_y = 0
         _papers = []
         _mappings = []
+        _creation_date = ""
     }
     
-    init(id: Int32, title: String, topic: String, map_cord_x: Float, map_cord_y: Float, papers: [Document], mappings: [Paper_mapping]) {
+    init(id: Int32, title: String, topic: String, map_cord_x: Float, map_cord_y: Float, papers: [Document], mappings: [Paper_mapping], creation_date: String) {
         _id = id
         _title = title
         _topic = topic
@@ -37,6 +39,7 @@ public class Mind_map_model {
         _map_cord_y = map_cord_y
         _papers = papers
         _mappings = mappings
+        _creation_date = creation_date
     }
     
     var id: Int32 {
@@ -101,4 +104,14 @@ public class Mind_map_model {
             _mappings = newValue
         }
     }
+    
+    var creation_date: String {
+        get {
+            return _creation_date
+        }
+        set {
+            _creation_date = newValue
+        }
+    }
 }
+

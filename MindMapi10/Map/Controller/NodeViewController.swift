@@ -39,7 +39,9 @@ class NodeViewController: UIViewController {
     @IBOutlet weak var txtNotesInSubView: UITextView!
     //
     
-    
+    //DELEGATES
+    var mindMapDelegate:MindMapListDelegate?
+    //
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -303,7 +305,8 @@ extension NodeViewController {
             self.MindMap.map_cord_x = Float(self.view.frame.size.width/2)
             self.MindMap.map_cord_y = Float(self.view.frame.size.height/2)
             
-            transaction.insertMindMap(model: mindMap)
+            mindMap.id = transaction.insertMindMap(model: mindMap)
+            mindMapDelegate?.onMindMapAdd(new_map: mindMap)
         }
         
         self.drawMindMap(self.MindMap, self.view)
