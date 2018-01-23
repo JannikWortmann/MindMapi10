@@ -53,6 +53,7 @@ class iOSPDFViewController: UIViewController, UICollectionViewDataSource, UIColl
             
             self.cWebViewBottomConstraint.isActive = false
             self.cWebView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
+            
         }
         else {
             //initial page
@@ -72,7 +73,7 @@ class iOSPDFViewController: UIViewController, UICollectionViewDataSource, UIColl
         cReferencesCollectionView.delegate = self
         
         
-        let req = URLRequest(url: URL(string: "http://delivery.acm.org/10.1145/210000/202671/P073.pdf?ip=134.61.95.65&id=202671&acc=ACTIVE%20SERVICE&key=575DA4752A380C0F%2E4D4702B0C3E38B35%2E4D4702B0C3E38B35%2E4D4702B0C3E38B35&__acm__=1516652647_6f456b4ed697681a81478ca5dca6dac9")!)
+        let req = URLRequest(url: URL(string: "http://delivery.acm.org/10.1145/210000/202671/P073.pdf?ip=134.61.99.92&id=202671&acc=ACTIVE%20SERVICE&key=575DA4752A380C0F%2E4D4702B0C3E38B35%2E4D4702B0C3E38B35%2E4D4702B0C3E38B35&__acm__=1516657232_9c879ec49982b8acca76d2d8324e90de")!)
         
         cWebView.load(req)
         

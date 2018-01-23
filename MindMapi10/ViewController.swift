@@ -23,7 +23,7 @@ class ViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        let doc = iOSDocument(title: "HCI Test", author: "i10 Dev Team", abstract: "Ein kuryer Text der alles yusammenfasst", url: "", pdfUrl: "")
+        let doc = iOSDocument(title: "HCI Research Paper Mind Map", author: "i10 Dev Team", abstract: "Ein Text der alles zusammenfasst. Sodass man einen kleinen Eindruck von der Referenz bekommt und sie vielleicht hinzufügt oder auch noch einmal lesen möchte", url: "", pdfUrl: "")
         
         let ctr = iOSPDFNavigationController(rootDocument: doc, references: [doc, doc])
         
