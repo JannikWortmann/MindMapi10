@@ -51,7 +51,7 @@ class iOSPopupCreateNewMap: UIViewController {
         let lbl = UILabel()
         lbl.translatesAutoresizingMaskIntoConstraints = false
         lbl.textAlignment = .center
-        lbl.text = "Add new Mindmap"
+        lbl.text = "Add new Mind Map"
         lbl.font = Fonts.gLabelFontBig
         return lbl
     }()
@@ -88,7 +88,7 @@ class iOSPopupCreateNewMap: UIViewController {
         let txt = UITextField()
         txt.translatesAutoresizingMaskIntoConstraints = false
         txt.addBorder()
-        txt.placeholder = "Enter a Maptitle!"
+        txt.placeholder = "Enter a Map title"
         txt.textAlignment = .left
         txt.font = Fonts.gLabelFontMedium
         return txt
@@ -120,7 +120,7 @@ class iOSPopupCreateNewMap: UIViewController {
         let txt = UITextField()
         txt.translatesAutoresizingMaskIntoConstraints = false
         txt.addBorder()
-        txt.placeholder = "Enter a Topic!"
+        txt.placeholder = "Enter a Topic"
         txt.textAlignment = .left
         txt.font = Fonts.gLabelFontMedium
         return txt

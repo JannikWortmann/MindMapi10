@@ -214,12 +214,39 @@ class NodeViewController: UIViewController {
                 nodes.forEach{ node in
                     if node.tag == index {
                         edgeToNode = node
-                        self.drawArrow(from: self.edgeFromNode, to: self.edgeToNode, text:" ", tailWidth: 2, headWidth: 6, headLength: 9)
+                        self.drawArrow(from: self.edgeFromNode, to: self.edgeToNode,
+                                       text:getRelationTextOfNodes(from: self.edgeFromNode, to: self.edgeToNode),
+                                       tailWidth: 2, headWidth: 6, headLength: 9)
                     }
                 }
             }
         }
         //
+    }
+    
+    private func getRelationTextOfNodes(from: NodeCustomView, to: NodeCustomView)-> String {
+        var result = String()
+        
+            self.MindMap.mappings.forEach{ link in
+                if (link.is_root_level == 1){
+                    if (link.paper_id == self.MindMap.id && link.connected_to_id == to.document.id) ||
+                        (link.connected_to_id == self.MindMap.id && link.paper_id == to.document.id){
+                        result = link.relation_text!
+                    }
+                    if (link.paper_id == self.MindMap.id && link.connected_to_id == from.document.id) ||
+                        (link.connected_to_id == self.MindMap.id && link.paper_id == from.document.id){
+                        result = link.relation_text!
+                    }
+                }
+                else{
+                    if (link.paper_id == from.document.id && link.connected_to_id == to.document.id) ||
+                        (link.connected_to_id == from.document.id && link.paper_id == to.document.id){
+                        result = link.relation_text!
+                    }
+                }
+            }
+        
+        return result
     }
     
     private func drawArrow(from: NodeCustomView, to: NodeCustomView, text:String, tailWidth: CGFloat, headWidth: CGFloat, headLength: CGFloat ){
@@ -329,6 +356,7 @@ extension NodeViewController{
         
         node.lblTitle.text = nodeInfo.title
         node.lblTopic.text = nodeInfo.topic
+        node.isRootNode = true
         
         node.btnPdf.isHidden = true
         node.btnNotes.isHidden = true
@@ -348,6 +376,7 @@ extension NodeViewController{
         
         node.lblTitle.text = nodeinfo.title
         node.lblTopic.isHidden = true
+        node.isRootNode = false
         node.document = nodeinfo
         
         self.initiateNodeActions(node: node)

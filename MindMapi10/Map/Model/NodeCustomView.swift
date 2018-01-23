@@ -29,6 +29,8 @@ import UIKit
     
     var incommingEdgeLayers = [Arrow]()
     var outgoingEdgeLayers = [Arrow]()
+    
+    var isRootNode = Bool()
     //
     
     
