@@ -94,8 +94,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     //DELEGATE FUNCTION FOR THE PROTOCOL MindMapListDelegate
     func onMindMapAdd(new_map: Mind_map_model) {
-        mind_maps.append(new_map)
-        self.loadView()
+        mind_maps = db.listMindMaps()
+        //self.loadView()
+        tableView.reloadData()
     }
 }
 

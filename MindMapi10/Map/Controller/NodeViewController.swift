@@ -140,6 +140,16 @@ class NodeViewController: UIViewController {
         
     }
     
+    func drawNode(doc: Document){
+        //top-left point's coordinates
+        let startingPointX = self.view.bounds.width - (self.width/2)
+        let startingPointY = self.view.bounds.height - (self.height/2)
+        //
+        
+        let node = self.initNode(nodeinfo: doc, frame: CGRect(x:startingPointX,y:startingPointY, width:self.width, height:self.height))
+        self.view.addSubview(node)
+    }
+    
     @objc func edgeToIncomeNodeAction(_ sender: UIButton){
         self.edgeToNode = nodes[sender.tag]
         
