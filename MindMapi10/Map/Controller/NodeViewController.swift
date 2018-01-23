@@ -20,6 +20,7 @@ class NodeViewController: UIViewController {
     // CREATE MIND MAP
     var shouldCreateMindMap = Bool()
     var MindMap = Mind_map_model()
+    var notRelatedDocuments = [NodeCustomView]()
     let transaction = DBTransactions()
     //
     
@@ -29,6 +30,8 @@ class NodeViewController: UIViewController {
     
     var edgeFromNode = NodeCustomView()
     var edgeToNode = NodeCustomView()
+    
+    var pdfViewSenderNodeTag = Int()
     //
     
     @IBOutlet weak var visualEffect: UIVisualEffectView!
@@ -48,20 +51,7 @@ class NodeViewController: UIViewController {
         super.viewDidLoad()
         
         self.settings()
-        /*//TEST ---------------------
-        let g = GenerateData()
-        g.deleteGeneratedData()
-        
-        let importexport: DBImportExport = DBImportExport()
-        importexport.importMindMap(mind_map_title: "Haptic Feedback")
-        
-        let db = DBTransactions()
-        let list = db.listMindMaps()
-        MindMap = list.first!
-        
-        shouldCreateMindMap = false */
-        //----------------
-        
+    
         createMindMap(mindMap: MindMap, isNewMap: shouldCreateMindMap)
             
         shouldCreateMindMap = false
@@ -107,132 +97,7 @@ class NodeViewController: UIViewController {
         self.view.addSubview(textField)
         return textField
     }
-    
-    func drawMindMap(_ mindMap: Mind_map_model,_ view:UIView){
-        //top-left point's coordinates
-        let startingPointX = CGFloat(mindMap.map_cord_x) - (self.width/2)
-        let startingPointY = CGFloat(mindMap.map_cord_y) - (self.height/2)
-        //
-        
-        let rootNode = self.initRootNode(nodeInfo: mindMap, frame: CGRect(x:startingPointX,y:startingPointY, width:self.width, height:self.height))
-        view.addSubview(rootNode)
-        
-        mindMap.papers.forEach { doc in
-            let node = self.initNode(nodeinfo: doc, frame: CGRect(x:CGFloat(doc.paper_cord_x),y: CGFloat(doc.paper_cord_y), width:self.width, height:self.height))
-            view.addSubview(node)
-        }
-        
-        mindMap.mappings.forEach{ mapping in
-            if mapping.is_root_level == 1 {
-                self.edgeFromNode = rootNode
-                self.edgeToNode = nodes.first(where: {$0.document.id == mapping.connected_to_id})!
-            }
-            else{
-                self.edgeFromNode = nodes.first(where: {$0.document.id == mapping.paper_id})!
-                self.edgeToNode = nodes.first(where: {$0.document.id == mapping.connected_to_id})!
-            }
-            
-            nodesRelationMap[edgeFromNode.tag][edgeToNode.tag] = true
-            nodesRelationMap[edgeToNode.tag][edgeFromNode.tag] = true
-            
-            self.drawArrow(from: self.edgeFromNode, to: self.edgeToNode, text:mapping.relation_text!, tailWidth: 2, headWidth: 6, headLength: 9)
-        }
-        
-    }
-    
-    func drawNode(doc: Document){
-        //top-left point's coordinates
-        let startingPointX = self.view.bounds.width - (self.width/2)
-        let startingPointY = self.view.bounds.height - (self.height/2)
-        //
-        
-        let node = self.initNode(nodeinfo: doc, frame: CGRect(x:startingPointX,y:startingPointY, width:self.width, height:self.height))
-        self.view.addSubview(node)
-    }
-    
-    @objc func edgeToIncomeNodeAction(_ sender: UIButton){
-        self.edgeToNode = nodes[sender.tag]
-        
-        nodesRelationMap[edgeFromNode.tag][edgeToNode.tag] = true
-        nodesRelationMap[edgeToNode.tag][edgeFromNode.tag] = true
-        
-        self.drawArrow(from: self.edgeFromNode, to: self.edgeToNode, text:"Background", tailWidth: 2, headWidth: 6, headLength: 9)
-        
-        for index in 0..<nodes.count{
-            nodes[index].btnOutgoingEdge.isHidden = false
-            nodes[index].btnIncomeEdge.isHidden = true
-        }
-    }
-    
-    @objc func edgeFromOutgoingNodeAction(_ sender: UIButton){
-        self.edgeFromNode = nodes[sender.tag]
-        
-        for indexLink in 0..<nodesRelationMap[sender.tag].count {
-            if (indexLink != sender.tag) && (!nodesRelationMap[sender.tag][indexLink]) {
-                for indexNode in 0..<nodes.count{
-                    if indexLink == nodes[indexNode].tag {
-                        nodes[indexNode].btnOutgoingEdge.isHidden = true
-                        nodes[indexNode].btnIncomeEdge.isHidden = false
-                    }
-                }
-            }
-        }
-    }
 
-    //TODO
-    @objc func popupNotes(_ sender: UIButton){
-        let node = nodes[sender.tag]
-        
-        var text = String()
-        node.document.notes.forEach{note in
-            text.append("\n \(note.content!)")
-        }
-        
-        txtNotesInSubView.text = text
-        notesSubViewTitle.text = node.lblTitle.text
-        self.view.bringSubview(toFront: self.visualEffect)
-        //txtNotesInSubView.sizeToFit()
-        animateIn()
-    }
-    
-    @objc func panGestureRecognizer(_ sender: UIPanGestureRecognizer) {
-        let draggedNode = sender.view as! NodeCustomView
-        edgeFromNode = draggedNode
-        let nodeIndex = draggedNode.tag
-
-        // REMOVE all Links
-        draggedNode.incommingEdgeLayers.forEach{ arrow in
-            arrow.shape.removeFromSuperlayer()
-            arrow.textField.removeFromSuperview()
-        }
-        
-        draggedNode.outgoingEdgeLayers.forEach{ arrow in
-            arrow.shape.removeFromSuperlayer()
-            arrow.textField.removeFromSuperview()
-        }
-        //
-        
-        //DRAG
-        let translation = sender.translation(in: self.view)
-        sender.view!.center = CGPoint(x: sender.view!.center.x + translation.x, y: sender.view!.center.y + translation.y)
-        sender.setTranslation(CGPoint.zero, in: self.view)
-        //
-        
-        // DRAW Links again
-        for index in 0..<nodesRelationMap[nodeIndex].count{
-            if nodesRelationMap[nodeIndex][index] {
-                nodes.forEach{ node in
-                    if node.tag == index {
-                        edgeToNode = node
-                        self.drawArrow(from: self.edgeFromNode, to: self.edgeToNode,
-                                       text:getRelationTextOfNodes(from: self.edgeFromNode, to: self.edgeToNode),
-                                       tailWidth: 2, headWidth: 6, headLength: 9)
-                    }
-                }
-            }
-        }
-        //
-    }
     
     private func getRelationTextOfNodes(from: NodeCustomView, to: NodeCustomView)-> String {
         var result = String()
@@ -257,27 +122,6 @@ class NodeViewController: UIViewController {
             }
         
         return result
-    }
-    
-    private func drawArrow(from: NodeCustomView, to: NodeCustomView, text:String, tailWidth: CGFloat, headWidth: CGFloat, headLength: CGFloat ){
-        let arrow = UIBezierPath.arrow(from: from.center, to: to.center, tailWidth: tailWidth, headWidth: headWidth, headLength: headLength)
-        
-        let shapeLayer = CAShapeLayer()
-        shapeLayer.path = arrow.cgPath
-        shapeLayer.strokeColor = UIColor.black.cgColor
-        shapeLayer.lineWidth = 1.0
-        
-        view.layer.addSublayer(shapeLayer)
-        
-        let arrowAngle = calculateArrowAngle(from.center, to.center)
-        let textField = self.putLabelOnScreen(text: text,x:(from.center.x + to.center.x)/2 , y: (to.center.y + from.center.y)/2, angle: arrowAngle)
-        
-        from.outgoingEdgeLayers.append(Arrow(shapeLayer, textField))
-        to.incommingEdgeLayers.append(Arrow(shapeLayer, textField))
-        
-        self.view.bringSubview(toFront: from)
-        self.view.bringSubview(toFront: to)
-        self.view.bringSubview(toFront: textField)
     }
     
     
@@ -354,6 +198,21 @@ extension NodeViewController {
         
         self.drawMindMap(self.MindMap, self.view)
     }
+    
+    func addNewRelationDB(from: NodeCustomView, to:NodeCustomView, text:String){
+        if(from.isRootNode){
+            transaction.addConnection(mind_map_id: MindMap.id, from: MindMap.id, to: to.document.id, text: text, is_root: 1)
+        }
+        else if (to.isRootNode) {
+            transaction.addConnection(mind_map_id: MindMap.id, from: MindMap.id, to: from.document.id, text: text, is_root: 1)
+        }
+        else{
+            transaction.addConnection(mind_map_id: MindMap.id, from: from.document.id,
+                                      to: to.document.id, text: text, is_root: 0)
+        }
+        
+        self.MindMap = transaction.getMindMap(mind_map_id: self.MindMap.id)
+    }
 }
 
 // NODE INIT
@@ -400,6 +259,7 @@ extension NodeViewController{
         node.btnOutgoingEdge.tag = nodeIndex
         node.btnIncomeEdge.tag = nodeIndex
         node.btnNotes.tag = nodeIndex
+        node.btnPdf.tag = nodeIndex
     }
     
     private func initiateNodeActions(node: NodeCustomView){
@@ -407,10 +267,207 @@ extension NodeViewController{
         node.btnOutgoingEdge.addTarget(self, action: #selector(NodeViewController.edgeFromOutgoingNodeAction(_:)), for: .touchUpInside)
         node.btnNotes.addTarget(self, action:
             #selector(NodeViewController.popupNotes(_:)), for: .touchUpInside)
+        node.btnPdf.addTarget(self, action: #selector(NodeViewController.openPDFView(_:)), for: .touchUpInside)
         
         let panGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(NodeViewController.panGestureRecognizer(_:)))
         node.isUserInteractionEnabled = true
         node.addGestureRecognizer(panGestureRecognizer)
+    }
+}
+
+// Node BUTTON ACTIONS
+extension NodeViewController{
+    @objc func edgeToIncomeNodeAction(_ sender: UIButton){
+        self.edgeToNode = nodes[sender.tag]
+        
+        nodesRelationMap[edgeFromNode.tag][edgeToNode.tag] = true
+        nodesRelationMap[edgeToNode.tag][edgeFromNode.tag] = true
+        
+        self.addNewRelationDB(from: self.edgeFromNode, to: self.edgeToNode, text: "Hello World")
+        
+        self.drawArrow(from: self.edgeFromNode, to: self.edgeToNode, text:"Background", tailWidth: 2, headWidth: 6, headLength: 9)
+        
+        for index in 0..<nodes.count{
+            nodes[index].btnOutgoingEdge.isHidden = false
+            nodes[index].btnIncomeEdge.isHidden = true
+        }
+    }
+    
+    @objc func edgeFromOutgoingNodeAction(_ sender: UIButton){
+        self.edgeFromNode = nodes[sender.tag]
+        
+        for indexLink in 0..<nodesRelationMap[sender.tag].count {
+            if (indexLink != sender.tag) && (!nodesRelationMap[sender.tag][indexLink]) {
+                for indexNode in 0..<nodes.count{
+                    if indexLink == nodes[indexNode].tag {
+                        nodes[indexNode].btnOutgoingEdge.isHidden = true
+                        nodes[indexNode].btnIncomeEdge.isHidden = false
+                    }
+                }
+            }
+        }
+    }
+    
+    //TODO
+    @objc func popupNotes(_ sender: UIButton){
+        let node = nodes[sender.tag]
+        
+        var text = String()
+        node.document.notes.forEach{note in
+            text.append("\n \(note.content!)")
+        }
+        
+        txtNotesInSubView.text = text
+        notesSubViewTitle.text = node.lblTitle.text
+        self.view.bringSubview(toFront: self.visualEffect)
+        //txtNotesInSubView.sizeToFit()
+        animateIn()
+    }
+    
+    @objc func openPDFView(_ sender: UIButton){
+        let node = nodes[sender.tag]
+        // Necessary for finding correct node after return to this controller
+        self.pdfViewSenderNodeTag = sender.tag
+        
+        //Create new node for sending
+        let doc = Document()
+        doc.id = node.document.id
+        doc.references = transaction.getReferencesForPaper(paper_id: doc.id, mind_map_id: self.MindMap.id)
+        
+        // Filter the references. Sending only did not link references.
+        for nodeIndex in 0..<nodesRelationMap[sender.tag].count {
+            if (nodeIndex != sender.tag) && (!nodesRelationMap[sender.tag][nodeIndex]) {
+                doc.references = doc.references.filter({$0.id != nodes[nodeIndex].document.id})
+            }
+        }
+    }
+    
+    @objc func panGestureRecognizer(_ sender: UIPanGestureRecognizer) {
+        let draggedNode = sender.view as! NodeCustomView
+        edgeFromNode = draggedNode
+        let nodeIndex = draggedNode.tag
+        
+        // REMOVE all Links
+        draggedNode.incommingEdgeLayers.forEach{ arrow in
+            arrow.shape.removeFromSuperlayer()
+            arrow.textField.removeFromSuperview()
+        }
+        
+        draggedNode.outgoingEdgeLayers.forEach{ arrow in
+            arrow.shape.removeFromSuperlayer()
+            arrow.textField.removeFromSuperview()
+        }
+        //
+        
+        //DRAG
+        let translation = sender.translation(in: self.view)
+        sender.view!.center = CGPoint(x: sender.view!.center.x + translation.x, y: sender.view!.center.y + translation.y)
+        sender.setTranslation(CGPoint.zero, in: self.view)
+        //
+        
+        // DRAW Links again
+        for index in 0..<nodesRelationMap[nodeIndex].count{
+            if nodesRelationMap[nodeIndex][index] {
+                nodes.forEach{ node in
+                    if node.tag == index {
+                        edgeToNode = node
+                        self.drawArrow(from: self.edgeFromNode, to: self.edgeToNode,
+                                       text:getRelationTextOfNodes(from: self.edgeFromNode, to: self.edgeToNode),
+                                       tailWidth: 2, headWidth: 6, headLength: 9)
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+//DRAW MIND MAP AND NODES
+extension NodeViewController{
+    func drawArrow(from: NodeCustomView, to: NodeCustomView, text:String, tailWidth: CGFloat, headWidth: CGFloat, headLength: CGFloat ){
+        let arrow = UIBezierPath.arrow(from: from.center, to: to.center, tailWidth: tailWidth, headWidth: headWidth, headLength: headLength)
+        
+        let shapeLayer = CAShapeLayer()
+        shapeLayer.path = arrow.cgPath
+        shapeLayer.strokeColor = UIColor.black.cgColor
+        shapeLayer.lineWidth = 1.0
+        
+        view.layer.addSublayer(shapeLayer)
+        
+        let arrowAngle = calculateArrowAngle(from.center, to.center)
+        let textField = self.putLabelOnScreen(text: text,x:(from.center.x + to.center.x)/2 , y: (to.center.y + from.center.y)/2, angle: arrowAngle)
+        
+        from.outgoingEdgeLayers.append(Arrow(shapeLayer, textField))
+        to.incommingEdgeLayers.append(Arrow(shapeLayer, textField))
+        
+        self.view.bringSubview(toFront: from)
+        self.view.bringSubview(toFront: to)
+        self.view.bringSubview(toFront: textField)
+    }
+    
+    func drawMindMap(_ mindMap: Mind_map_model,_ view:UIView){
+        //top-left point's coordinates
+        let startingPointX = CGFloat(mindMap.map_cord_x) - (self.width/2)
+        let startingPointY = CGFloat(mindMap.map_cord_y) - (self.height/2)
+        //
+        
+        let rootNode = self.initRootNode(nodeInfo: mindMap, frame: CGRect(x:startingPointX,y:startingPointY, width:self.width, height:self.height))
+        view.addSubview(rootNode)
+        
+        mindMap.papers.forEach { doc in
+            let node = self.initNode(nodeinfo: doc, frame: CGRect(x:CGFloat(doc.paper_cord_x),y: CGFloat(doc.paper_cord_y), width:self.width, height:self.height))
+            view.addSubview(node)
+        }
+        
+        mindMap.mappings.forEach{ mapping in
+            if mapping.is_root_level == 1 {
+                self.edgeFromNode = rootNode
+                self.edgeToNode = nodes.first(where: {$0.document.id == mapping.connected_to_id})!
+            }
+            else{
+                self.edgeFromNode = nodes.first(where: {$0.document.id == mapping.paper_id})!
+                self.edgeToNode = nodes.first(where: {$0.document.id == mapping.connected_to_id})!
+            }
+            
+            nodesRelationMap[edgeFromNode.tag][edgeToNode.tag] = true
+            nodesRelationMap[edgeToNode.tag][edgeFromNode.tag] = true
+            
+            self.drawArrow(from: self.edgeFromNode, to: self.edgeToNode, text:mapping.relation_text!, tailWidth: 2, headWidth: 6, headLength: 9)
+        }
+    }
+    
+    func drawNode(doc: Document){
+        //top-left point's coordinates
+        let startingPointX = self.view.bounds.width - (self.width/2)
+        let startingPointY = self.view.bounds.height - (self.height/2)
+        //
+        
+        let node = self.initNode(nodeinfo: doc,
+                                 frame: CGRect(x:startingPointX,y:startingPointY, width:self.width, height:self.height))
+        node.document.id = transaction.insertPaper(model: doc, map_id: MindMap.id)
+        self.view.addSubview(node)
+    }
+    
+    func drawLinkedNodes(from:Document){
+        //top-left point's coordinates
+        let startingPointX = self.view.bounds.width - (self.width/2)
+        let startingPointY = self.view.bounds.height - (self.height/2)
+        //
+        
+        self.edgeFromNode = nodes[self.pdfViewSenderNodeTag]
+        
+        from.references.forEach{ doc in
+            let node = self.initNode(nodeinfo: doc, frame: CGRect(x:startingPointX,y: startingPointY, width:self.width, height:self.height))
+            view.addSubview(node)
+            
+            self.edgeToNode = node
+            
+            self.drawArrow(from: self.edgeFromNode, to: self.edgeToNode, text:"   ", tailWidth: 2, headWidth: 6, headLength: 9)
+            
+            self.addNewRelationDB(from: self.edgeFromNode, to: self.edgeToNode, text: "   ")
+        }
+        
+        self.MindMap = transaction.getMindMap(mind_map_id: self.MindMap.id)
     }
 }
 
