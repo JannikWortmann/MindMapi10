@@ -24,6 +24,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         //g.generateData()
         
         mind_maps = db.listMindMaps()
+        //print(mind_maps.count)
         //print("We got LIST")
         //print(mind_maps.count)
         
@@ -54,6 +55,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         nodeViewController.MindMap.title = title
         nodeViewController.MindMap.topic = topic
         nodeViewController.shouldCreateMindMap = true
+        nodeViewController.mindMapDelegate = self
         
         navigationController?.pushViewController(nodeViewController, animated: true)
     }

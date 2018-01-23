@@ -11,6 +11,7 @@
 import UIKit
 
 class NodeViewController: UIViewController {
+    
     // CONSTANT
     let width:CGFloat = 200
     let height:CGFloat = 110

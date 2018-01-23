@@ -186,8 +186,7 @@ extension iOSPopupCreateNewMap {
         //----------------------------------------------------------------------------------
         // view
         //----------------------------------------------------------------------------------
-        self.view.backgroundColor = UIColor.gray.withAlphaComponent(0.4)
-        
+        self.view.backgroundColor = UIColor.lightGray.withAlphaComponent(0.8)
         //----------------------------------------------------------------------------------
         // cMainView
         //----------------------------------------------------------------------------------
@@ -262,6 +261,9 @@ extension iOSPopupCreateNewMap {
         self.cTopicTextfield.centerYAnchor.constraint(equalTo: self.cTopicView.centerYAnchor).isActive = true
         self.cTopicTextfield.rightAnchor.constraint(equalTo: self.cTopicView.rightAnchor, constant: -8).isActive = true
         
+        // Gesture to close the view
+        let gesture = UITapGestureRecognizer(target: self, action: #selector(dismissCurrentView(sender:)))
+        self.view.addGestureRecognizer(gesture)
     }
 }
 
@@ -271,3 +273,12 @@ extension iOSPopupCreateNewMap {
     typealias createMapCallback = ((String, String) -> Void)
 }
 
+extension iOSPopupCreateNewMap{
+    @objc private func dismissCurrentView(sender: UITapGestureRecognizer){
+        guard !self.cMainView.bounds.contains(sender.location(in: self.cMainView)) else {
+            return
+        }
+        
+        self.dismiss(animated: true, completion: nil)
+    }
+}
