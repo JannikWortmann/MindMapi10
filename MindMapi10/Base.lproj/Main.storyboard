@@ -6,7 +6,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -64,30 +63,50 @@
                                     <textInputTraits key="textInputTraits"/>
                                 </searchBar>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="searchCell" id="ojz-P9-IPg" customClass="SearchTableViewCell" customModule="MindMapi10" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="72" width="1024" height="52"/>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="searchCell" rowHeight="118" id="lja-p2-E91" customClass="SearchTableViewCell" customModule="MindMapi10" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="72" width="1024" height="118"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ojz-P9-IPg" id="2Bb-mt-XUL">
-                                            <rect key="frame" x="0.0" y="0.0" width="1024" height="51.5"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="lja-p2-E91" id="JL3-8B-xYd">
+                                            <rect key="frame" x="0.0" y="0.0" width="1024" height="117.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zav-CB-vUY">
-                                                    <rect key="frame" x="15" y="15" width="994" height="22"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e8A-Zj-h06">
+                                                    <rect key="frame" x="16" y="8" width="992" height="20.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rrx-bP-qqd">
+                                                    <rect key="frame" x="16" y="36.5" width="992" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="754" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YD5-PL-Q9X">
+                                                    <rect key="frame" x="16" y="65.5" width="992" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="zav-CB-vUY" firstAttribute="leading" secondItem="2Bb-mt-XUL" secondAttribute="leadingMargin" id="RSI-xw-eDO"/>
-                                                <constraint firstItem="zav-CB-vUY" firstAttribute="top" secondItem="2Bb-mt-XUL" secondAttribute="topMargin" id="yD3-Bz-qil"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="zav-CB-vUY" secondAttribute="trailing" id="zZf-H2-0uN"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="zav-CB-vUY" secondAttribute="bottom" id="zif-MG-Q41"/>
+                                                <constraint firstItem="e8A-Zj-h06" firstAttribute="leading" secondItem="JL3-8B-xYd" secondAttribute="leading" constant="16" id="1v8-2o-4Cc"/>
+                                                <constraint firstAttribute="trailing" secondItem="YD5-PL-Q9X" secondAttribute="trailing" constant="16" id="34v-0x-rOq"/>
+                                                <constraint firstItem="YD5-PL-Q9X" firstAttribute="leading" secondItem="JL3-8B-xYd" secondAttribute="leading" constant="16" id="5am-fe-5sG"/>
+                                                <constraint firstItem="rrx-bP-qqd" firstAttribute="leading" secondItem="JL3-8B-xYd" secondAttribute="leading" constant="16" id="GBa-sx-QYQ"/>
+                                                <constraint firstItem="rrx-bP-qqd" firstAttribute="top" secondItem="e8A-Zj-h06" secondAttribute="bottom" constant="8" id="HYi-Rx-nvK"/>
+                                                <constraint firstItem="e8A-Zj-h06" firstAttribute="top" secondItem="JL3-8B-xYd" secondAttribute="top" constant="8" id="JD5-rR-VXh"/>
+                                                <constraint firstAttribute="bottom" secondItem="YD5-PL-Q9X" secondAttribute="bottom" constant="18" id="Kec-VK-85p"/>
+                                                <constraint firstItem="YD5-PL-Q9X" firstAttribute="top" secondItem="rrx-bP-qqd" secondAttribute="bottom" constant="8" id="OPl-B7-EJC"/>
+                                                <constraint firstAttribute="trailing" secondItem="e8A-Zj-h06" secondAttribute="trailing" constant="16" id="QWw-OV-T4i"/>
+                                                <constraint firstAttribute="trailing" secondItem="rrx-bP-qqd" secondAttribute="trailing" constant="16" id="fe2-cw-5HG"/>
                                             </constraints>
                                         </tableViewCellContentView>
-                                        <viewLayoutGuide key="safeArea" id="Ikl-jz-gL1"/>
+                                        <viewLayoutGuide key="safeArea" id="Wuj-7g-iUr"/>
                                         <connections>
-                                            <outlet property="titleLabel" destination="zav-CB-vUY" id="gYQ-lY-Cm2"/>
+                                            <outlet property="abstractLabel" destination="YD5-PL-Q9X" id="Ahb-BP-OIT"/>
+                                            <outlet property="authorsLabel" destination="rrx-bP-qqd" id="Cnh-nS-4W1"/>
+                                            <outlet property="titleLabel" destination="e8A-Zj-h06" id="wXZ-8S-GdG"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>

@@ -23,8 +23,12 @@ class SearchViewController: UIViewController {
         
         let nib = UINib(nibName: "SearchTableViewCell", bundle: nil)
         tableView.register(nib, forCellReuseIdentifier: "searchCell")
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let iOSPDFViewController = segue.destination as! iOSPDFViewController
         
-//        print(Engine.shared.getData(from: "HCI"))
+        let paperLink = (sender as! TitlesObject).pdfURL
     }
 }
 
@@ -33,6 +37,8 @@ extension SearchViewController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "searchCell", for: indexPath) as! SearchTableViewCell
         
         cell.titleLabel.text = papers[indexPath.row].title
+        cell.authorsLabel.text = papers[indexPath.row].author
+        cell.abstractLabel.text = papers[indexPath.row].abstract
         
         return cell
     }
@@ -40,11 +46,33 @@ extension SearchViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return papers.count
     }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableViewAutomaticDimension
+    }
+    
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 60.0
+    }
+    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        let addAction = UITableViewRowAction(style: .normal, title: "Add") { action, index in
+            print("add")
+        }
+        
+        return [addAction]
+    }
 }
 
 extension SearchViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let selectedPaper = papers[indexPath.row]
+        
+        self.performSegue(withIdentifier: "goToReadPDF", sender: selectedPaper)
     }
 }
 

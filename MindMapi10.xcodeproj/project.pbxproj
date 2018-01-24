@@ -7,14 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6F259A7F2018F58200A571C2 /* SwiftSoup.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F259A7D2018F57600A571C2 /* SwiftSoup.framework */; };
+		6F259A802018F58200A571C2 /* SwiftSoup.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6F259A7D2018F57600A571C2 /* SwiftSoup.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		6F6F258920177CA000282D62 /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F6F258720177CA000282D62 /* SearchTableViewCell.swift */; };
 		6F6F258A20177CA000282D62 /* SearchTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6F6F258820177CA000282D62 /* SearchTableViewCell.xib */; };
 		6F7C359520176B5D00C1749C /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F7C359420176B5D00C1749C /* SearchViewController.swift */; };
 		6F7C360E20176C1E00C1749C /* Engine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F7C360D20176C1E00C1749C /* Engine.swift */; };
 		6F7C361020176CA500C1749C /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F7C360F20176CA500C1749C /* Constants.swift */; };
 		6F7C361220176CC100C1749C /* Structs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F7C361120176CC000C1749C /* Structs.swift */; };
-		6FFFCD6E20177BBB00A1DD23 /* SwiftSoup.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FFFCD69201779B300A1DD23 /* SwiftSoup.framework */; };
-		6FFFCD6F20177BBB00A1DD23 /* SwiftSoup.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6FFFCD69201779B300A1DD23 /* SwiftSoup.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		946988A6200D1CD2008C63B0 /* Arrow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 946988A5200D1CD2008C63B0 /* Arrow.swift */; };
 		9494A70020092C74003968D2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9494A6FF20092C74003968D2 /* AppDelegate.swift */; };
 		9494A70220092C74003968D2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9494A70120092C74003968D2 /* ViewController.swift */; };
@@ -61,13 +61,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		6FFFCD7020177BBB00A1DD23 /* Embed Frameworks */ = {
+		6F259A812018F58200A571C2 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				6FFFCD6F20177BBB00A1DD23 /* SwiftSoup.framework in Embed Frameworks */,
+				6F259A802018F58200A571C2 /* SwiftSoup.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -75,13 +75,13 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		6F259A7D2018F57600A571C2 /* SwiftSoup.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SwiftSoup.framework; sourceTree = "<group>"; };
 		6F6F258720177CA000282D62 /* SearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewCell.swift; sourceTree = "<group>"; };
 		6F6F258820177CA000282D62 /* SearchTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchTableViewCell.xib; sourceTree = "<group>"; };
 		6F7C359420176B5D00C1749C /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		6F7C360D20176C1E00C1749C /* Engine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Engine.swift; sourceTree = "<group>"; };
 		6F7C360F20176CA500C1749C /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		6F7C361120176CC000C1749C /* Structs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Structs.swift; sourceTree = "<group>"; };
-		6FFFCD69201779B300A1DD23 /* SwiftSoup.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftSoup.framework; path = Carthage/Build/iOS/SwiftSoup.framework; sourceTree = "<group>"; };
 		946988A5200D1CD2008C63B0 /* Arrow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Arrow.swift; sourceTree = "<group>"; };
 		9494A6FC20092C74003968D2 /* MindMapi10.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MindMapi10.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9494A6FF20092C74003968D2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -134,7 +134,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6FFFCD6E20177BBB00A1DD23 /* SwiftSoup.framework in Frameworks */,
+				6F259A7F2018F58200A571C2 /* SwiftSoup.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -189,7 +189,7 @@
 		6FFFCD68201779B300A1DD23 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				6FFFCD69201779B300A1DD23 /* SwiftSoup.framework */,
+				6F259A7D2018F57600A571C2 /* SwiftSoup.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -361,7 +361,7 @@
 				9494A6F820092C74003968D2 /* Sources */,
 				9494A6F920092C74003968D2 /* Frameworks */,
 				9494A6FA20092C74003968D2 /* Resources */,
-				6FFFCD7020177BBB00A1DD23 /* Embed Frameworks */,
+				6F259A812018F58200A571C2 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -612,6 +612,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
+					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = MindMapi10/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -633,6 +634,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
+					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = MindMapi10/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
