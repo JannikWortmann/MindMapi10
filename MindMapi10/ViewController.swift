@@ -46,6 +46,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             })
         }
         
+        view.modalPresentationStyle = .overCurrentContext
+        
         present(view, animated: true, completion: nil)
     }
     

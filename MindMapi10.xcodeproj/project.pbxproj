@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		940CA4CB20189ED600B96BC4 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 940CA4CA20189ED600B96BC4 /* Constants.swift */; };
 		94495F6420167D95005509B2 /* ImportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94495F6320167D94005509B2 /* ImportViewController.swift */; };
 		94495F6720167DB0005509B2 /* ImportCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94495F6520167DB0005509B2 /* ImportCell.swift */; };
 		94495F6820167DB0005509B2 /* MapCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94495F6620167DB0005509B2 /* MapCell.swift */; };
@@ -56,6 +57,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		940CA4CA20189ED600B96BC4 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		94495F6320167D94005509B2 /* ImportViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImportViewController.swift; sourceTree = "<group>"; };
 		94495F6520167DB0005509B2 /* ImportCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImportCell.swift; sourceTree = "<group>"; };
 		94495F6620167DB0005509B2 /* MapCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapCell.swift; sourceTree = "<group>"; };
@@ -117,6 +119,41 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		940CA4CC2018A1C000B96BC4 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		940CA4CD2018A26200B96BC4 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		940CA4CE2018A26900B96BC4 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		940CA4CF2018A2FD00B96BC4 /* Stores */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Stores;
+			sourceTree = "<group>";
+		};
+		940CA4D02018A36000B96BC4 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
 		9494A6F320092C74003968D2 = {
 			isa = PBXGroup;
 			children = (
@@ -136,6 +173,11 @@
 		9494A6FE20092C74003968D2 /* MindMapi10 */ = {
 			isa = PBXGroup;
 			children = (
+				940CA4D02018A36000B96BC4 /* Helpers */,
+				940CA4CF2018A2FD00B96BC4 /* Stores */,
+				940CA4CE2018A26900B96BC4 /* Controllers */,
+				940CA4CD2018A26200B96BC4 /* Views */,
+				940CA4CC2018A1C000B96BC4 /* Models */,
 				94E9BC902014A182002F45B6 /* Database */,
 				94E9BC7C2013D21C002F45B6 /* iOSPopups */,
 				9494A71A2009476C003968D2 /* Map */,
@@ -188,6 +230,7 @@
 				946988A5200D1CD2008C63B0 /* Arrow.swift */,
 				94B16DE0200F6968000CA597 /* Node.swift */,
 				94B16F5F20128549000CA597 /* NodeType.swift */,
+				940CA4CA20189ED600B96BC4 /* Constants.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -374,6 +417,7 @@
 				94E9BC8C2013D21C002F45B6 /* iOSPDFNavigationController.swift in Sources */,
 				94E9BC8A2013D21C002F45B6 /* iOSPDFViewController.swift in Sources */,
 				94E9BCE72014A682002F45B6 /* Paper_mapping.swift in Sources */,
+				940CA4CB20189ED600B96BC4 /* Constants.swift in Sources */,
 				94E9BCE42014A682002F45B6 /* Mind_mapProperties.swift in Sources */,
 				94B16DE1200F6968000CA597 /* Node.swift in Sources */,
 				94E9BCE82014A682002F45B6 /* Storage.swift in Sources */,

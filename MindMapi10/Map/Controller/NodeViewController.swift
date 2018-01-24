@@ -11,12 +11,6 @@
 import UIKit
 
 class NodeViewController: UIViewController {
-    
-    // CONSTANT
-    let width:CGFloat = 200
-    let height:CGFloat = 110
-    //
-    
     // CREATE MIND MAP
     var shouldCreateMindMap = Bool()
     var MindMap = Mind_map_model()
@@ -407,15 +401,15 @@ extension NodeViewController{
     
     func drawMindMap(_ mindMap: Mind_map_model,_ view:UIView){
         //top-left point's coordinates
-        let startingPointX = CGFloat(mindMap.map_cord_x) - (self.width/2)
-        let startingPointY = CGFloat(mindMap.map_cord_y) - (self.height/2)
+        let startingPointX = CGFloat(mindMap.map_cord_x) - (NodeConfig.width/2)
+        let startingPointY = CGFloat(mindMap.map_cord_y) - (NodeConfig.height/2)
         //
         
-        let rootNode = self.initRootNode(nodeInfo: mindMap, frame: CGRect(x:startingPointX,y:startingPointY, width:self.width, height:self.height))
+        let rootNode = self.initRootNode(nodeInfo: mindMap, frame: CGRect(x:startingPointX,y:startingPointY, width:NodeConfig.width, height:NodeConfig.height))
         view.addSubview(rootNode)
         
         mindMap.papers.forEach { doc in
-            let node = self.initNode(nodeinfo: doc, frame: CGRect(x:CGFloat(doc.paper_cord_x),y: CGFloat(doc.paper_cord_y), width:self.width, height:self.height))
+            let node = self.initNode(nodeinfo: doc, frame: CGRect(x:CGFloat(doc.paper_cord_x),y: CGFloat(doc.paper_cord_y), width:NodeConfig.width, height:NodeConfig.height))
             view.addSubview(node)
         }
         
@@ -438,26 +432,26 @@ extension NodeViewController{
     
     func drawNode(doc: Document){
         //top-left point's coordinates
-        let startingPointX = self.view.bounds.width - (self.width/2)
-        let startingPointY = self.view.bounds.height - (self.height/2)
+        let startingPointX = self.view.bounds.width/2 - (NodeConfig.width/2)
+        let startingPointY = self.view.bounds.height/2 - (NodeConfig.height/2)
         //
         
         let node = self.initNode(nodeinfo: doc,
-                                 frame: CGRect(x:startingPointX,y:startingPointY, width:self.width, height:self.height))
+                                 frame: CGRect(x:startingPointX,y:startingPointY, width:NodeConfig.width, height:NodeConfig.height))
         node.document.id = transaction.insertPaper(model: doc, map_id: MindMap.id)
         self.view.addSubview(node)
     }
     
     func drawLinkedNodes(from:Document){
         //top-left point's coordinates
-        let startingPointX = self.view.bounds.width - (self.width/2)
-        let startingPointY = self.view.bounds.height - (self.height/2)
+        let startingPointX = self.view.bounds.width/2 - (NodeConfig.width/2)
+        let startingPointY = self.view.bounds.height/2 - (NodeConfig.height/2)
         //
         
         self.edgeFromNode = nodes[self.pdfViewSenderNodeTag]
         
         from.references.forEach{ doc in
-            let node = self.initNode(nodeinfo: doc, frame: CGRect(x:startingPointX,y: startingPointY, width:self.width, height:self.height))
+            let node = self.initNode(nodeinfo: doc, frame: CGRect(x:startingPointX,y: startingPointY, width:NodeConfig.width, height:NodeConfig.height))
             view.addSubview(node)
             
             self.edgeToNode = node
