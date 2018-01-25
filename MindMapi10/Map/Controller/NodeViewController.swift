@@ -84,7 +84,9 @@ class NodeViewController: UIViewController {
         self.notesSubView.layer.cornerRadius = 10
         self.notesSubView.layer.borderColor = UIColor.blue.cgColor
         
-        MindMap = transaction.getMindMap(mind_map_id: MindMap.id)
+        if !shouldCreateMindMap {
+            MindMap = transaction.getMindMap(mind_map_id: MindMap.id)
+        }
     }
     
     func putLabelOnScreen(text:String, x: CGFloat, y:CGFloat, angle:CGFloat)-> UITextField{
