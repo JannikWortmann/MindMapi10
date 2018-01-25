@@ -12,7 +12,7 @@ class SearchViewController: UIViewController {
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
     
-    var papers = [TitlesObject]()
+    var papers = [Document]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -78,11 +78,18 @@ extension SearchViewController: UITableViewDelegate {
 
 extension SearchViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        let search = Engine.shared.getData(from: "HCI")
+        let search = Engine.shared.getData(from: searchBar.text!)
         
         papers.removeAll()
         search.forEach { (paper) in
-            papers.append(paper)
+            let doc = Document()
+            doc.abstract = paper.abstract
+            doc.title = paper.title
+            doc.url = paper.link
+            doc.pdf_url = paper.pdfURL
+            doc.author = paper.author
+            
+            papers.append(doc)
         }
         
         tableView.reloadData()
