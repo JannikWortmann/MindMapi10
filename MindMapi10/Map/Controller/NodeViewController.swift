@@ -38,7 +38,7 @@ class NodeViewController: UIViewController {
     //
     
     //DELEGATES
-    var mindMapDelegate:MindMapListDelegate?
+    var mindMapDelegate: MindMapListDelegate?
     //
     
     override func viewDidLoad() {
@@ -92,6 +92,11 @@ class NodeViewController: UIViewController {
         return textField
     }
 
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let nav = segue.destination as? SearchViewController {
+            nav.delegate = self
+        }
+    }
     
     private func getRelationTextOfNodes(from: NodeCustomView, to: NodeCustomView)-> String {
         var result = String()
@@ -377,7 +382,7 @@ extension NodeViewController{
 
 
 //DRAW MIND MAP AND NODES
-extension NodeViewController{
+extension NodeViewController: UIGraphDelegate{
     func drawArrow(from: NodeCustomView, to: NodeCustomView, text:String, tailWidth: CGFloat, headWidth: CGFloat, headLength: CGFloat ){
         let arrow = UIBezierPath.arrow(from: from.center, to: to.center, tailWidth: tailWidth, headWidth: headWidth, headLength: headLength)
         

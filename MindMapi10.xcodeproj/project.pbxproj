@@ -8,10 +8,17 @@
 
 /* Begin PBXBuildFile section */
 		940CA4CB20189ED600B96BC4 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 940CA4CA20189ED600B96BC4 /* Constants.swift */; };
+		940CA4DC201A199800B96BC4 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 940CA4D3201A199700B96BC4 /* SearchViewController.swift */; };
+		940CA4DD201A199800B96BC4 /* Structs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 940CA4D5201A199700B96BC4 /* Structs.swift */; };
+		940CA4DE201A199800B96BC4 /* SearchTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 940CA4D7201A199700B96BC4 /* SearchTableViewCell.xib */; };
+		940CA4DF201A199800B96BC4 /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 940CA4D8201A199700B96BC4 /* SearchTableViewCell.swift */; };
+		940CA4E1201A199800B96BC4 /* Engine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 940CA4DB201A199700B96BC4 /* Engine.swift */; };
 		94495F6420167D95005509B2 /* ImportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94495F6320167D94005509B2 /* ImportViewController.swift */; };
 		94495F6720167DB0005509B2 /* ImportCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94495F6520167DB0005509B2 /* ImportCell.swift */; };
 		94495F6820167DB0005509B2 /* MapCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94495F6620167DB0005509B2 /* MapCell.swift */; };
 		946988A6200D1CD2008C63B0 /* Arrow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 946988A5200D1CD2008C63B0 /* Arrow.swift */; };
+		94906FF7201A2425000DC0C1 /* SwiftSoup.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94906FF5201A2415000DC0C1 /* SwiftSoup.framework */; };
+		94906FF8201A2425000DC0C1 /* SwiftSoup.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 94906FF5201A2415000DC0C1 /* SwiftSoup.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		9494A70020092C74003968D2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9494A6FF20092C74003968D2 /* AppDelegate.swift */; };
 		9494A70220092C74003968D2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9494A70120092C74003968D2 /* ViewController.swift */; };
 		9494A70520092C74003968D2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9494A70320092C74003968D2 /* Main.storyboard */; };
@@ -56,12 +63,32 @@
 		94E9BCF52014AC04002F45B6 /* MindMapi10.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 94E9BCF32014AC04002F45B6 /* MindMapi10.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		94906FF9201A2425000DC0C1 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				94906FF8201A2425000DC0C1 /* SwiftSoup.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		940CA4CA20189ED600B96BC4 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		940CA4D3201A199700B96BC4 /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		940CA4D5201A199700B96BC4 /* Structs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Structs.swift; sourceTree = "<group>"; };
+		940CA4D7201A199700B96BC4 /* SearchTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchTableViewCell.xib; sourceTree = "<group>"; };
+		940CA4D8201A199700B96BC4 /* SearchTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchTableViewCell.swift; sourceTree = "<group>"; };
+		940CA4DB201A199700B96BC4 /* Engine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Engine.swift; sourceTree = "<group>"; };
 		94495F6320167D94005509B2 /* ImportViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImportViewController.swift; sourceTree = "<group>"; };
 		94495F6520167DB0005509B2 /* ImportCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImportCell.swift; sourceTree = "<group>"; };
 		94495F6620167DB0005509B2 /* MapCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapCell.swift; sourceTree = "<group>"; };
 		946988A5200D1CD2008C63B0 /* Arrow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Arrow.swift; sourceTree = "<group>"; };
+		94906FF5201A2415000DC0C1 /* SwiftSoup.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SwiftSoup.framework; sourceTree = "<group>"; };
 		9494A6FC20092C74003968D2 /* MindMapi10.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MindMapi10.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9494A6FF20092C74003968D2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9494A70120092C74003968D2 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -113,6 +140,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				94906FF7201A2425000DC0C1 /* SwiftSoup.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -154,9 +182,54 @@
 			path = Helpers;
 			sourceTree = "<group>";
 		};
+		940CA4D1201A199700B96BC4 /* Engine */ = {
+			isa = PBXGroup;
+			children = (
+				940CA4D2201A199700B96BC4 /* Controller */,
+				940CA4D4201A199700B96BC4 /* Model */,
+				940CA4D6201A199700B96BC4 /* View */,
+				940CA4D9201A199700B96BC4 /* Helpers */,
+			);
+			path = Engine;
+			sourceTree = "<group>";
+		};
+		940CA4D2201A199700B96BC4 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				940CA4D3201A199700B96BC4 /* SearchViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		940CA4D4201A199700B96BC4 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				940CA4D5201A199700B96BC4 /* Structs.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		940CA4D6201A199700B96BC4 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				940CA4D7201A199700B96BC4 /* SearchTableViewCell.xib */,
+				940CA4D8201A199700B96BC4 /* SearchTableViewCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		940CA4D9201A199700B96BC4 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				940CA4DB201A199700B96BC4 /* Engine.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
 		9494A6F320092C74003968D2 = {
 			isa = PBXGroup;
 			children = (
+				94906FF5201A2415000DC0C1 /* SwiftSoup.framework */,
 				9494A6FE20092C74003968D2 /* MindMapi10 */,
 				9494A6FD20092C74003968D2 /* Products */,
 			);
@@ -173,6 +246,7 @@
 		9494A6FE20092C74003968D2 /* MindMapi10 */ = {
 			isa = PBXGroup;
 			children = (
+				940CA4D1201A199700B96BC4 /* Engine */,
 				940CA4D02018A36000B96BC4 /* Helpers */,
 				940CA4CF2018A2FD00B96BC4 /* Stores */,
 				940CA4CE2018A26900B96BC4 /* Controllers */,
@@ -328,6 +402,7 @@
 				9494A6F820092C74003968D2 /* Sources */,
 				9494A6F920092C74003968D2 /* Frameworks */,
 				9494A6FA20092C74003968D2 /* Resources */,
+				94906FF9201A2425000DC0C1 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -381,6 +456,7 @@
 				94E9BC8B2013D21C002F45B6 /* iOSPDFViewController.xib in Resources */,
 				9494A70D20092C74003968D2 /* LaunchScreen.storyboard in Resources */,
 				9494A70A20092C74003968D2 /* Assets.xcassets in Resources */,
+				940CA4DE201A199800B96BC4 /* SearchTableViewCell.xib in Resources */,
 				9494A70520092C74003968D2 /* Main.storyboard in Resources */,
 				9494A723200949E3003968D2 /* NodeCustomView.xib in Resources */,
 			);
@@ -412,9 +488,11 @@
 				94E9BCE02014A682002F45B6 /* PaperProperties.swift in Sources */,
 				94E9BCF12014A696002F45B6 /* Mind_map_model.swift in Sources */,
 				94E9BCDE2014A682002F45B6 /* StorageProperties.swift in Sources */,
+				940CA4DD201A199800B96BC4 /* Structs.swift in Sources */,
 				94B16F6020128549000CA597 /* NodeType.swift in Sources */,
 				94E9BCE12014A682002F45B6 /* UserProperties.swift in Sources */,
 				94E9BC8C2013D21C002F45B6 /* iOSPDFNavigationController.swift in Sources */,
+				940CA4E1201A199800B96BC4 /* Engine.swift in Sources */,
 				94E9BC8A2013D21C002F45B6 /* iOSPDFViewController.swift in Sources */,
 				94E9BCE72014A682002F45B6 /* Paper_mapping.swift in Sources */,
 				940CA4CB20189ED600B96BC4 /* Constants.swift in Sources */,
@@ -429,6 +507,8 @@
 				94E9BC8D2013D21C002F45B6 /* iOSTextfieldExtension.swift in Sources */,
 				94E9BCCB2014A300002F45B6 /* DBTransactions.swift in Sources */,
 				94B16DE32010066A000CA597 /* UIGraphDelegate.swift in Sources */,
+				940CA4DF201A199800B96BC4 /* SearchTableViewCell.swift in Sources */,
+				940CA4DC201A199800B96BC4 /* SearchViewController.swift in Sources */,
 				946988A6200D1CD2008C63B0 /* Arrow.swift in Sources */,
 				9494A71C20094887003968D2 /* NodeViewController.swift in Sources */,
 				94E9BCE92014A682002F45B6 /* Importance.swift in Sources */,
@@ -572,6 +652,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 83QYJ4DFQQ;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = MindMapi10/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.halt.MindMapi10;
@@ -587,6 +671,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 83QYJ4DFQQ;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = MindMapi10/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.halt.MindMapi10;

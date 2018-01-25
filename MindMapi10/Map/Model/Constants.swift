@@ -13,3 +13,12 @@ enum NodeConfig {
     static let width:CGFloat = 200
     static let height:CGFloat = 110
 }
+
+class Constants {
+    static let sharedInstance = Constants()
+    
+    let acmQueryURL = "https://dl.acm.org/results.cfm?query="
+    let acmCitationURL = "https://dl.acm.org/"
+}
+
+

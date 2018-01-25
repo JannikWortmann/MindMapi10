@@ -8,6 +8,6 @@
 
 import Foundation
 
-protocol UIGraphDelegate{
-    
+protocol UIGraphDelegate: class {
+    func drawNode(doc:Document)
 }
