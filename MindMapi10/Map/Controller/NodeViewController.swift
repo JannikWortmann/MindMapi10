@@ -284,7 +284,7 @@ extension NodeViewController{
         nodesRelationMap[edgeFromNode.tag][edgeToNode.tag] = true
         nodesRelationMap[edgeToNode.tag][edgeFromNode.tag] = true
         
-        self.addNewRelationDB(from: self.edgeFromNode, to: self.edgeToNode, text: "Hello World")
+        self.addNewRelationDB(from: self.edgeFromNode, to: self.edgeToNode, text: "Background")
         
         self.drawArrow(from: self.edgeFromNode, to: self.edgeToNode, text:"Background", tailWidth: 2, headWidth: 6, headLength: 9)
         
