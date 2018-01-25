@@ -177,8 +177,6 @@ class iOSPopupCreateNewMap: UIViewController {
     }
 }
 
-
-
 extension iOSPopupCreateNewMap {
 //------------------------------------------------------------------------------------------
     //MARK: Init UI
@@ -216,7 +214,6 @@ extension iOSPopupCreateNewMap {
         // cLabelStackView
         //----------------------------------------------------------------------------------
         self.cMainView.addSubview(self.cLabelStackView)
-        
         
         self.cLabelStackView.topAnchor.constraint(equalTo: self.cAddNewMapLabel.bottomAnchor, constant: 8).isActive = true
         self.cLabelStackView.bottomAnchor.constraint(equalTo: self.cContinueButton.topAnchor, constant: -8).isActive = true
@@ -265,6 +262,8 @@ extension iOSPopupCreateNewMap {
     }
 }
 
+//------------------------------------------------------------------------------------------
+    //MARK: Callback Defines
 extension iOSPopupCreateNewMap {
     //Param #1: Title of the Map
     //Param #2: Topic of the Map

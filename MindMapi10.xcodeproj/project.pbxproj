@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		53588D8B2018D0DB00C5E916 /* iOSPDFPreviewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53588D892018D0DB00C5E916 /* iOSPDFPreviewController.swift */; };
+		53588D8C2018D0DB00C5E916 /* iOSPDFPreviewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 53588D8A2018D0DB00C5E916 /* iOSPDFPreviewController.xib */; };
 		946988A6200D1CD2008C63B0 /* Arrow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 946988A5200D1CD2008C63B0 /* Arrow.swift */; };
 		9494A70020092C74003968D2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9494A6FF20092C74003968D2 /* AppDelegate.swift */; };
 		9494A70220092C74003968D2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9494A70120092C74003968D2 /* ViewController.swift */; };
@@ -53,6 +55,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		53588D892018D0DB00C5E916 /* iOSPDFPreviewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSPDFPreviewController.swift; sourceTree = "<group>"; };
+		53588D8A2018D0DB00C5E916 /* iOSPDFPreviewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = iOSPDFPreviewController.xib; sourceTree = "<group>"; };
 		946988A5200D1CD2008C63B0 /* Arrow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Arrow.swift; sourceTree = "<group>"; };
 		9494A6FC20092C74003968D2 /* MindMapi10.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MindMapi10.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9494A6FF20092C74003968D2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -111,6 +115,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		53588D8D2018D0E500C5E916 /* iOSPDFPreviewController */ = {
+			isa = PBXGroup;
+			children = (
+				53588D892018D0DB00C5E916 /* iOSPDFPreviewController.swift */,
+				53588D8A2018D0DB00C5E916 /* iOSPDFPreviewController.xib */,
+			);
+			path = iOSPDFPreviewController;
+			sourceTree = "<group>";
+		};
 		9494A6F320092C74003968D2 = {
 			isa = PBXGroup;
 			children = (
@@ -186,7 +199,7 @@
 		94E9BC7C2013D21C002F45B6 /* iOSPopups */ = {
 			isa = PBXGroup;
 			children = (
-				94E9BC7D2013D21C002F45B6 /* iOSPDFViewController */,
+				94E9BC7D2013D21C002F45B6 /* iOSPDFView */,
 				94E9BC852013D21C002F45B6 /* iOSTextfieldExtension.swift */,
 				94E9BC862013D21C002F45B6 /* GlobalDefines.swift */,
 				94E9BC872013D21C002F45B6 /* iOSPopupCreateNewMap.swift */,
@@ -194,14 +207,15 @@
 			path = iOSPopups;
 			sourceTree = "<group>";
 		};
-		94E9BC7D2013D21C002F45B6 /* iOSPDFViewController */ = {
+		94E9BC7D2013D21C002F45B6 /* iOSPDFView */ = {
 			isa = PBXGroup;
 			children = (
 				94E9BC7E2013D21C002F45B6 /* iOSReferenceCell */,
 				94E9BC812013D21C002F45B6 /* iOSPDFViewController */,
+				53588D8D2018D0E500C5E916 /* iOSPDFPreviewController */,
 				94E9BC842013D21C002F45B6 /* iOSPDFNavigationController.swift */,
 			);
-			path = iOSPDFViewController;
+			path = iOSPDFView;
 			sourceTree = "<group>";
 		};
 		94E9BC7E2013D21C002F45B6 /* iOSReferenceCell */ = {
@@ -327,6 +341,7 @@
 			files = (
 				94E9BC892013D21C002F45B6 /* iOSReferencesCell.xib in Resources */,
 				94E9BC8B2013D21C002F45B6 /* iOSPDFViewController.xib in Resources */,
+				53588D8C2018D0DB00C5E916 /* iOSPDFPreviewController.xib in Resources */,
 				9494A70D20092C74003968D2 /* LaunchScreen.storyboard in Resources */,
 				9494A70A20092C74003968D2 /* Assets.xcassets in Resources */,
 				9494A70520092C74003968D2 /* Main.storyboard in Resources */,
@@ -350,6 +365,7 @@
 				94E9BCEA2014A682002F45B6 /* Paper.swift in Sources */,
 				94E9BCEC2014A682002F45B6 /* Mind_map.swift in Sources */,
 				94E9BCE32014A682002F45B6 /* Reference_mappingProperties.swift in Sources */,
+				53588D8B2018D0DB00C5E916 /* iOSPDFPreviewController.swift in Sources */,
 				94E9BCF22014A696002F45B6 /* Document_model.swift in Sources */,
 				9494A71920094744003968D2 /* NodeCustomView.swift in Sources */,
 				94E9BCF02014A696002F45B6 /* GenerateData.swift in Sources */,
