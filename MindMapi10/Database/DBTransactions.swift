@@ -432,5 +432,21 @@ public class DBTransactions {
         }
     }
     
+    //UPDATE PAPER COORDINATES
+    func updatePaper(paper_id: Int32, paper_cord_x: Float, paper_cord_y: Float) {
+        let fetch_paper = NSFetchRequest<NSFetchRequestResult>(entityName: "Paper")
+        fetch_paper.predicate = NSPredicate(format: "id = %d", paper_id)
+        
+        do {
+            let paper = try context.fetch(fetch_paper) as! [Paper]
+            paper[0].setValue(paper_cord_x, forKey: "paper_cord_x")
+            paper[0].setValue(paper_cord_y, forKey: "paper_cord_y")
+            ad.saveContext()
+        } catch {
+            let error = error as NSError
+            print("\(error)")
+        }
+    }
+    
 }
 

@@ -83,6 +83,8 @@ class NodeViewController: UIViewController {
         self.notesSubView.layer.borderWidth = 1
         self.notesSubView.layer.cornerRadius = 10
         self.notesSubView.layer.borderColor = UIColor.blue.cgColor
+        
+        MindMap = transaction.getMindMap(mind_map_id: MindMap.id)
     }
     
     func putLabelOnScreen(text:String, x: CGFloat, y:CGFloat, angle:CGFloat)-> UITextField{
@@ -362,8 +364,14 @@ extension NodeViewController{
         
         //DRAG
         let translation = sender.translation(in: self.view)
-        sender.view!.center = CGPoint(x: sender.view!.center.x + translation.x, y: sender.view!.center.y + translation.y)
+        let x = sender.view!.center.x + translation.x
+        let y = sender.view!.center.y + translation.y
+        sender.view!.center = CGPoint(x: x, y: y)
         sender.setTranslation(CGPoint.zero, in: self.view)
+        
+        if sender.state == .ended{
+            transaction.updatePaper(paper_id: draggedNode.document.id, paper_cord_x: Float(x), paper_cord_y: Float(y))
+        }
         //
         
         // DRAW Links again
@@ -472,6 +480,7 @@ extension NodeViewController: UIGraphDelegate{
     }
 }
 
+// SPINNER EXTENSION
 extension NodeViewController {
     func displaySpinner(onView : UIView) -> UIView {
         let spinnerView = UIView.init(frame: onView.bounds)
