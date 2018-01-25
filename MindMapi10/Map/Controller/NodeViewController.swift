@@ -145,7 +145,6 @@ extension NodeViewController {
         let hipotenuz = self.distance(point1, point2)
         let cater = self.distance(point1, CGPoint(x:point2.x, y:point1.y))
         let angle = acos(Double(cater/hipotenuz)) * 180 / .pi
-        print(angle)
         
         return CGFloat(angle)
     }
