@@ -60,6 +60,14 @@ class iOSPDFViewController: UIViewController, UICollectionViewDataSource, UIColl
             self.navigationItem.leftBarButtonItem =
                 UIBarButtonItem(title: "╳", style: .plain, target: self, action: #selector(handleCancel))
         }
+        
+        loadPDF(from: "http://delivery.acm.org/10.1145/2770000/2764505/p529-balkanski.pdf?ip=134.130.117.52&id=2764505&acc=ACTIVE%20SERVICE&key=575DA4752A380C0F%2E4D4702B0C3E38B35%2E4D4702B0C3E38B35%2E4D4702B0C3E38B35&__acm__=1516816385_7f696561e85726f394f4c45e3f56b17b")
+    }
+    
+    func loadPDF(from link: String) {
+        let req = URLRequest(url: URL(string: link)!)
+        
+        cWebView.load(req)
     }
     
 //------------------------------------------------------------------------------------------
@@ -71,12 +79,6 @@ class iOSPDFViewController: UIViewController, UICollectionViewDataSource, UIColl
         cReferencesCollectionView.register(UINib(nibName: "iOSReferencesCell", bundle: nil), forCellWithReuseIdentifier: "cell")
         cReferencesCollectionView.dataSource = self
         cReferencesCollectionView.delegate = self
-        
-        
-        let req = URLRequest(url: URL(string: "http://delivery.acm.org/10.1145/210000/202671/P073.pdf?ip=134.61.99.92&id=202671&acc=ACTIVE%20SERVICE&key=575DA4752A380C0F%2E4D4702B0C3E38B35%2E4D4702B0C3E38B35%2E4D4702B0C3E38B35&__acm__=1516657232_9c879ec49982b8acca76d2d8324e90de")!)
-        
-        cWebView.load(req)
-        
     }
 }
 
