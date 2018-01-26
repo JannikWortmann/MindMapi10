@@ -11,6 +11,9 @@ import UIKit
 @IBDesignable class NodeCustomView: UIView {
     
     //IBACTIONS
+    @IBOutlet weak var importanceView: UIView!
+    @IBOutlet weak var authorsLabel: UILabel!
+    
     @IBOutlet weak var lblTitle: UILabel!
     @IBOutlet weak var lblTopic: UILabel!
     
@@ -18,11 +21,10 @@ import UIKit
     @IBOutlet weak var btnIncomeEdge: UIButton!
     @IBOutlet var contentView: UIView!
     
-    @IBOutlet weak var imgImportance: UIImageView!
+//    @IBOutlet weak var imgImportance: UIImageView!
     
     @IBOutlet weak var btnNotes: UIButton!
     @IBOutlet weak var btnPdf: UIButton!
-    //
     
     //VARIABLES
     var document = Document()
@@ -31,9 +33,7 @@ import UIKit
     var outgoingEdgeLayers = [Arrow]()
     
     var isRootNode = Bool()
-    //
-    
-    
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         setup()
@@ -48,16 +48,10 @@ import UIKit
         Bundle.main.loadNibNamed(String(describing: NodeCustomView.self), owner: self, options: nil)
         guard let contentView = contentView else { return }
         contentView.frame = bounds
-        self.addSubview(contentView)
         
+        contentView.layer.borderWidth = 1.0
+        contentView.layer.borderColor = UIColor(red: 192.0/255, green: 216.0/255.0, blue: 242.0/255.0, alpha: 1.0).cgColor
+        
+        self.addSubview(contentView)
     }
-    
-    
-    /*
-    // Only override draw() if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func draw(_ rect: CGRect) {
-        // Drawing code
-    }
-    */
 }

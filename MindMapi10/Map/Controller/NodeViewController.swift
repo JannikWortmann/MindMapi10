@@ -233,7 +233,8 @@ extension NodeViewController{
         
         node.btnPdf.isHidden = true
         node.btnNotes.isHidden = true
-        node.imgImportance.isHidden = true
+        node.importanceView.isHidden = true
+//        node.imgImportance.isHidden = true
         node.contentView.backgroundColor = UIColor.orange
         
         self.initiateNodeActions(node: node)
@@ -248,9 +249,21 @@ extension NodeViewController{
         self.initiateNodeIndexTagMapping(node:node)
         
         node.lblTitle.text = nodeinfo.title
+        node.authorsLabel.text = nodeinfo.author
+        
+        node.authorsLabel.sizeToFit()
+        node.lblTitle.sizeToFit()
+        
+        // Calculating dynamic height
+        let sumHeight = node.lblTitle.frame.height + node.authorsLabel.frame.height + 24.0
+        
+        print(node.authorsLabel.frame.height)
+        
         node.lblTopic.isHidden = true
         node.isRootNode = false
         node.document = nodeinfo
+        
+        node.frame.size.height = sumHeight
         
         self.initiateNodeActions(node: node)
         

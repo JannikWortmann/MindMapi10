@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 enum NodeConfig {
-    static let width:CGFloat = 200
+    static let width:CGFloat = 300
     static let height:CGFloat = 110
 }
 
