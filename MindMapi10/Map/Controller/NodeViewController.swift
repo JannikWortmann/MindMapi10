@@ -200,7 +200,8 @@ extension NodeViewController{
         
         node.btnPdf.isHidden = true
         node.btnNotes.isHidden = true
-        node.imgImportance.isHidden = true
+        node.importanceView.isHidden = true
+//        node.imgImportance.isHidden = true
         node.contentView.backgroundColor = UIColor.orange
         
         self.initiateNodeActions(node: node)
@@ -215,9 +216,21 @@ extension NodeViewController{
         self.initiateNodeIndexTagMapping(node:node)
         
         node.lblTitle.text = nodeinfo.title
+        node.authorsLabel.text = nodeinfo.author
+        
+        node.authorsLabel.sizeToFit()
+        node.lblTitle.sizeToFit()
+        
+        // Calculating dynamic height
+        let sumHeight = node.lblTitle.frame.height + node.authorsLabel.frame.height + 24.0
+        
+        print(node.authorsLabel.frame.height)
+        
         node.lblTopic.isHidden = true
         node.isRootNode = false
         node.document = nodeinfo
+        
+        node.frame.size.height = sumHeight
         
         self.initiateNodeActions(node: node)
         
@@ -371,7 +384,7 @@ extension NodeViewController: UIGraphDelegate{
         
         let shapeLayer = CAShapeLayer()
         shapeLayer.path = arrow.cgPath
-        shapeLayer.strokeColor = UIColor.black.cgColor
+        shapeLayer.strokeColor = UIColor(red: 192.0/255, green: 216.0/255.0, blue: 242.0/255.0, alpha: 1.0).cgColor
         shapeLayer.lineWidth = 1.0
         
         view.layer.addSublayer(shapeLayer)
