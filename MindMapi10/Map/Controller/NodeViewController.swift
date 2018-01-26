@@ -412,7 +412,7 @@ extension NodeViewController: UIGraphDelegate{
         
         let shapeLayer = CAShapeLayer()
         shapeLayer.path = arrow.cgPath
-        shapeLayer.strokeColor = UIColor.black.cgColor
+        shapeLayer.strokeColor = UIColor(red: 192.0/255, green: 216.0/255.0, blue: 242.0/255.0, alpha: 1.0).cgColor
         shapeLayer.lineWidth = 1.0
         
         view.layer.addSublayer(shapeLayer)
