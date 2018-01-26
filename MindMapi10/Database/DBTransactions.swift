@@ -448,5 +448,21 @@ public class DBTransactions {
         }
     }
     
+    //UPDATE MIND MAP COORDINATES
+    func updateMindMap(mind_map_id: Int32, map_cord_x: Float, map_cord_y: Float) {
+        let fetch_map = NSFetchRequest<NSFetchRequestResult>(entityName: "Mind_map")
+        fetch_map.predicate = NSPredicate(format: "id = %d", mind_map_id)
+        
+        do {
+            let map = try context.fetch(fetch_map) as! [Mind_map]
+            map[0].setValue(map_cord_x, forKey: "map_cord_x")
+            map[0].setValue(map_cord_y, forKey: "map_cord_y")
+            ad.saveContext()
+        } catch {
+            let error = error as NSError
+            print("\(error)")
+        }
+    }
+    
 }
 

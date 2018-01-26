@@ -32,9 +32,11 @@ class NodeViewController: UIViewController {
     var effect:UIVisualEffect!
     
     // MARK: - Notes Sub View
+    var currentNoteViewNode = NodeCustomView()
     @IBOutlet var notesSubView: UIView!
     @IBOutlet weak var notesSubViewTitle: UILabel!
     @IBOutlet weak var txtNotesInSubView: UITextView!
+    @IBOutlet weak var newNoteText: UITextField!
     //
     
     //DELEGATES
@@ -49,7 +51,7 @@ class NodeViewController: UIViewController {
         //var spinner = self.displaySpinner(onView: self.view)
         
         createMindMap(mindMap: MindMap, isNewMap: shouldCreateMindMap)
-            
+        
         shouldCreateMindMap = false
     }
     
@@ -57,12 +59,6 @@ class NodeViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-    //IBACTIONS
-    @IBAction func btnAddAction(_ sender: Any) {
-        //TODO
-    }
-    
     
     @IBAction func btnExportAction(_ sender: Any) {
         let export = DBImportExport()
@@ -75,6 +71,24 @@ class NodeViewController: UIViewController {
     }
     //
     
+    
+    @IBAction func addNote(_ sender: Any) {
+        if let text = self.newNoteText.text, !text.isEmpty
+        {
+            transaction.insertNote(content: text, paper_id: self.currentNoteViewNode.document.id)
+            
+            self.currentNoteViewNode.document.notes = transaction.getNotesForPaper(paper_id: self.currentNoteViewNode.document.id)
+            
+            var noteText = String()
+            self.currentNoteViewNode.document.notes.forEach{note in
+                noteText.append("\n \(note.content!)")
+            }
+            
+            txtNotesInSubView.text = noteText
+        }
+        
+        self.newNoteText.text = ""
+    }
     
     func settings(){
         effect = visualEffect.effect
@@ -141,53 +155,6 @@ class NodeViewController: UIViewController {
     */
 }
 
-// MATH OPERATIONS
-extension NodeViewController {
-    private func calculateArrowAngle(_ point1: CGPoint,_ point2: CGPoint)->CGFloat{
-        let hipotenuz = self.distance(point1, point2)
-        let cater = self.distance(point1, CGPoint(x:point2.x, y:point1.y))
-        let angle = acos(Double(cater/hipotenuz)) * 180 / .pi
-        
-        return CGFloat(angle)
-    }
-    
-    private func distance(_ a: CGPoint, _ b: CGPoint) -> CGFloat {
-        let xDist = a.x - b.x
-        let yDist = a.y - b.y
-        return CGFloat(sqrt((xDist * xDist) + (yDist * yDist)))
-    }
-}
-
-// ANIMATION
-extension NodeViewController {
-    func animateIn(){
-        self.view.addSubview(notesSubView)
-        notesSubView.center = self.view.center
-        
-        notesSubView.transform = CGAffineTransform.init(scaleX: 1.3, y: 1.3)
-        notesSubView.alpha = 0
-        
-        UIView.animate(withDuration: 0.4){
-            self.visualEffect.effect = self.effect
-            self.visualEffect.isUserInteractionEnabled = true
-            self.notesSubView.alpha = 1
-            self.notesSubView.transform = CGAffineTransform.identity
-        }
-    }
-    
-    func animateOut(){
-        UIView.animate(withDuration: 0.3, animations: {
-            self.notesSubView.transform = CGAffineTransform.init(scaleX: 1.3, y: 1.3)
-            self.notesSubView.alpha = 0
-            
-            self.visualEffect.effect = nil
-            self.visualEffect.isUserInteractionEnabled = false
-        }) { (success:Bool) in
-            self.notesSubView.removeFromSuperview()
-        }
-    }
-}
-
 // DB LOGIC
 extension NodeViewController {
     func createMindMap(mindMap: Mind_map_model, isNewMap:Bool){
@@ -200,11 +167,11 @@ extension NodeViewController {
             mindMapDelegate?.onMindMapAdd(new_map: mindMap)
         }
         
-        self.drawMindMap(self.MindMap, self.view)
+        self.drawMindMap(mindMap, self.view)
     }
     
     func addNewRelationDB(from: NodeCustomView, to:NodeCustomView, text:String){
-        if(from.isRootNode){
+        if (from.isRootNode){
             transaction.addConnection(mind_map_id: MindMap.id, from: MindMap.id, to: to.document.id, text: text, is_root: 1)
         }
         else if (to.isRootNode) {
@@ -314,15 +281,15 @@ extension NodeViewController{
     
     //TODO
     @objc func popupNotes(_ sender: UIButton){
-        let node = nodes[sender.tag]
+        self.currentNoteViewNode = nodes[sender.tag]
         
         var text = String()
-        node.document.notes.forEach{note in
+        self.currentNoteViewNode.document.notes.forEach{note in
             text.append("\n \(note.content!)")
         }
         
         txtNotesInSubView.text = text
-        notesSubViewTitle.text = node.lblTitle.text
+        notesSubViewTitle.text = self.currentNoteViewNode.lblTitle.text
         self.view.bringSubview(toFront: self.visualEffect)
         //txtNotesInSubView.sizeToFit()
         animateIn()
@@ -371,7 +338,12 @@ extension NodeViewController{
         sender.setTranslation(CGPoint.zero, in: self.view)
         
         if sender.state == .ended{
-            transaction.updatePaper(paper_id: draggedNode.document.id, paper_cord_x: Float(x), paper_cord_y: Float(y))
+            if draggedNode.isRootNode{
+                transaction.updateMindMap(mind_map_id: MindMap.id, map_cord_x: Float(x), map_cord_y: Float(y))
+            }
+            else {
+                transaction.updatePaper(paper_id: draggedNode.document.id, paper_cord_x: Float(x), paper_cord_y: Float(y))
+            }
         }
         //
         
@@ -404,7 +376,7 @@ extension NodeViewController: UIGraphDelegate{
         
         view.layer.addSublayer(shapeLayer)
         
-        let arrowAngle = calculateArrowAngle(from.center, to.center)
+        let arrowAngle = self.calculateArrowAngle(from.center, to.center)
         let textField = self.putLabelOnScreen(text: text,x:(from.center.x + to.center.x)/2 , y: (to.center.y + from.center.y)/2, angle: arrowAngle)
         
         from.outgoingEdgeLayers.append(Arrow(shapeLayer, textField))
@@ -429,32 +401,39 @@ extension NodeViewController: UIGraphDelegate{
             view.addSubview(node)
         }
         
+        var from: NodeCustomView = NodeCustomView()
+        var to: NodeCustomView = NodeCustomView()
+        
         mindMap.mappings.forEach{ mapping in
+            print("Mapping from = \(mapping.paper_id)  to = \(mapping.connected_to_id) and isRoot=\(mapping.is_root_level)")
             if mapping.is_root_level == 1 {
-                self.edgeFromNode = rootNode
-                self.edgeToNode = nodes.first(where: {$0.document.id == mapping.connected_to_id})!
+                from = rootNode
+                to = nodes.first(where: {$0.document.id == mapping.connected_to_id})!
             }
             else{
-                self.edgeFromNode = nodes.first(where: {$0.document.id == mapping.paper_id})!
-                self.edgeToNode = nodes.first(where: {$0.document.id == mapping.connected_to_id})!
+                from = nodes.first(where: {$0.document.id == mapping.paper_id})!
+                to = nodes.first(where: {$0.document.id == mapping.connected_to_id})!
             }
             
-            nodesRelationMap[edgeFromNode.tag][edgeToNode.tag] = true
-            nodesRelationMap[edgeToNode.tag][edgeFromNode.tag] = true
+            nodesRelationMap[from.tag][to.tag] = true
+            nodesRelationMap[to.tag][from.tag] = true
             
-            self.drawArrow(from: self.edgeFromNode, to: self.edgeToNode, text:mapping.relation_text!, tailWidth: 2, headWidth: 6, headLength: 9)
+            self.drawArrow(from: from, to: to, text:mapping.relation_text!, tailWidth: 2, headWidth: 6, headLength: 9)
         }
     }
     
     func drawNode(doc: Document){
+        doc.paper_cord_x = Float(self.view.bounds.width/2)
+        doc.paper_cord_y = Float(self.view.bounds.height/2)
+        
         //top-left point's coordinates
-        let startingPointX = self.view.bounds.width/2 - (NodeConfig.width/2)
-        let startingPointY = self.view.bounds.height/2 - (NodeConfig.height/2)
+        let startingPointX = CGFloat(doc.paper_cord_x) - (NodeConfig.width/2)
+        let startingPointY = CGFloat(doc.paper_cord_y) - (NodeConfig.height/2)
         //
         
         let node = self.initNode(nodeinfo: doc,
                                  frame: CGRect(x:startingPointX,y:startingPointY, width:NodeConfig.width, height:NodeConfig.height))
-        node.document.id = transaction.insertPaper(model: doc, map_id: MindMap.id)
+        node.document.id = transaction.insertPaper(model: doc, map_id: self.MindMap.id)
         self.view.addSubview(node)
     }
     
@@ -478,30 +457,6 @@ extension NodeViewController: UIGraphDelegate{
         }
         
         self.MindMap = transaction.getMindMap(mind_map_id: self.MindMap.id)
-    }
-}
-
-// SPINNER EXTENSION
-extension NodeViewController {
-    func displaySpinner(onView : UIView) -> UIView {
-        let spinnerView = UIView.init(frame: onView.bounds)
-        spinnerView.backgroundColor = UIColor.init(red: 0.5, green: 0.5, blue: 0.5, alpha: 0.5)
-        let ai = UIActivityIndicatorView.init(activityIndicatorStyle: .whiteLarge)
-        ai.startAnimating()
-        ai.center = spinnerView.center
-        
-        DispatchQueue.main.async {
-            spinnerView.addSubview(ai)
-            onView.addSubview(spinnerView)
-        }
-        
-        return spinnerView
-    }
-    
-    func removeSpinner(spinner :UIView) {
-        DispatchQueue.main.async {
-            spinner.removeFromSuperview()
-        }
     }
 }
 

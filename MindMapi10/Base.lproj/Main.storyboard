@@ -176,6 +176,7 @@
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <connections>
+                        <outlet property="newNoteText" destination="mht-Ei-QF4" id="QDP-SV-vHp"/>
                         <outlet property="notesSubView" destination="iwR-mg-LX8" id="nZp-NF-UVR"/>
                         <outlet property="notesSubViewTitle" destination="jpJ-Ta-rBf" id="KVr-LM-uMn"/>
                         <outlet property="txtNotesInSubView" destination="9rk-Hx-ac7" id="YCJ-gn-9XU"/>
@@ -203,8 +204,8 @@
                                 <action selector="btnCloseNotes:" destination="kjt-WZ-i0j" eventType="touchUpInside" id="TnZ-od-W5D"/>
                             </connections>
                         </button>
-                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9rk-Hx-ac7">
-                            <rect key="frame" x="15" y="95" width="565" height="240"/>
+                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9rk-Hx-ac7">
+                            <rect key="frame" x="15" y="95" width="565" height="210"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
@@ -215,6 +216,21 @@ esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat n
                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                         </textView>
+                        <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Please add your note" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mht-Ei-QF4">
+                            <rect key="frame" x="15" y="313" width="511" height="30"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <nil key="textColor"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits"/>
+                        </textField>
+                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AGN-wT-GkW">
+                            <rect key="frame" x="547" y="313" width="33" height="30"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <state key="normal" backgroundImage="add"/>
+                            <connections>
+                                <action selector="addNote:" destination="kjt-WZ-i0j" eventType="touchUpInside" id="FXN-4v-HO8"/>
+                            </connections>
+                        </button>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <viewLayoutGuide key="safeArea" id="oXh-qF-3Yk"/>
@@ -375,6 +391,7 @@ esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat n
     </scenes>
     <resources>
         <image name="RWTH-Aachen-University" width="1691" height="458"/>
+        <image name="add" width="512" height="512"/>
         <image name="file" width="128" height="128"/>
         <image name="mind map 1" width="800" height="531"/>
     </resources>
