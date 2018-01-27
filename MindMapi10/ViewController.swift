@@ -29,7 +29,7 @@ class ViewController: UIViewController {
         
         let ctr = iOSPDFNavigationController(rootDocument: doc, references: [doc, doc2])
         
-        present(ctr, animated: true, completion: nil)
+//        present(ctr, animated: true, completion: nil)
     }
 
     @IBAction func createMindMapAction(_ sender: Any) {
