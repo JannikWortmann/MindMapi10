@@ -13,11 +13,10 @@ class iOSPDFNavigationController: UINavigationController {
     //MARK: Public vars
     
     //Document Property
-    public var cRootDocument: iOSDocument?
+    public var cRootDocument: DocumentModel?
     
-    //rootDocuments References
-    public var cRootDocumentReferences: [iOSDocument]?
-    
+    //Callback Delegate
+    public var cDelegate: iOSSelectedReferencesDelegate?
 
 //------------------------------------------------------------------------------------------
     //MARK: ViewController Functions
@@ -27,12 +26,18 @@ class iOSPDFNavigationController: UINavigationController {
     
 //------------------------------------------------------------------------------------------
     //MARK: Initializer
-    init(rootDocument: iOSDocument, references: [iOSDocument]?) {
+    init(rootDocument: DocumentModel, delegate: iOSSelectedReferencesDelegate?) {
         self.cRootDocument = rootDocument
-        self.cRootDocumentReferences = references
+        self.cDelegate = delegate
         
+        let lVC = iOSPDFViewController(rootDocument: rootDocument, delegate: delegate)
+        super.init(rootViewController: lVC)
+    }
+    
+    init(rootDocument: DocumentModel) {
+        self.cRootDocument = rootDocument
         
-        let lVC = iOSPDFViewController(rootDocument: rootDocument, documentReferences: references)
+        let lVC = iOSPDFViewController(rootDocument: rootDocument)
         super.init(rootViewController: lVC)
     }
     

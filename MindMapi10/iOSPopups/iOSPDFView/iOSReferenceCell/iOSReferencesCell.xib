@@ -28,19 +28,19 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="752" text="An HCI Paper" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YKE-Lh-G2w">
-                        <rect key="frame" x="8" y="8" width="153" height="30"/>
+                        <rect key="frame" x="40" y="8" width="153" height="30"/>
                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="25"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="751" text="Simon Voelker, Phillip Wacker" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gda-sN-X1X">
-                        <rect key="frame" x="20" y="42" width="316" height="30"/>
+                        <rect key="frame" x="52" y="42" width="316" height="30"/>
                         <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="25"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="749" verticalCompressionResistancePriority="749" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="10" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z4s-yr-mX0">
-                        <rect key="frame" x="8" y="72" width="675" height="88"/>
+                        <rect key="frame" x="40" y="72" width="621" height="88"/>
                         <attributedString key="attributedText">
                             <fragment>
                                 <string key="content">Label ein langer text der hoffentlich 2 Lines benutzt sodass alles passt und der das auch macht sodass das passt und er sogar vllt 3 yyeilen benutzt und blalalalalalala und das wird schon ein text noch und jetzt ist Schluss</string>
@@ -52,7 +52,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Cj-9H-QpP">
-                        <rect key="frame" x="698" y="20" width="50" height="50"/>
+                        <rect key="frame" x="676" y="20" width="50" height="50"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="50" id="84V-ue-j4c"/>
                             <constraint firstAttribute="height" constant="50" id="emX-Lm-r4b"/>
@@ -60,7 +60,7 @@
                         <state key="normal" image="iconPlus"/>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YAT-L6-IOq">
-                        <rect key="frame" x="698" y="90" width="50" height="50"/>
+                        <rect key="frame" x="676" y="90" width="50" height="50"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="50" id="Sve-kN-Y8P"/>
                             <constraint firstAttribute="height" constant="50" id="lv4-N7-rmw"/>
@@ -72,13 +72,13 @@
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="YAT-L6-IOq" secondAttribute="bottom" constant="20" id="3DP-Lp-PC4"/>
-                <constraint firstAttribute="trailing" secondItem="z4s-yr-mX0" secondAttribute="trailing" constant="85" id="5UK-Jb-tAM"/>
-                <constraint firstItem="YKE-Lh-G2w" firstAttribute="leading" secondItem="aBe-63-nWh" secondAttribute="leading" constant="8" id="Bqf-Uu-VdF"/>
+                <constraint firstAttribute="trailing" secondItem="z4s-yr-mX0" secondAttribute="trailing" constant="107" id="5UK-Jb-tAM"/>
+                <constraint firstItem="YKE-Lh-G2w" firstAttribute="leading" secondItem="aBe-63-nWh" secondAttribute="leading" constant="40" id="Bqf-Uu-VdF"/>
                 <constraint firstItem="YKE-Lh-G2w" firstAttribute="top" secondItem="aBe-63-nWh" secondAttribute="top" constant="8" id="CtO-lT-TqV"/>
-                <constraint firstAttribute="trailing" secondItem="YAT-L6-IOq" secondAttribute="trailing" constant="20" id="HS7-0t-Z9h"/>
-                <constraint firstItem="Gda-sN-X1X" firstAttribute="leading" secondItem="aBe-63-nWh" secondAttribute="leading" constant="20" id="c8Q-E4-ovs"/>
-                <constraint firstItem="z4s-yr-mX0" firstAttribute="leading" secondItem="aBe-63-nWh" secondAttribute="leading" constant="8" id="dqe-Ee-mIh"/>
-                <constraint firstAttribute="trailing" secondItem="5Cj-9H-QpP" secondAttribute="trailing" constant="20" id="f9m-Jq-tfF"/>
+                <constraint firstAttribute="trailing" secondItem="YAT-L6-IOq" secondAttribute="trailing" constant="42" id="HS7-0t-Z9h"/>
+                <constraint firstItem="Gda-sN-X1X" firstAttribute="leading" secondItem="aBe-63-nWh" secondAttribute="leading" constant="52" id="c8Q-E4-ovs"/>
+                <constraint firstItem="z4s-yr-mX0" firstAttribute="leading" secondItem="aBe-63-nWh" secondAttribute="leading" constant="40" id="dqe-Ee-mIh"/>
+                <constraint firstAttribute="trailing" secondItem="5Cj-9H-QpP" secondAttribute="trailing" constant="42" id="f9m-Jq-tfF"/>
                 <constraint firstItem="5Cj-9H-QpP" firstAttribute="top" secondItem="aBe-63-nWh" secondAttribute="top" constant="20" id="sQX-cG-Wbv"/>
                 <constraint firstItem="Gda-sN-X1X" firstAttribute="top" secondItem="YKE-Lh-G2w" secondAttribute="bottom" constant="4" id="sUF-a9-hph"/>
                 <constraint firstItem="z4s-yr-mX0" firstAttribute="top" secondItem="Gda-sN-X1X" secondAttribute="bottom" id="tix-GR-fKu"/>

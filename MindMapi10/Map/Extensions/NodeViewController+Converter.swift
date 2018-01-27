@@ -27,4 +27,23 @@ extension NodeViewController {
         
         return documentModels
     }
+    
+    func converDocumentModelToDocument(docs: [DocumentModel])->[Document]{
+        var documents = [Document]()
+        
+        docs.forEach{ docModel in
+            let doc = Document()
+            
+            doc.abstract = docModel.abstract
+            doc.author = docModel.author
+            doc.id = docModel.id
+            doc.pdf_url = docModel.pdf_url
+            doc.title = docModel.title
+            doc.url = docModel.url
+            
+            documents.append(doc)
+        }
+        
+        return documents
+    }
 }

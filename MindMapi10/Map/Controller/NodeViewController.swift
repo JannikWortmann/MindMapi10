@@ -333,8 +333,9 @@ extension NodeViewController{
                 doc.references = self.converDocumentToDocumentModel(docs: self.transaction.getReferencesForPaper(paper_id: doc.id, mind_map_id: self.MindMap.id))
                 
                 DispatchQueue.main.async {
-
                     self.removeSpinner(spinner: spinner)
+                    
+                    self.callPreviewPDFController(doc: doc)
                 }
             }
         //
@@ -345,9 +346,15 @@ extension NodeViewController{
                     doc.references = doc.references.filter({$0.id != nodes[nodeIndex].document.id})
                 }
             }
+            
+            self.callPreviewPDFController(doc: doc)
         }
+    }
     
-        // Call
+    func callPreviewPDFController(doc:DocumentModel){
+        let pdfNavigationController = iOSPDFNavigationController(rootDocument: doc, delegate: self)
+        
+        self.present(pdfNavigationController, animated: true, completion: nil)
     }
     
     @objc func panGestureRecognizer(_ sender: UIPanGestureRecognizer) {
@@ -494,6 +501,12 @@ extension NodeViewController: UIGraphDelegate{
         }
         
         self.MindMap = transaction.getMindMap(mind_map_id: self.MindMap.id)
+    }
+}
+
+extension NodeViewController: iOSSelectedReferencesDelegate{
+    func iOSDidSelectReferences(_ pDocuments: [DocumentModel]) {
+        print("I got My references: \(pDocuments)")
     }
 }
 

@@ -51,7 +51,7 @@ class iOSPopupCreateNewMap: UIViewController {
         let lbl = UILabel()
         lbl.translatesAutoresizingMaskIntoConstraints = false
         lbl.textAlignment = .center
-        lbl.text = "Add new Mind Map"
+        lbl.text = "Add new Mindmap"
         lbl.font = Fonts.gLabelFontBig
         return lbl
     }()
@@ -88,7 +88,7 @@ class iOSPopupCreateNewMap: UIViewController {
         let txt = UITextField()
         txt.translatesAutoresizingMaskIntoConstraints = false
         txt.addBorder()
-        txt.placeholder = "Enter a Map title"
+        txt.placeholder = "Enter a Maptitle!"
         txt.textAlignment = .left
         txt.font = Fonts.gLabelFontMedium
         return txt
@@ -120,7 +120,7 @@ class iOSPopupCreateNewMap: UIViewController {
         let txt = UITextField()
         txt.translatesAutoresizingMaskIntoConstraints = false
         txt.addBorder()
-        txt.placeholder = "Enter a Topic"
+        txt.placeholder = "Enter a Topic!"
         txt.textAlignment = .left
         txt.font = Fonts.gLabelFontMedium
         return txt
@@ -177,8 +177,6 @@ class iOSPopupCreateNewMap: UIViewController {
     }
 }
 
-
-
 extension iOSPopupCreateNewMap {
 //------------------------------------------------------------------------------------------
     //MARK: Init UI
@@ -186,7 +184,8 @@ extension iOSPopupCreateNewMap {
         //----------------------------------------------------------------------------------
         // view
         //----------------------------------------------------------------------------------
-        self.view.backgroundColor = UIColor.lightGray.withAlphaComponent(0.8)
+        self.view.backgroundColor = UIColor.gray.withAlphaComponent(0.4)
+        
         //----------------------------------------------------------------------------------
         // cMainView
         //----------------------------------------------------------------------------------
@@ -215,7 +214,6 @@ extension iOSPopupCreateNewMap {
         // cLabelStackView
         //----------------------------------------------------------------------------------
         self.cMainView.addSubview(self.cLabelStackView)
-        
         
         self.cLabelStackView.topAnchor.constraint(equalTo: self.cAddNewMapLabel.bottomAnchor, constant: 8).isActive = true
         self.cLabelStackView.bottomAnchor.constraint(equalTo: self.cContinueButton.topAnchor, constant: -8).isActive = true
@@ -261,24 +259,14 @@ extension iOSPopupCreateNewMap {
         self.cTopicTextfield.centerYAnchor.constraint(equalTo: self.cTopicView.centerYAnchor).isActive = true
         self.cTopicTextfield.rightAnchor.constraint(equalTo: self.cTopicView.rightAnchor, constant: -8).isActive = true
         
-        // Gesture to close the view
-        let gesture = UITapGestureRecognizer(target: self, action: #selector(dismissCurrentView(sender:)))
-        self.view.addGestureRecognizer(gesture)
     }
 }
 
+//------------------------------------------------------------------------------------------
+    //MARK: Callback Defines
 extension iOSPopupCreateNewMap {
     //Param #1: Title of the Map
     //Param #2: Topic of the Map
     typealias createMapCallback = ((String, String) -> Void)
 }
 
-extension iOSPopupCreateNewMap{
-    @objc private func dismissCurrentView(sender: UITapGestureRecognizer){
-        guard !self.cMainView.bounds.contains(sender.location(in: self.cMainView)) else {
-            return
-        }
-        
-        self.dismiss(animated: true, completion: nil)
-    }
-}
