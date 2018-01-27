@@ -34,6 +34,8 @@
 		94B16DE1200F6968000CA597 /* Node.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94B16DE0200F6968000CA597 /* Node.swift */; };
 		94B16DE32010066A000CA597 /* UIGraphDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94B16DE22010066A000CA597 /* UIGraphDelegate.swift */; };
 		94B16F6020128549000CA597 /* NodeType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94B16F5F20128549000CA597 /* NodeType.swift */; };
+		94E8F5EC201C9B9000C7F873 /* DocumentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94E8F5EB201C9B9000C7F873 /* DocumentModel.swift */; };
+		94E8F5EE201CA22700C7F873 /* NodeViewController+Converter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94E8F5ED201CA22700C7F873 /* NodeViewController+Converter.swift */; };
 		94E9BC882013D21C002F45B6 /* iOSReferencesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94E9BC7F2013D21C002F45B6 /* iOSReferencesCell.swift */; };
 		94E9BC892013D21C002F45B6 /* iOSReferencesCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 94E9BC802013D21C002F45B6 /* iOSReferencesCell.xib */; };
 		94E9BC8A2013D21C002F45B6 /* iOSPDFViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94E9BC822013D21C002F45B6 /* iOSPDFViewController.swift */; };
@@ -109,6 +111,8 @@
 		94B16DE0200F6968000CA597 /* Node.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Node.swift; sourceTree = "<group>"; };
 		94B16DE22010066A000CA597 /* UIGraphDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIGraphDelegate.swift; sourceTree = "<group>"; };
 		94B16F5F20128549000CA597 /* NodeType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NodeType.swift; sourceTree = "<group>"; };
+		94E8F5EB201C9B9000C7F873 /* DocumentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentModel.swift; sourceTree = "<group>"; };
+		94E8F5ED201CA22700C7F873 /* NodeViewController+Converter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NodeViewController+Converter.swift"; sourceTree = "<group>"; };
 		94E9BC7F2013D21C002F45B6 /* iOSReferencesCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = iOSReferencesCell.swift; sourceTree = "<group>"; };
 		94E9BC802013D21C002F45B6 /* iOSReferencesCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = iOSReferencesCell.xib; sourceTree = "<group>"; };
 		94E9BC822013D21C002F45B6 /* iOSPDFViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = iOSPDFViewController.swift; sourceTree = "<group>"; };
@@ -238,6 +242,7 @@
 				94906FFB201B5302000DC0C1 /* NodeViewController+Math.swift */,
 				94906FFD201B5363000DC0C1 /* NodeViewController+Animation.swift */,
 				94906FFF201B53CF000DC0C1 /* NodeViewController+Spinner.swift */,
+				94E8F5ED201CA22700C7F873 /* NodeViewController+Converter.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -322,6 +327,7 @@
 				94B16DE0200F6968000CA597 /* Node.swift */,
 				94B16F5F20128549000CA597 /* NodeType.swift */,
 				940CA4CA20189ED600B96BC4 /* Constants.swift */,
+				94E8F5EB201C9B9000C7F873 /* DocumentModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -527,10 +533,12 @@
 				94E9BCCB2014A300002F45B6 /* DBTransactions.swift in Sources */,
 				94B16DE32010066A000CA597 /* UIGraphDelegate.swift in Sources */,
 				940CA4DF201A199800B96BC4 /* SearchTableViewCell.swift in Sources */,
+				94E8F5EE201CA22700C7F873 /* NodeViewController+Converter.swift in Sources */,
 				940CA4DC201A199800B96BC4 /* SearchViewController.swift in Sources */,
 				946988A6200D1CD2008C63B0 /* Arrow.swift in Sources */,
 				9494A71C20094887003968D2 /* NodeViewController.swift in Sources */,
 				94E9BCE92014A682002F45B6 /* Importance.swift in Sources */,
+				94E8F5EC201C9B9000C7F873 /* DocumentModel.swift in Sources */,
 				94E9BCE22014A682002F45B6 /* NoteProperties.swift in Sources */,
 				94906FFE201B5363000DC0C1 /* NodeViewController+Animation.swift in Sources */,
 				9494A70020092C74003968D2 /* AppDelegate.swift in Sources */,

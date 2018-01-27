@@ -314,16 +314,40 @@ extension NodeViewController{
         self.pdfViewSenderNodeTag = sender.tag
         
         //Create new node for sending
-        let doc = Document()
+        let doc = DocumentModel()
         doc.id = node.document.id
-        doc.references = transaction.getReferencesForPaper(paper_id: doc.id, mind_map_id: self.MindMap.id)
+        doc.references = self.converDocumentToDocumentModel(docs: self.transaction.getReferencesForPaper(paper_id: doc.id, mind_map_id: self.MindMap.id))
         
-        // Filter the references. Sending only did not link references.
-        for nodeIndex in 0..<nodesRelationMap[sender.tag].count {
-            if (nodeIndex != sender.tag) && (!nodesRelationMap[sender.tag][nodeIndex]) {
-                doc.references = doc.references.filter({$0.id != nodes[nodeIndex].document.id})
+        if(doc.references.count == 0){
+        // Get References from ACM
+            let spinner = self.displaySpinner(onView: self.view)
+            
+            DispatchQueue.global(qos: .background).async {
+                
+                let link =  Constants.sharedInstance.acmCitationURL + node.document.url
+                print(link)
+                let documents = Engine.shared.getReferences(from: link)
+                
+                self.transaction.addReferencesForPaper(mind_map_id: self.MindMap.id, paper_id: node.document.id, references: documents)
+                
+                doc.references = self.converDocumentToDocumentModel(docs: self.transaction.getReferencesForPaper(paper_id: doc.id, mind_map_id: self.MindMap.id))
+                
+                DispatchQueue.main.async {
+
+                    self.removeSpinner(spinner: spinner)
+                }
+            }
+        //
+        }else{
+            // Filter the references. Sending only did not link references.
+            for nodeIndex in 0..<nodesRelationMap[sender.tag].count {
+                if (nodeIndex != sender.tag) && (!nodesRelationMap[sender.tag][nodeIndex]) {
+                    doc.references = doc.references.filter({$0.id != nodes[nodeIndex].document.id})
+                }
             }
         }
+    
+        // Call
     }
     
     @objc func panGestureRecognizer(_ sender: UIPanGestureRecognizer) {
