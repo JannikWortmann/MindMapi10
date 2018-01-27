@@ -69,16 +69,19 @@
                     </constraints>
                 </view>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hmm-VQ-Xu5">
-                    <rect key="frame" x="16" y="79" width="176" height="21"/>
+                    <rect key="frame" x="16" y="80.5" width="176" height="19.5"/>
                     <constraints>
-                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="21" id="8Qe-Qk-xhe"/>
+                        <constraint firstAttribute="height" priority="250" constant="21" id="8Qe-Qk-xhe"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kXC-aF-cAA">
-                    <rect key="frame" x="16" y="45" width="135" height="18"/>
+                    <rect key="frame" x="16" y="45" width="135" height="19.5"/>
+                    <constraints>
+                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="18" id="uMd-yg-2fy"/>
+                    </constraints>
                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
@@ -112,13 +115,14 @@
                 <constraint firstItem="luy-UX-E4n" firstAttribute="top" secondItem="Gp0-MO-Hhc" secondAttribute="top" constant="16" id="dza-9H-KmH"/>
                 <constraint firstItem="Gp0-MO-Hhc" firstAttribute="trailing" secondItem="fI1-X4-6es" secondAttribute="trailing" constant="8" id="gDw-nF-clD"/>
                 <constraint firstItem="kXC-aF-cAA" firstAttribute="leading" secondItem="Gp0-MO-Hhc" secondAttribute="leading" constant="16" id="oZH-Wg-5Pu"/>
+                <constraint firstItem="c4a-Ya-dZE" firstAttribute="top" secondItem="hmm-VQ-Xu5" secondAttribute="bottom" constant="15" id="rbQ-6F-tAC"/>
                 <constraint firstItem="awK-f5-NGv" firstAttribute="top" secondItem="hmm-VQ-Xu5" secondAttribute="bottom" constant="8" id="wbJ-qF-RKW"/>
                 <constraint firstItem="hmm-VQ-Xu5" firstAttribute="top" secondItem="kXC-aF-cAA" secondAttribute="bottom" constant="16" id="x2z-Sd-lIZ"/>
                 <constraint firstItem="fI1-X4-6es" firstAttribute="leading" secondItem="awK-f5-NGv" secondAttribute="trailing" constant="8" id="xZ1-mz-PNo"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="Gp0-MO-Hhc"/>
-            <point key="canvasLocation" x="-174" y="38.5"/>
+            <point key="canvasLocation" x="-582" y="-145"/>
         </view>
     </objects>
     <resources>

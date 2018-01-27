@@ -208,7 +208,7 @@ extension NodeViewController{
         
         return node
     }
-    
+
     func initNode(nodeinfo: Document, frame:CGRect)->NodeCustomView{
         let node = NodeCustomView(frame: frame)
         
@@ -222,15 +222,18 @@ extension NodeViewController{
         node.lblTitle.sizeToFit()
         
         // Calculating dynamic height
-        let sumHeight = node.lblTitle.frame.height + node.authorsLabel.frame.height + 24.0
+        var sumHeight = node.lblTitle.frame.height + node.authorsLabel.frame.height + 24.0
         
-        print(node.authorsLabel.frame.height)
+        if sumHeight < 151 {
+            sumHeight = 151.0
+        }
         
         node.lblTopic.isHidden = true
         node.isRootNode = false
         node.document = nodeinfo
         
         node.frame.size.height = sumHeight
+        node.frame.size.width = 300.0
         
         self.initiateNodeActions(node: node)
         

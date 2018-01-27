@@ -14,6 +14,8 @@ import UIKit
     @IBOutlet weak var importanceView: UIView!
     @IBOutlet weak var authorsLabel: UILabel!
     
+    @IBOutlet weak var titleLabelHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var authorsLabelHeightConstraints: NSLayoutConstraint!
     @IBOutlet weak var lblTitle: UILabel!
     @IBOutlet weak var lblTopic: UILabel!
     
