@@ -316,6 +316,11 @@ extension NodeViewController{
         //Create new node for sending
         let doc = DocumentModel()
         doc.id = node.document.id
+        doc.abstract = node.document.abstract
+        doc.author = node.document.author
+        doc.pdf_url = node.document.pdf_url
+        doc.title = node.document.title
+        doc.url = node.document.url
         doc.references = self.converDocumentToDocumentModel(docs: self.transaction.getReferencesForPaper(paper_id: doc.id, mind_map_id: self.MindMap.id))
         
         if(doc.references.count == 0){
