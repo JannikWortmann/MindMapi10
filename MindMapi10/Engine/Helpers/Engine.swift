@@ -77,7 +77,7 @@ class Engine {
     }
     
     public func getReferences(from url: String) -> [Document] {
-        let url = urlGenerator(from: url + "&preflayout=flat")
+        let url = url + "&preflayout=flat"
         let html = getHTML(for: url)
         
         var papers = [Document]()
@@ -85,21 +85,21 @@ class Engine {
         let doc = try! SwiftSoup.parse(html)
         
         do {
-            let numberOfTries = try doc.getElementsByClass("mediumb-text").array().count
+            let tables = try doc.getElementsByTag("table").array()
             
-            for i in 0..<numberOfTries {
-                let sectionTitle = try doc.getElementsByClass("mediumb-text").array()[i].text()
-                
-                if sectionTitle == "REFERENCES" {
-                    let references = try doc.getElementsByClass("flatbody").select("div").array()[i-1].select("tbody").select("a").array()
+            for i in 0..<tables.count {
+                let cellPadding = try tables[i].attr("cellpadding")
+                if cellPadding == "5" {
+                    let references = try tables[i].select("tbody").select("a").array()
                     
                     for ref in references {
                         let link = try ref.attr("href")
                         
-                        if link.contains("citation.cfm") {
+                        if link.contains("author_page") {
                             papers = self.getData(from: link)
                         }
                     }
+
                 }
             }
         } catch {
