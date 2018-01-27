@@ -486,15 +486,15 @@ extension NodeViewController: UIGraphDelegate{
         self.view.addSubview(node)
     }
     
-    func drawLinkedNodes(from:Document){
+    func drawLinkedNodes(fromNodeIndex: Int, document:Document){
         //top-left point's coordinates
         let startingPointX = self.view.bounds.width/2 - (NodeConfig.width/2)
         let startingPointY = self.view.bounds.height/2 - (NodeConfig.height/2)
         //
         
-        self.edgeFromNode = nodes[self.pdfViewSenderNodeTag]
+        self.edgeFromNode = nodes[fromNodeIndex]
         
-        from.references.forEach{ doc in
+        document.references.forEach{ doc in
             let node = self.initNode(nodeinfo: doc, frame: CGRect(x:startingPointX,y: startingPointY, width:NodeConfig.width, height:NodeConfig.height))
             view.addSubview(node)
             
@@ -511,7 +511,12 @@ extension NodeViewController: UIGraphDelegate{
 
 extension NodeViewController: iOSSelectedReferencesDelegate{
     func iOSDidSelectReferences(_ pDocuments: [DocumentModel]) {
-        print("I got My references: \(pDocuments)")
+        
+        let documents = self.converDocumentModelToDocument(docs: pDocuments)
+        
+        documents.forEach{doc in
+            self.drawLinkedNodes(fromNodeIndex: self.pdfViewSenderNodeTag, document: doc)
+        }
     }
 }
 
