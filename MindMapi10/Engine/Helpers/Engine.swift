@@ -27,14 +27,14 @@ class Engine {
     }
     
     private func getHTML(for url: String) -> String {
-        let newURL = URL(string: url)
-        
-        do {
-            let htmlString = try String(contentsOf: newURL!, encoding: .ascii)
-            
-            return htmlString
-        } catch let error {
-            print("Error: \(error.localizedDescription)")
+        if let url  = URL(string: url) {
+            do {
+                let htmlString = try String(contentsOf: url, encoding: .ascii)
+                
+                return htmlString
+            } catch let error {
+                print("Error: \(error.localizedDescription)")
+            }
         }
         
         return ""

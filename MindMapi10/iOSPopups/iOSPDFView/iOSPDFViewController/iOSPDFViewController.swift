@@ -147,7 +147,9 @@ class iOSPDFViewController: UIViewController, UICollectionViewDataSource, UIColl
         //----------------------------------------------------------------------------------
         // cWebView
         //----------------------------------------------------------------------------------
-        let req = URLRequest(url: URL(string: self.cRootDocument.pdf_url)!)
+        
+        let URLString = self.cRootDocument.pdf_url.replacingOccurrences(of: "&#URLTOKEN#", with: "&key=575DA4752A380C0F%2E4D4702B0C3E38B35%2E4D4702B0C3E38B35%2E4D4702B0C3E38B35&__acm__=1517090405_85b61cf85207217f12fed53ef1a08112")
+        let req = URLRequest(url: URL(string: URLString)!)
         cWebView.load(req)
     }
 }
