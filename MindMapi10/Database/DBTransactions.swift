@@ -233,14 +233,8 @@ public class DBTransactions {
             do {
                 let paper = try context.fetch(fetch_paper) as! [Paper]
                 paper[0].setValue(0, forKey: "is_reference")
-                ad.saveContext()
                 
-                let paper_mapping = Paper_mapping(context: context)
-                paper_mapping.is_root_level = 0
-                paper_mapping.mind_map_id = paper[0].mind_map_id
-                paper_mapping.paper_id = paper[0].id
-                paper_mapping.connected_to_id = reference.id
-                paper_mapping.relation_text = "   "
+                addConnection(mind_map_id: paper[0].mind_map_id, from: paper_id, to: reference.id, text: "   ", is_root: 0)
                 
                 ad.saveContext()
                 
