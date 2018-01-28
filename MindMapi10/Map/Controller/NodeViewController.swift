@@ -16,6 +16,7 @@ class NodeViewController: UIViewController {
     var MindMap = Mind_map_model()
     var notRelatedDocuments = [NodeCustomView]()
     let transaction = DBTransactions()
+    let export = DBImportExport()
     //
     
     // GRAPH MODEL
@@ -53,6 +54,8 @@ class NodeViewController: UIViewController {
         createMindMap(mindMap: MindMap, isNewMap: shouldCreateMindMap)
         
         shouldCreateMindMap = false
+        
+        self.screenShotMindMap(mind_map_id: self.MindMap.id)
     }
     
     override func didReceiveMemoryWarning() {
@@ -61,8 +64,16 @@ class NodeViewController: UIViewController {
     }
     
     @IBAction func btnExportAction(_ sender: Any) {
-        let export = DBImportExport()
         export.exportMindMap(mind_map_id: MindMap.id)
+        
+        let advTimeGif = UIImage.gif(name: "checkmark")
+        let imageView2 = UIImageView(image: advTimeGif)
+        imageView2.frame = CGRect(x: self.view.frame.size.width - 90.0, y: 50.0, width: 100, height: 100.0)
+        view.addSubview(imageView2)
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(4), execute: {
+            imageView2.removeFromSuperview()
+        })
     }
     
     
@@ -409,6 +420,8 @@ extension NodeViewController{
             else {
                 transaction.updatePaper(paper_id: draggedNode.document.id, paper_cord_x: Float(x), paper_cord_y: Float(y))
             }
+            
+            self.screenShotMindMap(mind_map_id: self.MindMap.id)
         }
         //
         
@@ -522,6 +535,36 @@ extension NodeViewController: UIGraphDelegate{
         }
         
         self.MindMap = transaction.getMindMap(mind_map_id: self.MindMap.id)
+    }
+    
+    private func screenShotMindMap(mind_map_id: Int32) {
+        //Create the UIImage
+        UIGraphicsBeginImageContext(view.frame.size)
+        view.layer.render(in: UIGraphicsGetCurrentContext()!)
+        let image = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        guard let documentDirectoryPath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.appendingPathComponent("Screenshots") else { return }
+        
+        do{
+            if !export.directoryExistsAtPath(documentDirectoryPath.relativePath) {
+                try FileManager.default.createDirectory(atPath: documentDirectoryPath.relativePath, withIntermediateDirectories: true, attributes: nil)
+            }
+            
+            let filePath = documentDirectoryPath.appendingPathComponent("mind_map_\(mind_map_id).png")
+            let data = UIImagePNGRepresentation(image!)
+            
+            if FileManager.default.fileExists(atPath: filePath.absoluteString) {
+                try FileManager.default.removeItem(at: filePath)
+            }
+            try data!.write(to: filePath)
+            
+            self.mindMapDelegate?.onMindMapAdd(new_map: self.MindMap)
+            
+        } catch {
+            print("Error while creating the screenshot for file : \(error)")
+        }
+        
     }
 }
 

@@ -18,7 +18,7 @@ public class DBImportExport {
     public func importMindMap(mind_map_title: String) -> Mind_map_model {
         var return_model = Mind_map_model()
         guard let documentDirectoryPath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else { return return_model }
-        let filePath = documentDirectoryPath.appendingPathComponent(mind_map_title)
+        let filePath = documentDirectoryPath.appendingPathComponent("Export-Import").appendingPathComponent(mind_map_title)
         do{
             let textRead = try Data(contentsOf: filePath)
             let json = try? JSONSerialization.jsonObject(with: textRead, options: [])
@@ -382,15 +382,17 @@ public class DBImportExport {
     //helping function to export a mind map -> saves an NSDictionary to a JSON file
     func saveMindMapToJSONFile(mind_map: NSDictionary, mind_map_title: String){
         guard let documentDirectoryPath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else { return }
-        let filePath = documentDirectoryPath.appendingPathComponent(mind_map_title + " export.json")
+        let exportPath = documentDirectoryPath.appendingPathComponent("Export-Import")
+        
         do{
-            if FileManager.default.fileExists(atPath: filePath.absoluteString) {
+            if !directoryExistsAtPath(exportPath.relativePath) {
+                try FileManager.default.createDirectory(atPath: exportPath.relativePath, withIntermediateDirectories: true, attributes: nil)
+            }
+            let filePath = exportPath.appendingPathComponent(mind_map_title + " export.json")
+            
+            if FileManager.default.fileExists(atPath: filePath.relativePath) {
                 try FileManager.default.removeItem(at: filePath)
             }
-        } catch {
-            print("Error while removing existing file for overwrite : \(error)")
-        }
-        do{
             if let jsonMind = try? JSONSerialization.data(withJSONObject: mind_map, options:[.prettyPrinted]){
                 print(filePath)
                 print(mind_map)
@@ -399,6 +401,13 @@ public class DBImportExport {
         }catch {
             print("Error while creating and writing JSON to file : \(error)")
         }
+        
+        
+    }
+    
+    public func directoryExistsAtPath(_ path: String) -> Bool {
+        var isDirectory = ObjCBool(true)
+        let exists = FileManager.default.fileExists(atPath: path, isDirectory: &isDirectory)
+        return exists && isDirectory.boolValue
     }
 }
-
