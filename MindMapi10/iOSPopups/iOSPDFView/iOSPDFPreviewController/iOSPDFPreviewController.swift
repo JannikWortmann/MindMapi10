@@ -54,8 +54,9 @@ class iOSPDFPreviewController: UIViewController {
     //MARK: UI Functions
     func setup() {
         self.navigationItem.rightBarButtonItem = self.isAddButtonHidden ? nil : self.cAddReferenceButton
-                
-        let req = URLRequest(url: URL(string: cRootDocument.pdf_url)!)
+        
+        let url = cRootDocument.pdf_url.replacingOccurrences(of: "&#URLTOKEN#", with: "")
+        let req = URLRequest(url: URL(string: url)!)
         
         self.cWebView.load(req)
     }
