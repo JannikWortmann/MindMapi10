@@ -385,7 +385,7 @@ public class DBImportExport {
         let exportPath = documentDirectoryPath.appendingPathComponent("Export-Import")
         
         do{
-            if !directoryExistsAtPath(exportPath.relativePath) {
+            if !db.directoryExistsAtPath(exportPath.relativePath) {
                 try FileManager.default.createDirectory(atPath: exportPath.relativePath, withIntermediateDirectories: true, attributes: nil)
             }
             let filePath = exportPath.appendingPathComponent(mind_map_title + " export.json")
@@ -405,9 +405,4 @@ public class DBImportExport {
         
     }
     
-    public func directoryExistsAtPath(_ path: String) -> Bool {
-        var isDirectory = ObjCBool(true)
-        let exists = FileManager.default.fileExists(atPath: path, isDirectory: &isDirectory)
-        return exists && isDirectory.boolValue
-    }
 }

@@ -449,7 +449,73 @@ public class DBTransactions {
     }
     
     
-    //FUNCTIONS THAT NEED REVIEW - INCOMPLETE
+    //DELETE A MIND MAP AND ALL ITS CORESPONDING PAPERS AND RELATIONS
+    func deleteMindMap(mind_map_id: Int32) {
+        let fetch_mind_map = NSFetchRequest<NSFetchRequestResult>(entityName: "Mind_map")
+        fetch_mind_map.predicate = NSPredicate(format: "id = %d", mind_map_id)
+        
+        do {
+            let mind_map = try context.fetch(fetch_mind_map) as! [Mind_map]            
+            //fetch the mappings between papers in this mind map
+            mind_map_mappings = [Paper_mapping]()
+            getPaperMappingsForMindMap(mind_map_id: mind_map[0].value(forKey: "id") as! Int32)
+            
+            //fetch all papers to be displayed - papers in the mind map
+            let map_papers = getPapersForMindMap(mind_map_id: mind_map[0].value(forKey: "id") as! Int32)
+            
+            //delete the paper_mappings
+            for mapping in mind_map_mappings {
+                context.delete(mapping)
+                ad.saveContext()
+            }
+            
+            //delete the papers related to a mind map
+            for paper in map_papers {
+                //for each paper delete the reference mappings
+                deleteReferenceMappingForPaper(paper_id: paper.id)
+                let references = getReferencesForPaper(paper_id: paper.id, mind_map_id: mind_map_id)
+                let notes = getNotesForPaper(paper_id: paper.id)
+                
+                //for each paper get the references and set for each reference is_active to 0
+                for reference in references {
+                    deletePaper(paper_id: reference.id)
+                }
+                
+                //for each paper delete the related notes
+                for note in notes {
+                    context.delete(note)
+                    ad.saveContext()
+                }
+                //for each paper set the is_active to 0
+                deletePaper(paper_id: paper.id)
+            }
+            deleteScreenshot(mind_map_id: mind_map_id)
+            context.delete(mind_map[0])
+            ad.saveContext()
+            
+        } catch {
+            let error = error as NSError
+            print("\(error)")
+        }
+    }
+    
+    //DELETE REFERENCE MAPPINGS FOR A PAPER
+    func deleteReferenceMappingForPaper(paper_id: Int32) {
+        let fetch_paper = NSFetchRequest<NSFetchRequestResult>(entityName: "Reference_mapping")
+        fetch_paper.predicate = NSPredicate(format: "paper_id = %d", paper_id)
+        do {
+            let paper = try context.fetch(fetch_paper) as! [Reference_mapping]
+            for ref in paper {
+                context.delete(ref)
+                ad.saveContext()
+            }
+        } catch {
+            let error = error as NSError
+            print("\(error)")
+        }
+    }
+    
+    //DELETE A PAPER - SET THE IS_ACTIVE TO 0
     func deletePaper(paper_id: Int32) {
         let fetch_paper = NSFetchRequest<NSFetchRequestResult>(entityName: "Paper")
         fetch_paper.predicate = NSPredicate(format: "id = %d", paper_id)
@@ -457,7 +523,6 @@ public class DBTransactions {
         do {
             let paper = try context.fetch(fetch_paper) as! [NSManagedObject]
             paper[0].setValue(0, forKey: "is_active")
-            //TODO: delete also other dependencise from paper_mapping and reference_mapping
             ad.saveContext()
         } catch {
             let error = error as NSError
@@ -465,5 +530,31 @@ public class DBTransactions {
         }
     }
     
+    
+    //DELETE THE SCREENSHOT OF A MIND MAP FROM THE FOLDER
+    func deleteScreenshot(mind_map_id: Int32) {
+        guard let documentDirectoryPath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.appendingPathComponent("Screenshots") else { return }
+        
+        do{
+            if !directoryExistsAtPath(documentDirectoryPath.relativePath) {
+                try FileManager.default.createDirectory(atPath: documentDirectoryPath.relativePath, withIntermediateDirectories: true, attributes: nil)
+            }
+            
+            let filePath = documentDirectoryPath.appendingPathComponent("mind_map_\(mind_map_id).png")
+            
+            if FileManager.default.fileExists(atPath: filePath.absoluteString) {
+                try FileManager.default.removeItem(at: filePath)
+            }
+        } catch {
+            let error = error as NSError
+            print("\(error)")
+        }
+    }
+    
+    public func directoryExistsAtPath(_ path: String) -> Bool {
+        var isDirectory = ObjCBool(true)
+        let exists = FileManager.default.fileExists(atPath: path, isDirectory: &isDirectory)
+        return exists && isDirectory.boolValue
+    }
 }
 

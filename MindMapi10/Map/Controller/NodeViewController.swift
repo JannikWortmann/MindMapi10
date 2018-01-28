@@ -544,7 +544,7 @@ extension NodeViewController: UIGraphDelegate{
         guard let documentDirectoryPath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.appendingPathComponent("Screenshots") else { return }
         
         do{
-            if !export.directoryExistsAtPath(documentDirectoryPath.relativePath) {
+            if !transaction.directoryExistsAtPath(documentDirectoryPath.relativePath) {
                 try FileManager.default.createDirectory(atPath: documentDirectoryPath.relativePath, withIntermediateDirectories: true, attributes: nil)
             }
             
