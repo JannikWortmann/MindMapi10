@@ -220,10 +220,7 @@ extension NodeViewController{
         }
         
         node.isRootNode = true
-        
-//        node.btnPdf.isHidden = true
-//        node.btnNotes.isHidden = true
-        
+
         node.btnPdf.removeFromSuperview()
         node.btnNotes.removeFromSuperview()
         
@@ -250,10 +247,10 @@ extension NodeViewController{
         node.lblTitle.sizeToFit()
         
         // Calculating dynamic height
-        // 39.0 — is the height of 1-lined label of title and authors
+        // 18.0 — is the height of 1-lined label of title
         // 151.0 — is the minimum size of the node frame
         // 16.0 — is the space between these 2 labels. I already counted them in 151.0
-        let sumHeight = node.lblTitle.frame.height + node.authorsLabel.frame.height + 151.0 - 39.0 - 16.0
+        let sumHeight = node.lblTitle.frame.height + node.authorsLabel.frame.height + 151.0 - 18.0 - 16.0
         node.frame.size.height = sumHeight
         
         node.isRootNode = false
