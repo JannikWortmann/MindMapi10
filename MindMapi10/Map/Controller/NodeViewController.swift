@@ -357,11 +357,11 @@ extension NodeViewController{
                 print(link)
                 let documents = Engine.shared.getReferences(from: link)
                 
-                self.transaction.addReferencesForPaper(mind_map_id: self.MindMap.id, paper_id: node.document.id, references: documents)
-                
-                doc.references = self.converDocumentToDocumentModel(docs: self.transaction.getReferencesForPaper(paper_id: doc.id, mind_map_id: self.MindMap.id))
-                
                 DispatchQueue.main.async {
+                    self.transaction.addReferencesForPaper(mind_map_id: self.MindMap.id, paper_id: node.document.id, references: documents)
+                    
+                    doc.references = self.converDocumentToDocumentModel(docs: self.transaction.getReferencesForPaper(paper_id: doc.id, mind_map_id: self.MindMap.id))
+                    
                     self.removeSpinner(spinner: spinner)
                     
                     self.callPreviewPDFController(doc: doc)
@@ -512,7 +512,7 @@ extension NodeViewController: UIGraphDelegate{
         self.view.addSubview(node)
     }
     
-    func drawLinkedNodes(fromNodeIndex: Int, document:Document){
+    func drawLinkedNodes(fromNodeIndex: Int, documents:[Document]){
         //top-left point's coordinates
         let startingPointX = self.view.bounds.width/2 - (NodeConfig.width/2)
         let startingPointY = self.view.bounds.height/2 - (NodeConfig.height/2)
@@ -520,9 +520,9 @@ extension NodeViewController: UIGraphDelegate{
         
         self.edgeFromNode = nodes[fromNodeIndex]
         
-        document.references.forEach{ doc in
+        documents.forEach{ doc in
             let node = self.initNode(nodeinfo: doc, frame: CGRect(x:startingPointX,y: startingPointY, width:NodeConfig.width, height:NodeConfig.height))
-            view.addSubview(node)
+            self.view.addSubview(node)
             
             self.edgeToNode = node
             
@@ -571,9 +571,7 @@ extension NodeViewController: iOSSelectedReferencesDelegate{
         
         let documents = self.converDocumentModelToDocument(docs: pDocuments)
         
-        documents.forEach{doc in
-            self.drawLinkedNodes(fromNodeIndex: self.pdfViewSenderNodeTag, document: doc)
-        }
+        self.drawLinkedNodes(fromNodeIndex: self.pdfViewSenderNodeTag, documents: documents)
     }
 }
 
