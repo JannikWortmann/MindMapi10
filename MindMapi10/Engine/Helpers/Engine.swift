@@ -51,14 +51,14 @@ class Engine {
             for item in body! {
                 let titlesLink = try item.getElementsByClass("title").select("a")
                 let authorsLink = try item.getElementsByClass("authors").select("a")
-                let pdfLink = try item.getElementsByClass("ft").select("a")
                 let abstractLink = try item.getElementsByClass("abstract")
                 
                 let url = try titlesLink.attr("href")
                 let title = try titlesLink.text()
                 let author = try authorsLink.text()
-                let pdfURL = try pdfLink.attr("href")
                 let abstract = try abstractLink.text()
+                
+                let pdfURL = getPDFLink(from: Constants.sharedInstance.acmCitationURL + url)
                 
                 let newObject = Document()
                 newObject.title = title
@@ -107,5 +107,20 @@ class Engine {
         }
         
         return papers
+    }
+    
+    func getPDFLink(from link: String) -> String {
+        let html = getHTML(for: link)
+        
+        do {
+            let doc = try! SwiftSoup.parse(html)
+            let pdfURL = try doc.body()?.getElementsByAttributeValue("name", "FullTextPDF").attr("href")
+            
+            return pdfURL!
+        } catch {
+            
+        }
+        
+        return ""
     }
 }

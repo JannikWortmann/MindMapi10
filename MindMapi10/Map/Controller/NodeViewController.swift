@@ -76,12 +76,9 @@ class NodeViewController: UIViewController {
         })
     }
     
-    
     @IBAction func btnCloseNotes(_ sender: Any) {
         animateOut()
     }
-    //
-    
     
     @IBAction func addNote(_ sender: Any) {
         if let text = self.newNoteText.text, !text.isEmpty

@@ -47,16 +47,15 @@ class iOSPDFPreviewController: UIViewController {
     //MARK: ViewController Functions
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupUI()
+        setup()
     }
     
 //------------------------------------------------------------------------------------------
     //MARK: UI Functions
-    func setupUI() {
+    func setup() {
         self.navigationItem.rightBarButtonItem = self.isAddButtonHidden ? nil : self.cAddReferenceButton
-        
-        let URLString = self.cRootDocument.pdf_url.replacingOccurrences(of: "&#URLTOKEN#", with: "&key=575DA4752A380C0F%2E4D4702B0C3E38B35%2E4D4702B0C3E38B35%2E4D4702B0C3E38B35&__acm__=1517090405_85b61cf85207217f12fed53ef1a08112")
-        let req = URLRequest(url: URL(string: URLString)!)
+                
+        let req = URLRequest(url: URL(string: cRootDocument.pdf_url)!)
         
         self.cWebView.load(req)
     }

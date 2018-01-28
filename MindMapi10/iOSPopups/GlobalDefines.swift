@@ -31,45 +31,6 @@ import UIKit
             return left.title == right.title && left.author == right.author && left.abstract == right.abstract && left.url == right.url && left.pdfUrl == right.pdfUrl
     }
 
-
-
-
-
-
-
-
-
-
-//func getReferences(for doc: Document) -> [Document]{
-//    //check in database if references are available
-//    if doc.references.isEmpty {
-//        //Make request
-//
-//    }
-//    //if true -> return
-//
-//    //else -> download and save them
-//
-//        //request to ACM
-//        let reqDoc = []
-//        //save them to the database
-//
-//        //add references to the rootdocument
-//
-//        //return the downloaded docs
-//        return reqDoc
-//}
-
-
-
-
-
-
-
-
-
-
-
 struct acmDocument {
     let title: String
     let author: String
@@ -81,11 +42,3 @@ struct acmDocument {
         return nil
     }
 }
-
-
-
-
-
-
-
-
