@@ -526,6 +526,9 @@ extension NodeViewController: UIGraphDelegate{
             
             self.edgeToNode = node
             
+            nodesRelationMap[edgeFromNode.tag][edgeToNode.tag] = true
+            nodesRelationMap[edgeToNode.tag][edgeFromNode.tag] = true
+            
             self.drawArrow(from: self.edgeFromNode, to: self.edgeToNode, text:"   ", tailWidth: 2, headWidth: 6, headLength: 9)
             
             self.addNewRelationDB(from: self.edgeFromNode, to: self.edgeToNode, text: "   ")
