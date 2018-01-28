@@ -235,7 +235,15 @@ public class DBTransactions {
                 paper[0].setValue(0, forKey: "is_reference")
                 ad.saveContext()
                 
-                //TODO: create a connection directly to paper_mapping
+                let paper_mapping = Paper_mapping(context: context)
+                paper_mapping.is_root_level = 0
+                paper_mapping.mind_map_id = paper[0].mind_map_id
+                paper_mapping.paper_id = paper[0].id
+                paper_mapping.connected_to_id = reference.id
+                paper_mapping.relation_text = "   "
+                
+                ad.saveContext()
+                
             } catch {
                 let error = error as NSError
                 print("\(error)")
