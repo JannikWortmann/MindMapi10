@@ -18,7 +18,7 @@ extension NodeViewController {
         notesSubView.transform = CGAffineTransform.init(scaleX: 1.3, y: 1.3)
         notesSubView.alpha = 0
         
-        UIView.animate(withDuration: 0.4){
+        UIView.animate(withDuration: 0.3){
             self.visualEffect.effect = self.effect
             self.visualEffect.isUserInteractionEnabled = true
             self.notesSubView.alpha = 1
