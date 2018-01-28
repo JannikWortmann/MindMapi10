@@ -532,6 +532,7 @@ extension NodeViewController: UIGraphDelegate{
         }
         
         self.MindMap = transaction.getMindMap(mind_map_id: self.MindMap.id)
+        self.mindMapDelegate?.onMindMapAdd(new_map: self.MindMap)
     }
     
     private func screenShotMindMap(mind_map_id: Int32) {
