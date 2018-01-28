@@ -17,6 +17,8 @@
 		94495F6720167DB0005509B2 /* ImportCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94495F6520167DB0005509B2 /* ImportCell.swift */; };
 		94495F6820167DB0005509B2 /* MapCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94495F6620167DB0005509B2 /* MapCell.swift */; };
 		946988A6200D1CD2008C63B0 /* Arrow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 946988A5200D1CD2008C63B0 /* Arrow.swift */; };
+		9484EF5B201E0136001D5A3D /* LoadGIF.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9484EF59201E0136001D5A3D /* LoadGIF.swift */; };
+		9484EF5C201E0136001D5A3D /* checkmark.gif in Resources */ = {isa = PBXBuildFile; fileRef = 9484EF5A201E0136001D5A3D /* checkmark.gif */; };
 		94906FF7201A2425000DC0C1 /* SwiftSoup.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94906FF5201A2415000DC0C1 /* SwiftSoup.framework */; };
 		94906FF8201A2425000DC0C1 /* SwiftSoup.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 94906FF5201A2415000DC0C1 /* SwiftSoup.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		94906FFC201B5302000DC0C1 /* NodeViewController+Math.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94906FFB201B5302000DC0C1 /* NodeViewController+Math.swift */; };
@@ -95,6 +97,8 @@
 		94495F6520167DB0005509B2 /* ImportCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImportCell.swift; sourceTree = "<group>"; };
 		94495F6620167DB0005509B2 /* MapCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapCell.swift; sourceTree = "<group>"; };
 		946988A5200D1CD2008C63B0 /* Arrow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Arrow.swift; sourceTree = "<group>"; };
+		9484EF59201E0136001D5A3D /* LoadGIF.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadGIF.swift; sourceTree = "<group>"; };
+		9484EF5A201E0136001D5A3D /* checkmark.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = checkmark.gif; sourceTree = "<group>"; };
 		94906FF5201A2415000DC0C1 /* SwiftSoup.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SwiftSoup.framework; sourceTree = "<group>"; };
 		94906FFB201B5302000DC0C1 /* NodeViewController+Math.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NodeViewController+Math.swift"; sourceTree = "<group>"; };
 		94906FFD201B5363000DC0C1 /* NodeViewController+Animation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NodeViewController+Animation.swift"; sourceTree = "<group>"; };
@@ -240,6 +244,23 @@
 			path = Helpers;
 			sourceTree = "<group>";
 		};
+		9484EF57201E0136001D5A3D /* Extra */ = {
+			isa = PBXGroup;
+			children = (
+				9484EF58201E0136001D5A3D /* GIF */,
+			);
+			path = Extra;
+			sourceTree = "<group>";
+		};
+		9484EF58201E0136001D5A3D /* GIF */ = {
+			isa = PBXGroup;
+			children = (
+				9484EF59201E0136001D5A3D /* LoadGIF.swift */,
+				9484EF5A201E0136001D5A3D /* checkmark.gif */,
+			);
+			path = GIF;
+			sourceTree = "<group>";
+		};
 		94906FFA201B52DF000DC0C1 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -339,6 +360,7 @@
 		94E8F5EF201CAC8D00C7F873 /* iOSPopups */ = {
 			isa = PBXGroup;
 			children = (
+				9484EF57201E0136001D5A3D /* Extra */,
 				94E8F5F0201CAC8D00C7F873 /* iOSTextfieldExtension.swift */,
 				94E8F5F1201CAC8D00C7F873 /* GlobalDefines.swift */,
 				94E8F5F2201CAC8D00C7F873 /* iOSPopupCreateNewMap.swift */,
@@ -491,6 +513,7 @@
 			files = (
 				94E8F604201CAC8D00C7F873 /* iOSReferencesCell.xib in Resources */,
 				9494A70D20092C74003968D2 /* LaunchScreen.storyboard in Resources */,
+				9484EF5C201E0136001D5A3D /* checkmark.gif in Resources */,
 				9494A70A20092C74003968D2 /* Assets.xcassets in Resources */,
 				940CA4DE201A199800B96BC4 /* SearchTableViewCell.xib in Resources */,
 				94E8F601201CAC8D00C7F873 /* iOSPDFPreviewController.xib in Resources */,
@@ -533,6 +556,7 @@
 				94B16F6020128549000CA597 /* NodeType.swift in Sources */,
 				94E9BCE12014A682002F45B6 /* UserProperties.swift in Sources */,
 				940CA4E1201A199800B96BC4 /* Engine.swift in Sources */,
+				9484EF5B201E0136001D5A3D /* LoadGIF.swift in Sources */,
 				94E9BCE72014A682002F45B6 /* Paper_mapping.swift in Sources */,
 				94E8F5FF201CAC8D00C7F873 /* GlobalDefines.swift in Sources */,
 				940CA4CB20189ED600B96BC4 /* Constants.swift in Sources */,

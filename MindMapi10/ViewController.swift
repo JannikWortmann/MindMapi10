@@ -83,6 +83,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         let nodeViewController = self.storyboard?.instantiateViewController(withIdentifier: "NodeViewController") as! NodeViewController
         
         nodeViewController.MindMap = map
+        nodeViewController.mindMapDelegate = self
         
         navigationController?.pushViewController(nodeViewController, animated: true)
         

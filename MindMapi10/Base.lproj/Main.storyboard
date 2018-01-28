@@ -103,6 +103,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="imgMindMap" destination="Oeh-Fp-rAv" id="Wcs-zQ-315"/>
                                             <outlet property="lblDateMap" destination="ZMT-aN-eSN" id="XCb-5r-yqe"/>
                                             <outlet property="lblPapersMap" destination="RnT-0B-UqV" id="oTJ-ON-Yyr"/>
                                             <outlet property="lblTitleMap" destination="gBh-lU-5qO" id="BDy-7z-KCq"/>
