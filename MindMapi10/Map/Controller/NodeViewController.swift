@@ -350,7 +350,7 @@ extension NodeViewController{
         }else{
             // Filter the references. Sending only did not link references.
             for nodeIndex in 0..<nodesRelationMap[sender.tag].count {
-                if (nodeIndex != sender.tag) && (!nodesRelationMap[sender.tag][nodeIndex]) {
+                if (nodeIndex != sender.tag) && (!nodesRelationMap[sender.tag][nodeIndex]) && (nodes.count > nodeIndex) {
                     doc.references = doc.references.filter({$0.id != nodes[nodeIndex].document.id})
                 }
             }
