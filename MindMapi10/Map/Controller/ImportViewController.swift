@@ -22,17 +22,21 @@ class ImportViewController: UIViewController, UICollectionViewDataSource, UIColl
     var fileURLs = [URL]()
     
     override func viewDidLoad() {
-        guard let documentDirectoryPath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else { return }
+        guard let documentDirectoryPath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.appendingPathComponent("Export-Import") else { return }
         
         do {
-            let fileURLsTemp = try FileManager.default.contentsOfDirectory(at: documentDirectoryPath, includingPropertiesForKeys: nil)
+            if !directoryExistsAtPath(documentDirectoryPath.relativePath) {
+                try FileManager.default.createDirectory(atPath: documentDirectoryPath.relativePath, withIntermediateDirectories: true, attributes: nil)
+            }
             
+            let fileURLsTemp = try FileManager.default.contentsOfDirectory(at: documentDirectoryPath, includingPropertiesForKeys: nil)
             
             for file in fileURLsTemp {
                 if file.lastPathComponent.hasSuffix(".json") {
                     fileURLs.append(file)
                 }
             }
+            
         } catch {
             let error = error as NSError
             print("\(error)")
@@ -67,6 +71,12 @@ class ImportViewController: UIViewController, UICollectionViewDataSource, UIColl
         delegate?.onMindMapAdd(new_map: map)
         navigationController?.pushViewController(nodeViewController, animated: true)
         
+    }
+    
+    public func directoryExistsAtPath(_ path: String) -> Bool {
+        var isDirectory = ObjCBool(true)
+        let exists = FileManager.default.fileExists(atPath: path, isDirectory: &isDirectory)
+        return exists && isDirectory.boolValue
     }
     
 }

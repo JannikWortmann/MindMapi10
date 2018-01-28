@@ -22,16 +22,14 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         //g.deleteGeneratedData()
         //g.generateData()
-        
+               
         mind_maps = db.listMindMaps()
-        //print(mind_maps.count)
-        //print("We got LIST")
-        //print(mind_maps.count)
+
         
         tableView.delegate = self
         tableView.dataSource = self
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -94,8 +92,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     //DELEGATE FUNCTION FOR THE PROTOCOL MindMapListDelegate
     func onMindMapAdd(new_map: Mind_map_model) {
-        mind_maps.append(new_map)
-        self.loadView()
+        mind_maps = db.listMindMaps()
+        //self.loadView()
+        tableView.reloadData()
     }
 }
 

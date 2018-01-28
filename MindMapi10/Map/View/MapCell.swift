@@ -15,6 +15,7 @@ class MapCell: UITableViewCell {
     @IBOutlet weak var lblTopicMap: UILabel!
     @IBOutlet weak var lblDateMap: UILabel!
     @IBOutlet weak var lblPapersMap: UILabel!
+    @IBOutlet weak var imgMindMap: UIImageView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -32,6 +33,22 @@ class MapCell: UITableViewCell {
         } else {
             lblPapersMap.text = String(cnt) + " papers"
         }
+        
+        guard let documentDirectoryPath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else { return }
+        do {
+            let screenPath = documentDirectoryPath.appendingPathComponent("Screenshots").appendingPathComponent("mind_map_\(mind_map_model.id).png")
+
+            if FileManager.default.fileExists(atPath: screenPath.relativePath) {
+                //set path of image
+                let url = URL(string: screenPath.absoluteString)
+                let data = try Data(contentsOf: url!)
+                imgMindMap.image = UIImage(data: data)
+            }
+        } catch {
+            print("Error while fetchin the screenshot for mind map : \(error)")
+        }
+        
+        
         
     }
 }

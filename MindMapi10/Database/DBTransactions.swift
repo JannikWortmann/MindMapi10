@@ -407,7 +407,7 @@ public class DBTransactions {
         
         do {
             //fetch the mind map
-            let mind_map = try context.fetch(fetch_mind_map) as! [NSManagedObject]
+            let mind_map = try context.fetch(fetch_mind_map) as! [Mind_map]
             mind_map[0].setValue(topic, forKey: "topic")
             ad.saveContext()
         } catch {
@@ -415,6 +415,39 @@ public class DBTransactions {
             print("\(error)")
         }
     }
+    
+    //UPDATE PAPER COORDINATES
+    func updatePaper(paper_id: Int32, paper_cord_x: Float, paper_cord_y: Float) {
+        let fetch_paper = NSFetchRequest<NSFetchRequestResult>(entityName: "Paper")
+        fetch_paper.predicate = NSPredicate(format: "id = %d", paper_id)
+        
+        do {
+            let paper = try context.fetch(fetch_paper) as! [Paper]
+            paper[0].setValue(paper_cord_x, forKey: "paper_cord_x")
+            paper[0].setValue(paper_cord_y, forKey: "paper_cord_y")
+            ad.saveContext()
+        } catch {
+            let error = error as NSError
+            print("\(error)")
+        }
+    }
+    
+    //UPDATE MIND MAP COORDINATES
+    func updateMindMap(mind_map_id: Int32, map_cord_x: Float, map_cord_y: Float) {
+        let fetch_map = NSFetchRequest<NSFetchRequestResult>(entityName: "Mind_map")
+        fetch_map.predicate = NSPredicate(format: "id = %d", mind_map_id)
+        
+        do {
+            let map = try context.fetch(fetch_map) as! [Mind_map]
+            map[0].setValue(map_cord_x, forKey: "map_cord_x")
+            map[0].setValue(map_cord_y, forKey: "map_cord_y")
+            ad.saveContext()
+        } catch {
+            let error = error as NSError
+            print("\(error)")
+        }
+    }
+    
     
     //FUNCTIONS THAT NEED REVIEW - INCOMPLETE
     func deletePaper(paper_id: Int32) {
