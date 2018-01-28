@@ -17,7 +17,7 @@ import UIKit
     @IBOutlet weak var titleLabelHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var authorsLabelHeightConstraints: NSLayoutConstraint!
     @IBOutlet weak var lblTitle: UILabel!
-    @IBOutlet weak var lblTopic: UILabel!
+//    @IBOutlet weak var lblTopic: UILabel!
     
     @IBOutlet weak var btnOutgoingEdge: UIButton!
     @IBOutlet weak var btnIncomeEdge: UIButton!
@@ -53,6 +53,8 @@ import UIKit
         
         contentView.layer.borderWidth = 1.0
         contentView.layer.borderColor = UIColor(red: 192.0/255, green: 216.0/255.0, blue: 242.0/255.0, alpha: 1.0).cgColor
+        contentView.layer.cornerRadius = 3.0
+        contentView.layer.masksToBounds = true
         
         self.addSubview(contentView)
     }

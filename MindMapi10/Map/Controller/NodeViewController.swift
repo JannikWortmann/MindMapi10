@@ -193,16 +193,33 @@ extension NodeViewController{
         
         nodes.append(node)
         self.initiateNodeIndexTagMapping(node:node)
-        
+
         node.lblTitle.text = nodeInfo.title
-        node.lblTopic.text = nodeInfo.topic
+        node.authorsLabel.text = nodeInfo.topic
+        
+        node.authorsLabel.sizeToFit()
+        node.lblTitle.sizeToFit()
+        
+        // Calculating dynamic height
+        let sumHeight = node.lblTitle.frame.height + node.authorsLabel.frame.height + 24.0
+        node.frame.size.height = sumHeight
+        
+        if node.frame.size.height < 151.0 {
+            node.frame.size.height = 151.0
+        }
+        
         node.isRootNode = true
         
-        node.btnPdf.isHidden = true
-        node.btnNotes.isHidden = true
-        node.importanceView.isHidden = true
-//        node.imgImportance.isHidden = true
-        node.contentView.backgroundColor = UIColor.orange
+//        node.btnPdf.isHidden = true
+//        node.btnNotes.isHidden = true
+        
+        node.btnPdf.removeFromSuperview()
+        node.btnNotes.removeFromSuperview()
+        
+        node.importanceView.backgroundColor = UIColor.white
+        node.contentView.backgroundColor = UIColor(red: 192.0/255, green: 216.0/255.0, blue: 242.0/255.0, alpha: 1.0)
+        node.contentView.layer.borderWidth = 1.0
+        node.contentView.layer.borderColor = UIColor.white.cgColor
         
         self.initiateNodeActions(node: node)
         
@@ -222,18 +239,14 @@ extension NodeViewController{
         node.lblTitle.sizeToFit()
         
         // Calculating dynamic height
-        var sumHeight = node.lblTitle.frame.height + node.authorsLabel.frame.height + 24.0
+        // 39.0 — is the height of 1-lined label of title and authors
+        // 151.0 — is the minimum size of the node frame
+        // 16.0 — is the space between these 2 labels. I already counted them in 151.0
+        let sumHeight = node.lblTitle.frame.height + node.authorsLabel.frame.height + 151.0 - 39.0 - 16.0
+        node.frame.size.height = sumHeight
         
-        if sumHeight < 151 {
-            sumHeight = 151.0
-        }
-        
-        node.lblTopic.isHidden = true
         node.isRootNode = false
         node.document = nodeinfo
-        
-        node.frame.size.height = sumHeight
-        node.frame.size.width = 300.0
         
         self.initiateNodeActions(node: node)
         
