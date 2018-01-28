@@ -26,11 +26,11 @@ class SearchViewController: UIViewController {
         let nib = UINib(nibName: "SearchTableViewCell", bundle: nil)
         tableView.register(nib, forCellReuseIdentifier: "searchCell")
     }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let iOSPDFViewController = segue.destination as! iOSPDFViewController
+
+    func callPreviewPDFController(doc: DocumentModel){
+        let pdfNavigationController = iOSPDFNavigationController(rootDocument: doc)
         
-        let paperLink = (sender as! Document).pdf_url
+        self.present(pdfNavigationController, animated: true, completion: nil)
     }
 }
 
@@ -63,7 +63,6 @@ extension SearchViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         let addAction = UITableViewRowAction(style: .normal, title: "Add") { action, index in
-//            self.performSegue(withIdentifier: "NodeViewController", sender: self.papers[indexPath.row])
             self.delegate?.drawNode(doc: self.papers[indexPath.row])
             
             _ = self.navigationController?.popViewController(animated: true)
@@ -77,15 +76,16 @@ extension SearchViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let selectedPaper = papers[indexPath.row]
         
-        self.performSegue(withIdentifier: "goToReadPDF", sender: selectedPaper)
+        let doc = DocumentModel()
+        doc.pdf_url = selectedPaper.pdf_url
+        
+        self.callPreviewPDFController(doc: doc)
     }
 }
 
 extension SearchViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         let search = Engine.shared.getData(from: searchBar.text!)
-        
-        let ref = Engine.shared.getReferences(from: searchBar.text!)
         
         papers.removeAll()
         search.forEach { (paper) in

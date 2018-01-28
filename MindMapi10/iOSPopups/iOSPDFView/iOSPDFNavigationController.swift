@@ -18,13 +18,6 @@ class iOSPDFNavigationController: UINavigationController {
     //Callback Delegate
     public var cDelegate: iOSSelectedReferencesDelegate?
 
-//------------------------------------------------------------------------------------------
-    //MARK: ViewController Functions
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
-    
-//------------------------------------------------------------------------------------------
     //MARK: Initializer
     init(rootDocument: DocumentModel, delegate: iOSSelectedReferencesDelegate?) {
         self.cRootDocument = rootDocument
@@ -51,12 +44,8 @@ class iOSPDFNavigationController: UINavigationController {
     
 //------------------------------------------------------------------------------------------
     //MARK: Class Functions
-    func setupUI() {
-        
-    }
-    
+
     @objc func handleCancelClick() {
         self.dismiss(animated: true, completion: nil)
     }
-
 }
