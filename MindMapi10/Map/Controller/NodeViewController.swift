@@ -528,7 +528,7 @@ extension NodeViewController: UIGraphDelegate{
             
             self.drawArrow(from: self.edgeFromNode, to: self.edgeToNode, text:"   ", tailWidth: 2, headWidth: 6, headLength: 9)
             
-            self.addNewRelationDB(from: self.edgeFromNode, to: self.edgeToNode, text: "   ")
+            //self.addNewRelationDB(from: self.edgeFromNode, to: self.edgeToNode, text: "   ")
         }
         
         self.MindMap = transaction.getMindMap(mind_map_id: self.MindMap.id)
@@ -569,9 +569,13 @@ extension NodeViewController: UIGraphDelegate{
 extension NodeViewController: iOSSelectedReferencesDelegate{
     func iOSDidSelectReferences(_ pDocuments: [DocumentModel]) {
         
-        let documents = self.converDocumentModelToDocument(docs: pDocuments)
+        if(pDocuments.count > 0){
+            let documents = self.converDocumentModelToDocument(docs: pDocuments)
         
-        self.drawLinkedNodes(fromNodeIndex: self.pdfViewSenderNodeTag, documents: documents)
+            self.transaction.updateReferencesForPaper(paper_id: self.nodes[self.pdfViewSenderNodeTag].document.id, references: documents)
+        
+            self.drawLinkedNodes(fromNodeIndex: self.pdfViewSenderNodeTag, documents: documents)
+        }
     }
 }
 
