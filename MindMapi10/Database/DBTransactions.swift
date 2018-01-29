@@ -11,7 +11,6 @@ import CoreData
 
 public class DBTransactions {
     
-    var mind_map_mappings = [Paper_mapping]()
     var formatter = DateFormatter()
     
     // INSERT INTO DATABASE A MIND MAP
@@ -84,8 +83,7 @@ public class DBTransactions {
             let mind_map = try context.fetch(fetch_mind_map) as! [Mind_map]
             
             //fetch the mappings between papers in this mind map
-            mind_map_mappings = [Paper_mapping]()
-            getPaperMappingsForMindMap(mind_map_id: mind_map[0].value(forKey: "id") as! Int32)
+            let mind_map_mappings = getPaperMappingsForMindMap(mind_map_id: mind_map[0].value(forKey: "id") as! Int32)
             
             //fetch all papers to be displayed - papers in the mind map
             let map_papers = getPapersForMindMap(mind_map_id: mind_map[0].value(forKey: "id") as! Int32)
@@ -110,7 +108,9 @@ public class DBTransactions {
     
     //FETCH MIND MAP - gets the papers hierachical relations/mappings based on mind map
     //fetches all the papers that are directly connected to the root
-    func getPaperMappingsForMindMap(mind_map_id: Int32) {
+    //fetch all the papers that are not connected directly to root
+    func getPaperMappingsForMindMap(mind_map_id: Int32) -> [Paper_mapping] {
+        var mind_map_mappings = [Paper_mapping]()
         let fetch_mapping = NSFetchRequest<NSFetchRequestResult>(entityName: "Paper_mapping")
         fetch_mapping.predicate = NSPredicate(format: "mind_map_id = %d AND is_root_level = 1 AND paper_id = %d", mind_map_id, mind_map_id)
         do{
@@ -118,30 +118,25 @@ public class DBTransactions {
             
             for map in mappings {
                 mind_map_mappings.append(map)
-                getPaperMappingsForMindMap(connected: map.value(forKey: "connected_to_id") as! Int32, mind_map_id: mind_map_id)
             }
         } catch {
             let error = error as NSError
             print("\(error)")
         }
-    }
-    
-    //helping function for the other getPaperMappingsForMindMap function
-    //fetches the higher level of papers, papers that are not directly connected to the root
-    func getPaperMappingsForMindMap(connected: Int32, mind_map_id: Int32) {
-        let fetch_mapping = NSFetchRequest<NSFetchRequestResult>(entityName: "Paper_mapping")
-        fetch_mapping.predicate = NSPredicate(format: "mind_map_id = %d AND paper_id = %d AND is_root_level = 0", mind_map_id, connected)
+
+        let fetch_mapping_2 = NSFetchRequest<NSFetchRequestResult>(entityName: "Paper_mapping")
+        fetch_mapping_2.predicate = NSPredicate(format: "mind_map_id = %d AND is_root_level = 0", mind_map_id)
         do{
-            let mappings = try context.fetch(fetch_mapping) as! [Paper_mapping]
+            let mappings_2 = try context.fetch(fetch_mapping_2) as! [Paper_mapping]
             
-            for map in mappings  {
+            for map in mappings_2 {
                 mind_map_mappings.append(map)
-                getPaperMappingsForMindMap(connected: map.value(forKey: "connected_to_id") as! Int32, mind_map_id: mind_map_id)
             }
         } catch {
             let error = error as NSError
             print("\(error)")
         }
+        return mind_map_mappings
     }
     
     //FETCH PAPERS RELATED TO A MIND MAP
@@ -233,14 +228,8 @@ public class DBTransactions {
             do {
                 let paper = try context.fetch(fetch_paper) as! [Paper]
                 paper[0].setValue(0, forKey: "is_reference")
-                ad.saveContext()
-                
-                let paper_mapping = Paper_mapping(context: context)
-                paper_mapping.is_root_level = 0
-                paper_mapping.mind_map_id = paper[0].mind_map_id
-                paper_mapping.paper_id = paper[0].id
-                paper_mapping.connected_to_id = reference.id
-                paper_mapping.relation_text = "   "
+
+                addConnection(mind_map_id: paper[0].mind_map_id, from: paper_id, to: reference.id, text: "   ", is_root: 0)
                 
                 ad.saveContext()
                 
@@ -249,21 +238,6 @@ public class DBTransactions {
                 print("\(error)")
             }
         }
-    }
-    
-    //REQUEST REFERENCES FOR PAPER
-    func requestReferencesForPaper(paper_id: Int32) {
-        let fetch_paper = NSFetchRequest<NSFetchRequestResult>(entityName: "Paper")
-        fetch_paper.predicate = NSPredicate(format: "id = %d", paper_id)
-        //TODO: request references for paper
-        
-        //        do {
-        //            let paper = try context.fetch(fetch_paper) as! [Paper]
-        //        } catch {
-        //            let error = error as NSError
-        //            print("\(error)")
-        //        }
-        
     }
     
     //LIST MIND MAPS FOR THE HOME SCREEN
@@ -282,9 +256,11 @@ public class DBTransactions {
                 temp_map_model.papers = getPapersForMindMap(mind_map_id: map.id)
                 temp_map_model.map_cord_x = map.map_cord_x as Float
                 temp_map_model.map_cord_y = map.map_cord_y as Float
-                mind_map_mappings = [Paper_mapping]()
-                getPaperMappingsForMindMap(mind_map_id: map.id)
-                temp_map_model.mappings = mind_map_mappings
+                temp_map_model.mappings = getPaperMappingsForMindMap(mind_map_id: map.id)
+
+                for p in getPapersForMindMap(mind_map_id: map.id) {
+                    print("paper ", p.id)
+                }
                 
                 returnedMaps.append(temp_map_model)
             }
@@ -349,6 +325,8 @@ public class DBTransactions {
         mapping.connected_to_id = to
         mapping.relation_text = text
         mapping.is_root_level = is_root
+        
+        print(mind_map_id, " " , from , " " , to, " " , is_root)
         
         ad.saveContext()
     }
@@ -465,8 +443,7 @@ public class DBTransactions {
         do {
             let mind_map = try context.fetch(fetch_mind_map) as! [Mind_map]            
             //fetch the mappings between papers in this mind map
-            mind_map_mappings = [Paper_mapping]()
-            getPaperMappingsForMindMap(mind_map_id: mind_map[0].value(forKey: "id") as! Int32)
+            let mind_map_mappings = getPaperMappingsForMindMap(mind_map_id: mind_map[0].value(forKey: "id") as! Int32)
             
             //fetch all papers to be displayed - papers in the mind map
             let map_papers = getPapersForMindMap(mind_map_id: mind_map[0].value(forKey: "id") as! Int32)
