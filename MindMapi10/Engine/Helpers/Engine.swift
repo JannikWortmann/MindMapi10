@@ -12,10 +12,10 @@ import SwiftSoup
 class Engine {
     static let shared = Engine()
     
-    public func getData(from string: String) -> [TitlesObject] {
+    public func getData(from string: String) -> [Document] {
         let url = urlGenerator(from: string)
         let html = getHTML(for: url)
-
+        
         return getTitlesAndLinks(from: html)
     }
     
@@ -40,8 +40,8 @@ class Engine {
         return ""
     }
     
-    private func getTitlesAndLinks(from html: String) -> [TitlesObject] {
-        var titles = [TitlesObject]()
+    private func getTitlesAndLinks(from html: String) -> [Document] {
+        var papers = [Document]()
         
         let doc = try! SwiftSoup.parse(html)
         
@@ -60,47 +60,52 @@ class Engine {
                 let pdfURL = try pdfLink.attr("href")
                 let abstract = try abstractLink.text()
                 
-                let newTitleObject = TitlesObject(title: title, author: author, link: url, abstract: abstract, pdfURL: Constants.sharedInstance.acmCitationURL + pdfURL)
+                let newObject = Document()
+                newObject.title = title
+                newObject.abstract = abstract
+                newObject.author = author
+                newObject.url = url
+                newObject.pdf_url = Constants.sharedInstance.acmCitationURL + pdfURL
                 
-                titles.append(newTitleObject)
+                papers.append(newObject)
             }
         } catch {
             
         }
         
-        return titles
+        return papers
     }
     
-    private func getReferences(from html: String) -> [String: String] {
-        var titlesAndLinks = [String: String]()
+    public func getReferences(from url: String) -> [Document] {
+        let url = urlGenerator(from: url + "&preflayout=flat")
+        let html = getHTML(for: url)
+        
+        var papers = [Document]()
+        
         let doc = try! SwiftSoup.parse(html)
         
         do {
-        let numberOfTries = try doc.getElementsByClass("mediumb-text").array().count
-        
-        for i in 0..<numberOfTries {
-            let sectionTitle = try doc.getElementsByClass("mediumb-text").array()[i].text()
+            let numberOfTries = try doc.getElementsByClass("mediumb-text").array().count
             
-            if sectionTitle == "REFERENCES" {
-                let references = try doc.getElementsByClass("flatbody").select("div").array()[i+1].select("tbody").select("a").array()
+            for i in 0..<numberOfTries {
+                let sectionTitle = try doc.getElementsByClass("mediumb-text").array()[i].text()
                 
-                for ref in references {
-                    let link = try ref.attr("href")
-                    let text = try ref.text()
+                if sectionTitle == "REFERENCES" {
+                    let references = try doc.getElementsByClass("flatbody").select("div").array()[i-1].select("tbody").select("a").array()
                     
-                    if link.contains("citation.cfm") {
-                        print("Link: \(link)")
-                        print("Text: \(text)")
+                    for ref in references {
+                        let link = try ref.attr("href")
                         
-                        titlesAndLinks[link] = text
+                        if link.contains("citation.cfm") {
+                            papers = self.getData(from: link)
+                        }
                     }
                 }
             }
-        }
         } catch {
             
         }
         
-        return titlesAndLinks
+        return papers
     }
 }

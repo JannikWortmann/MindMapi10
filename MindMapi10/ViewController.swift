@@ -34,7 +34,7 @@ class ViewController: UIViewController, iOSSelectedReferencesDelegate {
         let ctr = iOSPDFNavigationController(rootDocument: doc2, delegate: self)
         //ctr.cDelegate = self
         
-        present(ctr, animated: true, completion: nil)
+//        present(ctr, animated: true, completion: nil)
     }
 
     @IBAction func createMindMapAction(_ sender: Any) {
