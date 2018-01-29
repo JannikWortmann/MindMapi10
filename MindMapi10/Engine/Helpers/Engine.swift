@@ -9,25 +9,32 @@
 import UIKit
 import SwiftSoup
 
+enum PaperType {
+    case References
+}
+
 class Engine {
     static let shared = Engine()
     
     public func getData(from string: String) -> [Document] {
-        let url = urlGenerator(from: string)
+        let url = urlGenerator(from: string, for: nil)
         let html = getHTML(for: url)
         
         return getTitlesAndLinks(from: html)
     }
     
-    private func urlGenerator(from string: String) -> String {
+    private func urlGenerator(from string: String, for type: PaperType?) -> String {
         let generatedText = String(string.map { $0 == " " ? "+" : $0 })
-        let url = Constants.sharedInstance.acmQueryURL + generatedText
         
-        return url
+        if let type = type, type == .References {
+            return Constants.sharedInstance.acmCitationURL + generatedText
+        } else {
+            return Constants.sharedInstance.acmQueryURL + generatedText
+        }
     }
     
     private func getHTML(for url: String) -> String {
-        if let url  = URL(string: url) {
+        if let url = URL(string: url) {
             do {
                 let htmlString = try String(contentsOf: url, encoding: .ascii)
                 
@@ -76,6 +83,31 @@ class Engine {
         return papers
     }
     
+    private func getTitlesAndLinksForReference(from html: String) -> Document {
+        let paper = Document()
+        
+        let doc = try! SwiftSoup.parse(html)
+        
+        do {
+            if let title = try doc.body()?.getElementsByClass("large-text").array().first?.getElementsByTag("h1").text() {
+                paper.title = title
+            }
+            
+            if let pdf = try doc.body()?.getElementsByAttributeValue("name", "FullTextPDF").array(), pdf.count > 0 {
+                let url = try pdf[0].attr("href")
+                paper.pdf_url = Constants.sharedInstance.acmCitationURL + url
+            }
+            
+            if let authors = try doc.body()?.getElementsByClass("medium-text").tagName("table").array(), authors.count > 0 {
+                paper.author = try authors[2].getElementsByTag("tbody").text()
+            }
+        } catch {
+            
+        }
+        
+        return paper
+    }
+    
     public func getReferences(from url: String) -> [Document] {
         let url = url + "&preflayout=flat"
         let html = getHTML(for: url)
@@ -95,11 +127,17 @@ class Engine {
                     for ref in references {
                         let link = try ref.attr("href")
                         
-                        if link.contains("author_page") {
-                            papers = self.getData(from: link)
+                        if link.contains("citation.cfm?id=") {
+//                            papers = self.getData(from: link, for: .References)
+                            
+                            let url = urlGenerator(from: link, for: .References)
+                            let html = getHTML(for: url)
+                            
+                            let paper = getTitlesAndLinksForReference(from: html)
+                            
+                            papers.append(paper)
                         }
                     }
-
                 }
             }
         } catch {

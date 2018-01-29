@@ -370,7 +370,7 @@ extension NodeViewController{
             
             DispatchQueue.global(qos: .background).async {
                 
-                let link =  Constants.sharedInstance.acmCitationURL + node.document.url
+                let link = Constants.sharedInstance.acmCitationURL + node.document.url
                 print(link)
                 let documents = Engine.shared.getReferences(from: link)
                 

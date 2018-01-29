@@ -88,7 +88,7 @@ class iOSPopupCreateNewMap: UIViewController {
         let txt = UITextField()
         txt.translatesAutoresizingMaskIntoConstraints = false
         txt.addBorder()
-        txt.placeholder = "Enter a Maptitle!"
+        txt.placeholder = "Title of map goes here:"
         txt.textAlignment = .left
         txt.font = Fonts.gLabelFontMedium
         return txt
@@ -120,7 +120,7 @@ class iOSPopupCreateNewMap: UIViewController {
         let txt = UITextField()
         txt.translatesAutoresizingMaskIntoConstraints = false
         txt.addBorder()
-        txt.placeholder = "Enter a Topic!"
+        txt.placeholder = "Topic name goes here"
         txt.textAlignment = .left
         txt.font = Fonts.gLabelFontMedium
         return txt
