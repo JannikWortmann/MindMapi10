@@ -25,6 +25,9 @@ class SearchViewController: UIViewController {
         
         let nib = UINib(nibName: "SearchTableViewCell", bundle: nil)
         tableView.register(nib, forCellReuseIdentifier: "searchCell")
+        tableView.tableFooterView = UIView()
+        
+        self.title = "Seach paper"
     }
 
     func callPreviewPDFController(doc: DocumentModel){

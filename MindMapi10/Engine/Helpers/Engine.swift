@@ -83,7 +83,7 @@ class Engine {
         return papers
     }
     
-    private func getTitlesAndLinksForReference(from html: String) -> Document {
+    private func getTitlesAndLinksForReference(from html: String) -> Document? {
         let paper = Document()
         
         let doc = try! SwiftSoup.parse(html)
@@ -105,7 +105,11 @@ class Engine {
             
         }
         
-        return paper
+        if paper.title != "" {
+            return paper
+        } else {
+            return nil
+        }
     }
     
     public func getReferences(from url: String) -> [Document] {
@@ -133,9 +137,10 @@ class Engine {
                             let url = urlGenerator(from: link, for: .References)
                             let html = getHTML(for: url)
                             
-                            let paper = getTitlesAndLinksForReference(from: html)
-                            
-                            papers.append(paper)
+                            if let paper = getTitlesAndLinksForReference(from: html) {
+                                
+                                papers.append(paper)
+                            }
                         }
                     }
                 }
