@@ -77,7 +77,7 @@ class iOSPDFViewController: UIViewController, UICollectionViewDataSource, UIColl
     
     @objc func cScrollRight() {
         let lNewPos = cReferencesCollectionView.contentOffset.x + cReferencesCollectionView.frame.width
-        if lNewPos <= cReferencesCollectionView.contentSize.width {
+        if lNewPos < cReferencesCollectionView.contentSize.width {
             self.cReferencesCollectionView.contentOffset.x = lNewPos
         }
     }

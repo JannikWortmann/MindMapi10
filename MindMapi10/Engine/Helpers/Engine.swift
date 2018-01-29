@@ -131,9 +131,7 @@ class Engine {
                     for ref in references {
                         let link = try ref.attr("href")
                         
-                        if link.contains("citation.cfm?id=") {
-//                            papers = self.getData(from: link, for: .References)
-                            
+                        if link.contains("citation.cfm?id=") {                            
                             let url = urlGenerator(from: link, for: .References)
                             let html = getHTML(for: url)
                             
@@ -143,6 +141,8 @@ class Engine {
                             }
                         }
                     }
+                    
+                    break
                 }
             }
         } catch {
