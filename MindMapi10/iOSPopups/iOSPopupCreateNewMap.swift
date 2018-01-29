@@ -259,6 +259,17 @@ extension iOSPopupCreateNewMap {
         self.cTopicTextfield.centerYAnchor.constraint(equalTo: self.cTopicView.centerYAnchor).isActive = true
         self.cTopicTextfield.rightAnchor.constraint(equalTo: self.cTopicView.rightAnchor, constant: -8).isActive = true
         
+        let lTap = UITapGestureRecognizer(target: self, action: #selector(cDismissView))
+        self.view.addGestureRecognizer(lTap)
+    }
+    
+    @objc func cDismissView(sender: UITapGestureRecognizer) {
+        guard !self.cMainView.bounds.contains(sender.location(in: self.cMainView)) else {
+            return
+        }
+        
+        self.dismiss(animated: true, completion: nil)
+
     }
 }
 

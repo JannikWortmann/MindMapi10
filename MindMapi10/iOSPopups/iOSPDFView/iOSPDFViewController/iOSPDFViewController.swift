@@ -29,7 +29,7 @@ struct iOSDocumentCellModel {
 //------------------------------------------------------------------------------------------
 //MARK: iOSPDFViewController
 class iOSPDFViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
-    //------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------------
     //MARK: XIB Variables
     @IBOutlet weak var cWebView: WKWebView!
     @IBOutlet weak var cReferencesCollectionView: UICollectionView!
@@ -38,33 +38,63 @@ class iOSPDFViewController: UIViewController, UICollectionViewDataSource, UIColl
     
     @IBOutlet weak var cWebViewBottomConstraint: NSLayoutConstraint!
     
-    //------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------------
     //MARK: UI Variables
-    var cScrollIndicatorLeft: UIImageView = {
-        let img = UIImageView()
+    lazy var cScrollIndicatorLeft: UIButton = {
+        let img = UIButton(type: .system)
         img.translatesAutoresizingMaskIntoConstraints = false
-        img.image = UIImage(imageLiteralResourceName: "iconArrowLeft")
+        img.setImage(UIImage(imageLiteralResourceName: "iconArrowLeft"), for: .normal)
+        //img.image = UIImage(imageLiteralResourceName: "iconArrowLeft")
         img.layer.borderColor = UIColor.black.cgColor
         img.contentMode = .scaleAspectFit
         //img.layer.borderWidth = 1
         //img.layer.cornerRadius = 15
         img.clipsToBounds = true
+        img.addTarget(self, action: #selector(cScrollLeft), for: .touchUpInside)
         return img
     }()
     
-    var cScrollIndicatorRight: UIImageView = {
-        let img = UIImageView()
+    @objc func cScrollLeft() {
+        let lNewPos = cReferencesCollectionView.contentOffset.x - cReferencesCollectionView.frame.width
+        if lNewPos >= 0 {
+            self.cReferencesCollectionView.contentOffset.x = lNewPos
+        }
+    }
+    
+    lazy var cScrollIndicatorRight: UIButton = {
+        let img = UIButton(type: .system)
         img.translatesAutoresizingMaskIntoConstraints = false
-        img.image = UIImage(imageLiteralResourceName: "iconArrowRight")
+        img.setImage(UIImage(imageLiteralResourceName: "iconArrowRight"), for: .normal)
         img.contentMode = .scaleAspectFit
         img.layer.borderColor = UIColor.black.cgColor
         //img.layer.borderWidth = 1
         //img.layer.cornerRadius = 15
         img.clipsToBounds = true
+        img.addTarget(self, action: #selector(cScrollRight), for: .touchUpInside)
         return img
     }()
     
-    //------------------------------------------------------------------------------------------
+    
+    @objc func cScrollRight() {
+        let lNewPos = cReferencesCollectionView.contentOffset.x + cReferencesCollectionView.frame.width
+        if lNewPos <= cReferencesCollectionView.contentSize.width {
+            self.cReferencesCollectionView.contentOffset.x = lNewPos
+        }
+    }
+    
+    //--------------------------------------------------------------------------------------
+    // cNoReferencesLabel
+    //--------------------------------------------------------------------------------------
+    var cNoReferencesLabel: UILabel = {
+        let lbl = UILabel()
+        lbl.translatesAutoresizingMaskIntoConstraints = false
+        lbl.text = "No References!"
+        lbl.font = Fonts.gLabelFontMedium
+        lbl.isHidden = true
+        return lbl
+    }()
+    
+//------------------------------------------------------------------------------------------
     //MARK: Variables
     public var cReferences: [iOSDocumentCellModel] = []
     
@@ -72,7 +102,7 @@ class iOSPDFViewController: UIViewController, UICollectionViewDataSource, UIColl
     
     public var cDelegate: iOSSelectedReferencesDelegate?
     
-    //------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------------
     //MARK: Initalizers
     init(rootDocument: DocumentModel, delegate: iOSSelectedReferencesDelegate?) {
         cRootDocument = rootDocument
@@ -105,7 +135,7 @@ class iOSPDFViewController: UIViewController, UICollectionViewDataSource, UIColl
         fatalError("init(coder:) has not been implemented")
     }
     
-    //------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------------
     //MARK: UIViewController Functions
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -116,11 +146,14 @@ class iOSPDFViewController: UIViewController, UICollectionViewDataSource, UIColl
             UIBarButtonItem(image: UIImage(imageLiteralResourceName: "iconCancel"), style: .plain, target: self, action: #selector(handleCancel))
         
         if cReferences.isEmpty {
-            collectionVIewHeightConstraint.constant = 0.0
+            //Display label with no references!
+            self.cScrollIndicatorLeft.isHidden = true
+            self.cScrollIndicatorRight.isHidden = true
+            self.cNoReferencesLabel.isHidden = false
         }        
     }
     
-    //------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------------
     //MARK: Setup CollectionView
     func setupUI() {
         //----------------------------------------------------------------------------------
@@ -152,10 +185,17 @@ class iOSPDFViewController: UIViewController, UICollectionViewDataSource, UIColl
         //----------------------------------------------------------------------------------
         // cWebView
         //----------------------------------------------------------------------------------
-        
         let URLString = self.cRootDocument.pdf_url.replacingOccurrences(of: "&#URLTOKEN#", with: "")
         let req = URLRequest(url: URL(string: URLString)!)
         cWebView.load(req)
+        
+        //----------------------------------------------------------------------------------
+        // cNoReferencesLabel
+        //----------------------------------------------------------------------------------
+        self.cReferencesCollectionView.addSubview(self.cNoReferencesLabel)
+        
+        cNoReferencesLabel.centerXAnchor.constraint(equalTo: self.cReferencesCollectionView.centerXAnchor).isActive = true
+        cNoReferencesLabel.centerYAnchor.constraint(equalTo: cReferencesCollectionView.centerYAnchor).isActive = true
     }
 }
 
@@ -185,6 +225,8 @@ extension iOSPDFViewController {
         
         cell.referenceAddButton.tag = indexPath.row
         cell.referenceAddButton.addTarget(self, action: #selector(handleSelectReference), for: .touchUpInside)
+
+        cell.referenceReadButton.isEnabled = !lDocument.pdf_url.isEmpty
         cell.referenceReadButton.tag = indexPath.row
         cell.referenceReadButton.addTarget(self, action: #selector(handleReadReference), for: .touchUpInside)
         
