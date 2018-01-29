@@ -34,6 +34,7 @@ class iOSPDFViewController: UIViewController, UICollectionViewDataSource, UIColl
     @IBOutlet weak var cWebView: WKWebView!
     @IBOutlet weak var cReferencesCollectionView: UICollectionView!
     @IBOutlet weak var cHorizontalLine: UIView!
+    @IBOutlet weak var collectionVIewHeightConstraint: NSLayoutConstraint!
     
     @IBOutlet weak var cWebViewBottomConstraint: NSLayoutConstraint!
     
@@ -113,6 +114,10 @@ class iOSPDFViewController: UIViewController, UICollectionViewDataSource, UIColl
         //Add Cancel Button
         self.navigationItem.leftBarButtonItem =
             UIBarButtonItem(image: UIImage(imageLiteralResourceName: "iconCancel"), style: .plain, target: self, action: #selector(handleCancel))
+        
+        if cReferences.isEmpty {
+            collectionVIewHeightConstraint.constant = 0.0
+        }        
     }
     
     //------------------------------------------------------------------------------------------

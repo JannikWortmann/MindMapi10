@@ -78,6 +78,7 @@ extension SearchViewController: UITableViewDelegate {
         
         let doc = DocumentModel()
         doc.pdf_url = selectedPaper.pdf_url
+        doc.title = selectedPaper.title
         
         self.callPreviewPDFController(doc: doc)
     }
