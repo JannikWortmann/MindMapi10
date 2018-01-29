@@ -30,6 +30,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         tableView.delegate = self
         tableView.dataSource = self
+        
+        // Remove separators under table view
+        tableView.tableFooterView = UIView()
     }
 
     override func didReceiveMemoryWarning() {

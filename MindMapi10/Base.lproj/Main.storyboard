@@ -26,7 +26,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="1366"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="RWTH-Aachen-University" translatesAutoresizingMaskIntoConstraints="NO" id="GsD-w6-z1C">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="RWTH-Aachen-University" translatesAutoresizingMaskIntoConstraints="NO" id="GsD-w6-z1C">
                                 <rect key="frame" x="0.0" y="1107" width="1024" height="259"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="259" id="Z1t-st-xaA"/>
@@ -156,10 +156,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <visualEffectView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kwW-Xe-0yr">
-                                <rect key="frame" x="0.0" y="0.0" width="1024" height="1366"/>
+                                <rect key="frame" x="0.0" y="64" width="1024" height="1302"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" insetsLayoutMarginsFromSafeArea="NO" id="yJp-m5-rQ1">
-                                    <rect key="frame" x="0.0" y="0.0" width="1024" height="1366"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="1024" height="1302"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 </view>
                                 <blurEffect style="light"/>
@@ -176,10 +176,9 @@
                                     <action selector="btnExportAction:" destination="kjt-WZ-i0j" id="Whq-ya-bz5"/>
                                 </connections>
                             </barButtonItem>
-                            <barButtonItem title="Add" width="100" id="ggY-O4-LNI">
+                            <barButtonItem title="Add" id="ggY-O4-LNI">
                                 <connections>
-                                    <action selector="btnAddAction:" destination="kjt-WZ-i0j" id="6Fo-h3-MBZ"/>
-                                    <segue destination="enX-HB-1Cx" kind="show" id="KrQ-GU-kkA"/>
+                                    <action selector="addButtonTapped:" destination="kjt-WZ-i0j" id="qy1-j8-A1v"/>
                                 </connections>
                             </barButtonItem>
                         </rightBarButtonItems>
@@ -187,11 +186,13 @@
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <connections>
+                        <outlet property="addButton" destination="ggY-O4-LNI" id="BDt-j4-ok0"/>
                         <outlet property="newNoteText" destination="mht-Ei-QF4" id="QDP-SV-vHp"/>
                         <outlet property="notesSubView" destination="iwR-mg-LX8" id="nZp-NF-UVR"/>
                         <outlet property="notesSubViewTitle" destination="jpJ-Ta-rBf" id="KVr-LM-uMn"/>
                         <outlet property="txtNotesInSubView" destination="9rk-Hx-ac7" id="YCJ-gn-9XU"/>
                         <outlet property="visualEffect" destination="kwW-Xe-0yr" id="5HC-cK-GU0"/>
+                        <segue destination="enX-HB-1Cx" kind="show" identifier="goToSearchViewController" id="uCt-z7-cnG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WKQ-1l-0pN" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -247,7 +248,7 @@ esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat n
                     <viewLayoutGuide key="safeArea" id="oXh-qF-3Yk"/>
                 </view>
             </objects>
-            <point key="canvasLocation" x="1898" y="11"/>
+            <point key="canvasLocation" x="1897.8515624999998" y="10.980966325036603"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="FCQ-q1-Yzf">
