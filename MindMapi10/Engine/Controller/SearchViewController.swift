@@ -28,9 +28,9 @@ class SearchViewController: UIViewController {
     }
 
     func callPreviewPDFController(doc: DocumentModel){
-        let pdfNavigationController = iOSPDFNavigationController(rootDocument: doc)
-        
-        self.present(pdfNavigationController, animated: true, completion: nil)
+        let pdfPreViewController = iOSPDFPreviewController(pRootDocument: doc)
+        pdfPreViewController.isAddButtonHidden = true
+        _ = self.navigationController?.pushViewController(pdfPreViewController, animated: true)
     }
 }
 

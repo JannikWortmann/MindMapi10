@@ -398,9 +398,16 @@ extension NodeViewController{
     }
     
     func callPreviewPDFController(doc:DocumentModel){
-        let pdfNavigationController = iOSPDFNavigationController(rootDocument: doc, delegate: self)
+        if(doc.references.isEmpty){
+            let previewController = iOSPDFPreviewController(pRootDocument: doc)
+            previewController.isAddButtonHidden = true
+            _ = navigationController?.pushViewController(previewController, animated: true)
+        }
+        else{
+            let pdfNavigationController = iOSPDFNavigationController(rootDocument: doc, delegate: self)
         
-        self.present(pdfNavigationController, animated: true, completion: nil)
+            self.present(pdfNavigationController, animated: true, completion: nil)
+        }
     }
     
     @objc func panGestureRecognizer(_ sender: UIPanGestureRecognizer) {
