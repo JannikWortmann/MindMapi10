@@ -179,6 +179,7 @@
                             <barButtonItem title="Add" id="ggY-O4-LNI">
                                 <connections>
                                     <action selector="addButtonTapped:" destination="kjt-WZ-i0j" id="qy1-j8-A1v"/>
+                                    <segue destination="enX-HB-1Cx" kind="show" id="Dep-6z-2Li"/>
                                 </connections>
                             </barButtonItem>
                         </rightBarButtonItems>
@@ -186,13 +187,11 @@
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <connections>
-                        <outlet property="addButton" destination="ggY-O4-LNI" id="BDt-j4-ok0"/>
                         <outlet property="newNoteText" destination="mht-Ei-QF4" id="QDP-SV-vHp"/>
                         <outlet property="notesSubView" destination="iwR-mg-LX8" id="nZp-NF-UVR"/>
                         <outlet property="notesSubViewTitle" destination="jpJ-Ta-rBf" id="KVr-LM-uMn"/>
                         <outlet property="txtNotesInSubView" destination="9rk-Hx-ac7" id="YCJ-gn-9XU"/>
                         <outlet property="visualEffect" destination="kwW-Xe-0yr" id="5HC-cK-GU0"/>
-                        <segue destination="enX-HB-1Cx" kind="show" identifier="goToSearchViewController" id="uCt-z7-cnG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WKQ-1l-0pN" userLabel="First Responder" sceneMemberID="firstResponder"/>
