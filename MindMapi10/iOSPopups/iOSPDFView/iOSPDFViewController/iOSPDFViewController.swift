@@ -244,14 +244,16 @@ extension iOSPDFViewController: iOSAddedReferenceDelegate {
         if let lIndex = self.cReferences.index(where: {$0.document.id == pDocument.id}) {
             self.cReferences[lIndex].isSelected = true
         }
+        
+        //add checkmark for feedback
         let advTimeGif = UIImage.gif(name: "checkmark")
         let imageView2 = UIImageView(image: advTimeGif)
         imageView2.frame = CGRect(x: self.view.frame.size.width - 90.0, y: 50.0, width: 100, height: 100.0)
         view.addSubview(imageView2)
-        
         DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(4), execute: {
             imageView2.removeFromSuperview()
         })
+        
         self.cReferencesCollectionView.reloadData()
     }
 }
