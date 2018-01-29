@@ -456,23 +456,7 @@ public class DBTransactions {
             
             //delete the papers related to a mind map
             for paper in map_papers {
-                //for each paper delete the reference mappings
-                deleteReferenceMappingForPaper(paper_id: paper.id)
-                let references = getReferencesForPaper(paper_id: paper.id, mind_map_id: mind_map_id)
-                let notes = getNotesForPaper(paper_id: paper.id)
-                
-                //for each paper get the references and set for each reference is_active to 0
-                for reference in references {
-                    deletePaper(paper_id: reference.id)
-                }
-                
-                //for each paper delete the related notes
-                for note in notes {
-                    context.delete(note)
-                    ad.saveContext()
-                }
-                //for each paper set the is_active to 0
-                deletePaper(paper_id: paper.id)
+                deletePaperFromMindMap(paper_id: paper.id)
             }
             deleteScreenshot(mind_map_id: mind_map_id)
             context.delete(mind_map[0])
@@ -500,8 +484,45 @@ public class DBTransactions {
         }
     }
     
+    //DELETE PAPER FROM MIND MAP
+    func deletePaperFromMindMap(paper_id: Int32) {
+        let fetch_paper = NSFetchRequest<NSFetchRequestResult>(entityName: "Paper")
+        fetch_paper.predicate = NSPredicate(format: "id = %d", paper_id)
+        
+        do {
+            let papers = try context.fetch(fetch_paper) as! [Paper]
+            let paper = papers[0]
+            
+            //delete all paper_mappings of the paper
+            deletePaperMappingForPaper(paper: paper)
+            
+            //delete the reference mappings
+            deleteReferenceMappingForPaper(paper_id: paper.id)
+            let references = getReferencesForPaper(paper_id: paper.id, mind_map_id: paper.mind_map_id)
+            
+            //get the references of the paper and set for each reference is_active to 0
+            for reference in references {
+                deletePaper(paper_id: reference.id)
+            }
+            
+            //delete the related notes
+            let notes = getNotesForPaper(paper_id: paper.id)
+            for note in notes {
+                context.delete(note)
+                ad.saveContext()
+            }
+            
+            //delete the paper - set the is_active to 0
+            deletePaper(paper_id: paper.id)
+            
+        } catch {
+            let error = error as NSError
+            print("\(error)")
+        }
+    }
+    
     //DELETE A PAPER - SET THE IS_ACTIVE TO 0
-    func deletePaper(paper_id: Int32) {
+    private func deletePaper(paper_id: Int32) {
         let fetch_paper = NSFetchRequest<NSFetchRequestResult>(entityName: "Paper")
         fetch_paper.predicate = NSPredicate(format: "id = %d", paper_id)
         
@@ -509,6 +530,40 @@ public class DBTransactions {
             let paper = try context.fetch(fetch_paper) as! [NSManagedObject]
             paper[0].setValue(0, forKey: "is_active")
             ad.saveContext()
+        } catch {
+            let error = error as NSError
+            print("\(error)")
+        }
+    }
+    
+    func deletePaperMappingForPaper(paper: Paper) {
+        let fetch_paper = NSFetchRequest<NSFetchRequestResult>(entityName: "Paper_mapping")
+        fetch_paper.predicate = NSPredicate(format: "mind_map_id = %d AND is_root_level = 1 and connected_to_id = %d", paper.mind_map_id, paper.id)
+        
+        let fetch_paper2 = NSFetchRequest<NSFetchRequestResult>(entityName: "Paper_mapping")
+        fetch_paper2.predicate = NSPredicate(format: "mind_map_id = %d AND is_root_level = 0 and paper_id = %d", paper.mind_map_id, paper.id)
+        
+        let fetch_paper3 = NSFetchRequest<NSFetchRequestResult>(entityName: "Paper_mapping")
+        fetch_paper3.predicate = NSPredicate(format: "mind_map_id = %d AND is_root_level = 0 and connected_to_id = %d", paper.mind_map_id, paper.id)
+        
+        do {
+            let papers = try context.fetch(fetch_paper) as! [Paper_mapping]
+            for paper in papers {
+                context.delete(paper)
+                ad.saveContext()
+            }
+            
+            let papers2 = try context.fetch(fetch_paper2) as! [Paper_mapping]
+            for paper2 in papers2 {
+                context.delete(paper2)
+                ad.saveContext()
+            }
+            
+            let papers3 = try context.fetch(fetch_paper3) as! [Paper_mapping]
+            for paper3 in papers3 {
+                context.delete(paper3)
+                ad.saveContext()
+            }
         } catch {
             let error = error as NSError
             print("\(error)")
