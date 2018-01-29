@@ -178,7 +178,6 @@ extension iOSPDFViewController {
         cell.document = lDocument
         cell.titleLabel.text = lDocument.title
         cell.authorLabel.text = lDocument.author
-        cell.abstractLabel.text = lDocument.abstract
         
         //Setup Buttons
         let lAddImage = lStruct.isSelected ? UIImage(imageLiteralResourceName: "iconCheck") : UIImage(imageLiteralResourceName: "iconPlus")
