@@ -295,20 +295,40 @@ extension NodeViewController{
         for index in 0..<nodes.count{
             nodes[index].btnOutgoingEdge.isHidden = false
             nodes[index].btnIncomeEdge.isHidden = true
+            nodes[index].isSelected = false
         }
     }
     
     @objc func edgeFromOutgoingNodeAction(_ sender: UIButton){
-        self.edgeFromNode = nodes[sender.tag]
+        let senderNode = nodes[sender.tag]
         
-        for indexLink in 0..<nodesRelationMap[sender.tag].count {
-            if (indexLink != sender.tag) && (!nodesRelationMap[sender.tag][indexLink]) {
-                for indexNode in 0..<nodes.count{
-                    if indexLink == nodes[indexNode].tag {
-                        nodes[indexNode].btnOutgoingEdge.isHidden = true
-                        nodes[indexNode].btnIncomeEdge.isHidden = false
+        if(!senderNode.isSelected){
+            for index in 0..<nodes.count{
+                nodes[index].btnOutgoingEdge.isHidden = false
+                nodes[index].btnIncomeEdge.isHidden = true
+                nodes[index].isSelected = false
+            }
+            
+            self.edgeFromNode = senderNode
+        
+            for indexLink in 0..<nodesRelationMap[sender.tag].count {
+                if (indexLink != sender.tag) && (!nodesRelationMap[sender.tag][indexLink]) {
+                    for indexNode in 0..<nodes.count{
+                        if indexLink == nodes[indexNode].tag {
+                            nodes[indexNode].btnOutgoingEdge.isHidden = true
+                            nodes[indexNode].btnIncomeEdge.isHidden = false
+                        }
                     }
                 }
+            }
+            
+            senderNode.isSelected = true
+        }
+        else{
+            for index in 0..<nodes.count{
+                nodes[index].btnOutgoingEdge.isHidden = false
+                nodes[index].btnIncomeEdge.isHidden = true
+                nodes[index].isSelected = false
             }
         }
     }

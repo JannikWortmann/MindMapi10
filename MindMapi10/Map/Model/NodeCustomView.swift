@@ -33,7 +33,7 @@ import UIKit
     
     var incommingEdgeLayers = [Arrow]()
     var outgoingEdgeLayers = [Arrow]()
-    
+    var isSelected = false
     var isRootNode = Bool()
 
     override init(frame: CGRect) {
