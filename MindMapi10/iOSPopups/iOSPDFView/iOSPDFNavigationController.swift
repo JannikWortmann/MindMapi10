@@ -13,10 +13,7 @@ class iOSPDFNavigationController: UINavigationController {
     //MARK: Public vars
     
     //Document Property
-    public var cRootDocument: iOSDocument?
-    
-    //rootDocuments References
-    public var cRootDocumentReferences: [iOSDocument]?
+    public var cRootDocument: DocumentModel?
     
     //Callback Delegate
     public var cDelegate: iOSSelectedReferencesDelegate?
@@ -29,20 +26,18 @@ class iOSPDFNavigationController: UINavigationController {
     
 //------------------------------------------------------------------------------------------
     //MARK: Initializer
-    init(rootDocument: iOSDocument, references: [iOSDocument], delegate: iOSSelectedReferencesDelegate?) {
+    init(rootDocument: DocumentModel, delegate: iOSSelectedReferencesDelegate?) {
         self.cRootDocument = rootDocument
-        self.cRootDocumentReferences = references
         self.cDelegate = delegate
         
-        let lVC = iOSPDFViewController(rootDocument: rootDocument, documentReferences: references, delegate: delegate)
+        let lVC = iOSPDFViewController(rootDocument: rootDocument, delegate: delegate)
         super.init(rootViewController: lVC)
     }
     
-    init(rootDocument: iOSDocument, references: [iOSDocument]) {
+    init(rootDocument: DocumentModel) {
         self.cRootDocument = rootDocument
-        self.cRootDocumentReferences = references
         
-        let lVC = iOSPDFViewController(rootDocument: rootDocument, documentReferences: references)
+        let lVC = iOSPDFViewController(rootDocument: rootDocument)
         super.init(rootViewController: lVC)
     }
     
@@ -58,10 +53,6 @@ class iOSPDFNavigationController: UINavigationController {
     //MARK: Class Functions
     func setupUI() {
         
-    }
-    
-    @objc func handleCancelClick() {
-        self.dismiss(animated: true, completion: nil)
     }
 
 }

@@ -27,11 +27,13 @@ class iOSPDFPreviewController: UIViewController {
     
 //------------------------------------------------------------------------------------------
     //MARK: Variables
-    var cRootDocument: iOSDocument
+    var cRootDocument: DocumentModel
+    
+    var isAddButtonHidden: Bool = false
     
 //------------------------------------------------------------------------------------------
     //MARK: Initializer
-    init(pRootDocument: iOSDocument) {
+    init(pRootDocument: DocumentModel) {
         self.cRootDocument = pRootDocument
         
         super.init(nibName: nil, bundle: nil)
@@ -51,9 +53,9 @@ class iOSPDFPreviewController: UIViewController {
 //------------------------------------------------------------------------------------------
     //MARK: UI Functions
     func setupUI() {
-        self.navigationItem.rightBarButtonItem = self.cAddReferenceButton
+        self.navigationItem.rightBarButtonItem = self.isAddButtonHidden ? nil : self.cAddReferenceButton
         
-        let lReq = URLRequest(url: URL(string: self.cRootDocument.pdfUrl)!)
+        let lReq = URLRequest(url: URL(string: self.cRootDocument.pdf_url)!)
         self.cWebView.load(lReq)
     }
 }

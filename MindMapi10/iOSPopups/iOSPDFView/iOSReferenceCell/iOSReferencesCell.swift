@@ -9,7 +9,7 @@
 import UIKit
 
 class iOSReferencesCell: UICollectionViewCell {
-    var document: iOSDocument!
+    var document: DocumentModel!
     
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var abstractLabel: UILabel!

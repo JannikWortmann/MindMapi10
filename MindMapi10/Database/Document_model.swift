@@ -9,20 +9,28 @@
 import Foundation
 
 public class Document {
-    
     private var _id: Int32
     private var _title: String
     private var _author: String
     private var _abstract: String
     private var _url: String
     private var _pdf_url: String
+    private var _references: [Document]
+    
+    //Node Struct:
     private var _importance_id: Int16
     private var _is_reference: Int16
     private var _paper_cord_x: Float
     private var _paper_cord_y: Float
-    
-    private var _references: [Document]
     private var _notes: [Note]
+    
+    func getData(startFunc: @escaping () -> Void, endFunc: @escaping () -> Void) {
+        startFunc()
+        
+        //get data from acm
+        
+        endFunc()
+    }
     
     init() {
         _id = 0
@@ -75,6 +83,12 @@ public class Document {
     
     var author: String {
         get {
+            getData(startFunc: {
+                //start spinner
+            }) {
+                //end spinner to UI
+            }
+            
             return _author
         }
         set {
@@ -164,3 +178,4 @@ public class Document {
         }
     }
 }
+

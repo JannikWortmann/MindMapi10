@@ -10,26 +10,26 @@ import UIKit
 import WebKit
 
 //------------------------------------------------------------------------------------------
-    //MARK: Protocols
+//MARK: Protocols
 protocol iOSAddedReferenceDelegate {
-    func iOSDidAddedReference(_ pDocument: iOSDocument)
+    func iOSDidAddedReference(_ pDocument: DocumentModel)
 }
 
 protocol iOSSelectedReferencesDelegate {
-    func iOSDidSelectReferences(_ pDocuments: [iOSDocument])
+    func iOSDidSelectReferences(_ pDocuments: [DocumentModel])
 }
 
 //------------------------------------------------------------------------------------------
-    //MARK: iOSPDFCellStruct
+//MARK: iOSPDFCellStruct
 struct iOSDocumentCellModel {
     var isSelected: Bool
-    var document: iOSDocument
+    var document: DocumentModel
 }
 
 //------------------------------------------------------------------------------------------
-    //MARK: iOSPDFViewController
+//MARK: iOSPDFViewController
 class iOSPDFViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
-//------------------------------------------------------------------------------------------
+    //------------------------------------------------------------------------------------------
     //MARK: XIB Variables
     @IBOutlet weak var cWebView: WKWebView!
     @IBOutlet weak var cReferencesCollectionView: UICollectionView!
@@ -37,14 +37,16 @@ class iOSPDFViewController: UIViewController, UICollectionViewDataSource, UIColl
     
     @IBOutlet weak var cWebViewBottomConstraint: NSLayoutConstraint!
     
-//------------------------------------------------------------------------------------------
+    //------------------------------------------------------------------------------------------
     //MARK: UI Variables
     var cScrollIndicatorLeft: UIImageView = {
         let img = UIImageView()
         img.translatesAutoresizingMaskIntoConstraints = false
         img.image = UIImage(imageLiteralResourceName: "iconArrowLeft")
-        img.backgroundColor = UIColor.gray
-        img.layer.cornerRadius = 20
+        img.layer.borderColor = UIColor.black.cgColor
+        img.contentMode = .scaleAspectFit
+        //img.layer.borderWidth = 1
+        //img.layer.cornerRadius = 15
         img.clipsToBounds = true
         return img
     }()
@@ -53,45 +55,45 @@ class iOSPDFViewController: UIViewController, UICollectionViewDataSource, UIColl
         let img = UIImageView()
         img.translatesAutoresizingMaskIntoConstraints = false
         img.image = UIImage(imageLiteralResourceName: "iconArrowRight")
-        img.backgroundColor = UIColor.gray
-        img.layer.cornerRadius = 20
+        img.contentMode = .scaleAspectFit
+        img.layer.borderColor = UIColor.black.cgColor
+        //img.layer.borderWidth = 1
+        //img.layer.cornerRadius = 15
         img.clipsToBounds = true
         return img
     }()
     
-//------------------------------------------------------------------------------------------
+    //------------------------------------------------------------------------------------------
     //MARK: Variables
     public var cReferences: [iOSDocumentCellModel] = []
     
-    public var cRootDocument: iOSDocument
+    public var cRootDocument: DocumentModel
     
     public var cDelegate: iOSSelectedReferencesDelegate?
     
-//------------------------------------------------------------------------------------------
+    //------------------------------------------------------------------------------------------
     //MARK: Initalizers
-    init(rootDocument: iOSDocument, documentReferences: [iOSDocument], delegate: iOSSelectedReferencesDelegate?) {
+    init(rootDocument: DocumentModel, delegate: iOSSelectedReferencesDelegate?) {
         cRootDocument = rootDocument
         cDelegate = delegate
         
-        for document in documentReferences {
-            let lModel = iOSDocumentCellModel(isSelected: false, document: document)
-            cReferences.append(lModel)
+        for lDoc in rootDocument.references {
+            let lStruct = iOSDocumentCellModel(isSelected: false, document: lDoc)
+            cReferences.append(lStruct)
         }
-        
         
         super.init(nibName: nil, bundle: nil)
         
         self.navigationItem.title = rootDocument.title
     }
     
-    init(rootDocument: iOSDocument, documentReferences: [iOSDocument]) {
+    init(rootDocument: DocumentModel) {
         cRootDocument = rootDocument
         
-        for document in documentReferences {
-            let lModel = iOSDocumentCellModel(isSelected: false, document: document)
-            cReferences.append(lModel)
+        for lDoc in rootDocument.references {
+            let lStruct = iOSDocumentCellModel(isSelected: false, document: lDoc)
+            cReferences.append(lStruct)
         }
-        
         
         super.init(nibName: nil, bundle: nil)
         
@@ -102,29 +104,18 @@ class iOSPDFViewController: UIViewController, UICollectionViewDataSource, UIColl
         fatalError("init(coder:) has not been implemented")
     }
     
-//------------------------------------------------------------------------------------------
+    //------------------------------------------------------------------------------------------
     //MARK: UIViewController Functions
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
         
-        if self.cReferences.isEmpty {
-            //show full size pdf
-            self.cHorizontalLine.isHidden = true
-            self.cReferencesCollectionView.isHidden = true
-            
-            self.cWebViewBottomConstraint.isActive = false
-            self.cWebView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
-            self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: nil, action: nil)
-        }
-        else {
-            //initial page
-            self.navigationItem.leftBarButtonItem =
-                UIBarButtonItem(image: UIImage(imageLiteralResourceName: "iconCancel"), style: .plain, target: self, action: #selector(handleCancel))
-        }
+        //Add Cancel Button
+        self.navigationItem.leftBarButtonItem =
+            UIBarButtonItem(image: UIImage(imageLiteralResourceName: "iconCancel"), style: .plain, target: self, action: #selector(handleCancel))
     }
     
-//------------------------------------------------------------------------------------------
+    //------------------------------------------------------------------------------------------
     //MARK: Setup CollectionView
     func setupUI() {
         //----------------------------------------------------------------------------------
@@ -133,22 +124,30 @@ class iOSPDFViewController: UIViewController, UICollectionViewDataSource, UIColl
         cReferencesCollectionView.register(UINib(nibName: "iOSReferencesCell", bundle: nil), forCellWithReuseIdentifier: "cell")
         cReferencesCollectionView.dataSource = self
         cReferencesCollectionView.delegate = self
+        cReferencesCollectionView.bounces = true
         
+        //----------------------------------------------------------------------------------
+        // cScrollIndicatorLeft
+        //----------------------------------------------------------------------------------
         self.view.addSubview(cScrollIndicatorLeft)
         cScrollIndicatorLeft.centerYAnchor.constraint(equalTo: cReferencesCollectionView.centerYAnchor).isActive = true
         cScrollIndicatorLeft.leftAnchor.constraint(equalTo: cReferencesCollectionView.leftAnchor, constant: 4).isActive = true
-        cScrollIndicatorLeft.heightAnchor.constraint(equalToConstant: 40).isActive = true
-        cScrollIndicatorLeft.widthAnchor.constraint(equalToConstant: 40).isActive = true
+        cScrollIndicatorLeft.heightAnchor.constraint(equalToConstant: 30).isActive = true
+        cScrollIndicatorLeft.widthAnchor.constraint(equalToConstant: 30).isActive = true
         
+        //----------------------------------------------------------------------------------
+        // cScrollIndicatorRight
+        //----------------------------------------------------------------------------------
         self.view.addSubview(cScrollIndicatorRight)
         cScrollIndicatorRight.centerYAnchor.constraint(equalTo: cReferencesCollectionView.centerYAnchor).isActive = true
         cScrollIndicatorRight.rightAnchor.constraint(equalTo: cReferencesCollectionView.rightAnchor, constant: -4).isActive = true
-        cScrollIndicatorRight.heightAnchor.constraint(equalToConstant: 40).isActive = true
-        cScrollIndicatorRight.widthAnchor.constraint(equalToConstant: 40).isActive = true
+        cScrollIndicatorRight.heightAnchor.constraint(equalToConstant: 30).isActive = true
+        cScrollIndicatorRight.widthAnchor.constraint(equalToConstant: 30).isActive = true
+        
         //----------------------------------------------------------------------------------
         // cWebView
         //----------------------------------------------------------------------------------
-        let req = URLRequest(url: URL(string: self.cRootDocument.pdfUrl)!)
+        let req = URLRequest(url: URL(string: self.cRootDocument.pdf_url)!)
         cWebView.load(req)
     }
 }
@@ -217,7 +216,7 @@ extension iOSPDFViewController {
             return doc.isSelected
         }
         //get the documents from the struct
-        let lSelectedDocs = lSelectedStructs.map { (structCell) -> iOSDocument in
+        let lSelectedDocs = lSelectedStructs.map { (structCell) -> DocumentModel in
             return structCell.document
         }
         self.cDelegate?.iOSDidSelectReferences(lSelectedDocs)
@@ -229,9 +228,9 @@ extension iOSPDFViewController {
 //------------------------------------------------------------------------------------------
 //MARK: iOSAddNewReference Delegate
 extension iOSPDFViewController: iOSAddedReferenceDelegate {
-    func iOSDidAddedReference(_ pDocument: iOSDocument) {
+    func iOSDidAddedReference(_ pDocument: DocumentModel) {
         //search the document inside the array and set it so ,isSelected,=true
-        if let lIndex = self.cReferences.index(where: {$0.document == pDocument}) {
+        if let lIndex = self.cReferences.index(where: {$0.document.id == pDocument.id}) {
             self.cReferences[lIndex].isSelected = true
         }
         self.cReferencesCollectionView.reloadData()

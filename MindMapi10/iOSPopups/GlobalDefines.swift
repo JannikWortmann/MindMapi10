@@ -19,6 +19,7 @@ import UIKit
 //------------------------------------------------------------------------------------------
     //MARK: Internal Structs
     struct iOSDocument: Equatable {
+        let id: Int
         let title: String
         let author: String
         let abstract: String
