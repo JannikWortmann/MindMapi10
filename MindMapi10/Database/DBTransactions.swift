@@ -257,10 +257,6 @@ public class DBTransactions {
                 temp_map_model.map_cord_x = map.map_cord_x as Float
                 temp_map_model.map_cord_y = map.map_cord_y as Float
                 temp_map_model.mappings = getPaperMappingsForMindMap(mind_map_id: map.id)
-
-                for p in getPapersForMindMap(mind_map_id: map.id) {
-                    print("paper ", p.id)
-                }
                 
                 returnedMaps.append(temp_map_model)
             }
