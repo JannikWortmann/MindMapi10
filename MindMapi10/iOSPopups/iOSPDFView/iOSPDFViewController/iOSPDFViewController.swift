@@ -226,6 +226,8 @@ extension iOSPDFViewController {
         
         cell.referenceAddButton.tag = indexPath.row
         cell.referenceAddButton.addTarget(self, action: #selector(handleSelectReference), for: .touchUpInside)
+
+        cell.referenceReadButton.isEnabled = !lDocument.pdf_url.isEmpty
         cell.referenceReadButton.tag = indexPath.row
         cell.referenceReadButton.addTarget(self, action: #selector(handleReadReference), for: .touchUpInside)
         
