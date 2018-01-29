@@ -89,6 +89,31 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
     }
     
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        let addAction = UITableViewRowAction(style: .normal, title: "Delete") { action, index in
+            let map = self.mind_maps[indexPath.row]
+            self.db.deleteMindMap(mind_map_id: map.id)
+            print("deleted ", map.id)
+            
+            self.onMindMapAdd(new_map: map)
+            
+            //confirmation feedback
+            let advTimeGif = UIImage.gif(name: "checkmark")
+            let imageView2 = UIImageView(image: advTimeGif)
+            imageView2.frame = CGRect(x: self.view.frame.size.width - 90.0, y: 50.0, width: 100, height: 100.0)
+            self.view.addSubview(imageView2)
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(4), execute: {
+                imageView2.removeFromSuperview()
+            })
+            
+        }
+        
+        addAction.backgroundColor = UIColor.red
+        
+        return [addAction]
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let destination = segue.destination as? ImportViewController {
             destination.delegate = self
