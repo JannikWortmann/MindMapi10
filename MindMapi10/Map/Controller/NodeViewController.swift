@@ -496,7 +496,9 @@ extension NodeViewController: UIGraphDelegate{
         view.addSubview(rootNode)
         
         mindMap.papers.forEach { doc in
-            let node = self.initNode(nodeinfo: doc, frame: CGRect(x:CGFloat(doc.paper_cord_x),y: CGFloat(doc.paper_cord_y), width:NodeConfig.width, height:NodeConfig.height))
+            let nodeX = CGFloat(doc.paper_cord_x) - (NodeConfig.width/2)
+            let nodeY = CGFloat(doc.paper_cord_y) - (NodeConfig.height/2)
+            let node = self.initNode(nodeinfo: doc, frame: CGRect(x:CGFloat(nodeX),y: CGFloat(nodeY), width:NodeConfig.width, height:NodeConfig.height))
             view.addSubview(node)
         }
         
