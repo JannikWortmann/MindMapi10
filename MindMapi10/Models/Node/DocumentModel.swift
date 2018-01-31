@@ -8,6 +8,7 @@
 
 import Foundation
 
+//Mark: - Model for navigate with pdf view controller.
 class DocumentModel {
     
     private var _id: Int32

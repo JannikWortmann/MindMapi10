@@ -54,6 +54,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         present(view, animated: true, completion: nil)
     }
     
+    //Mark: - Navigate node view controller.
     private func navigate(_ title:String,_ topic:String){
         let nodeViewController = self.storyboard?.instantiateViewController(withIdentifier: "NodeViewController") as! NodeViewController
         
@@ -96,7 +97,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         let addAction = UITableViewRowAction(style: .normal, title: "Delete") { action, index in
             let map = self.mind_maps[indexPath.row]
             self.db.deleteMindMap(mind_map_id: map.id)
-            print("deleted ", map.id)
             
             self.onMindMapAdd(new_map: map)
             

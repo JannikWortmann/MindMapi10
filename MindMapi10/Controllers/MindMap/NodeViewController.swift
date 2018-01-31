@@ -5,21 +5,27 @@
 //  Created by Sabir Alizada on 1/12/18.
 //  Copyright © 2018 Halt. All rights reserved.
 //
-//TODO
-//Deactivate linking if user changed his mind.
 
 import UIKit
 
+//MARK: - Mind Map view controller
 class NodeViewController: UIViewController {
-    // CREATE MIND MAP
+    
+    // Fields for MindMap creating
     var shouldCreateMindMap = Bool()
     var MindMap = Mind_map_model()
     var notRelatedDocuments = [NodeCustomView]()
+    //
+    
+    // Database Functionality
     let transaction = DBTransactions()
+    //
+    
+    // Export and Import functionality
     let export = DBImportExport()
     //
     
-    // GRAPH MODEL
+    // Graph lookup map and necessary fields for drawing.
     var nodes = [NodeCustomView]()
     var nodesRelationMap: [[Bool]] = Array(repeating: Array(repeating: false, count: 100), count: 100)
     
@@ -29,10 +35,12 @@ class NodeViewController: UIViewController {
     var pdfViewSenderNodeTag = Int()
     //
     
+    // Background view effect
     @IBOutlet weak var visualEffect: UIVisualEffectView!
     var effect:UIVisualEffect!
+    //
     
-    // MARK: - Notes Sub View
+    // Notes Sub View
     var currentNoteViewNode = NodeCustomView()
     @IBOutlet var notesSubView: UIView!
     @IBOutlet weak var notesSubViewTitle: UILabel!
@@ -40,16 +48,16 @@ class NodeViewController: UIViewController {
     @IBOutlet weak var newNoteText: UITextField!
     //
     
-    //DELEGATES
+    //Delegates
     var mindMapDelegate: MindMapListDelegate?
     //
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Setup necessary settings
         self.settings()
-    
-        //var spinner = self.displaySpinner(onView: self.view)
+        //
         
         createMindMap(mindMap: MindMap, isNewMap: shouldCreateMindMap)
         
@@ -63,6 +71,7 @@ class NodeViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    //MARK: - Export mind map to the json
     @IBAction func btnExportAction(_ sender: Any) {
         export.exportMindMap(mind_map_id: MindMap.id)
         
@@ -71,15 +80,18 @@ class NodeViewController: UIViewController {
         imageView2.frame = CGRect(x: self.view.frame.size.width - 90.0, y: 50.0, width: 100, height: 100.0)
         view.addSubview(imageView2)
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(4), execute: {
+        //MARK: make success gift run
+        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(2), execute: {
             imageView2.removeFromSuperview()
         })
     }
     
+    //MARK: - make success gift run
     @IBAction func btnCloseNotes(_ sender: Any) {
         animateOut()
     }
     
+    //MARK: - Add notes to the node
     @IBAction func addNote(_ sender: Any) {
         if let text = self.newNoteText.text, !text.isEmpty
         {
@@ -98,6 +110,7 @@ class NodeViewController: UIViewController {
         self.newNoteText.text = ""
     }
     
+    //MARK: - Put necessary settings to the visual effect and notes view.
     func settings(){
         effect = visualEffect.effect
         visualEffect.effect = nil
@@ -106,11 +119,13 @@ class NodeViewController: UIViewController {
         self.notesSubView.layer.cornerRadius = 10
         self.notesSubView.layer.borderColor = UIColor.blue.cgColor
         
+        //MARK: Get mind map from database if it is not new one.
         if !shouldCreateMindMap {
             MindMap = transaction.getMindMap(mind_map_id: MindMap.id)
         }
     }
     
+    //MARK: - Put the relation information between nodes as text on the edge
     func putLabelOnScreen(text:String, x: CGFloat, y:CGFloat, angle:CGFloat)-> UITextField{
         let textField = UITextField(frame: CGRect(x: x, y: y, width: 120, height: 30))
         textField.textAlignment = .center
@@ -120,12 +135,14 @@ class NodeViewController: UIViewController {
         return textField
     }
 
+    //Mark: - Check navigated controller and prepare delegation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let nav = segue.destination as? SearchViewController {
             nav.delegate = self
         }
     }
     
+    //Mark: - get text for edges that connects to nodes
     private func getRelationTextOfNodes(from: NodeCustomView, to: NodeCustomView)-> String {
         var result = String()
         
@@ -163,8 +180,9 @@ class NodeViewController: UIViewController {
     */
 }
 
-// DB LOGIC
+//Mark: - Database helper extension
 extension NodeViewController {
+    //Mark: - Create and draw mind map
     func createMindMap(mindMap: Mind_map_model, isNewMap:Bool){
         
         if isNewMap{
@@ -178,6 +196,7 @@ extension NodeViewController {
         self.drawMindMap(mindMap, self.view)
     }
     
+    //Mark: - Add new realtion between 2 nodes to the database
     func addNewRelationDB(from: NodeCustomView, to:NodeCustomView, text:String){
         if (from.isRootNode){
             transaction.addConnection(mind_map_id: MindMap.id, from: MindMap.id, to: to.document.id, text: text, is_root: 1)
@@ -190,12 +209,14 @@ extension NodeViewController {
                                       to: to.document.id, text: text, is_root: 0)
         }
         
+        //Mark: - Get the latest mind map
         self.MindMap = transaction.getMindMap(mind_map_id: self.MindMap.id)
     }
 }
 
-// NODE INIT
+//Mark: - Methods that initiate node source and target actions.
 extension NodeViewController{
+    //Mark: - Initiate root node of the mind map.
     func initRootNode(nodeInfo: Mind_map_model, frame: CGRect)->NodeCustomView{
         let node = NodeCustomView(frame: frame)
         
@@ -231,6 +252,7 @@ extension NodeViewController{
         return node
     }
 
+    //Mark: - Initiate node of the mind map.
     func initNode(nodeinfo: Document, frame:CGRect)->NodeCustomView{
         let node = NodeCustomView(frame: frame)
         
@@ -258,6 +280,7 @@ extension NodeViewController{
         return node
     }
     
+    //Mark: - Initiate node tag indexes, for future selected node detection.
     private func initiateNodeIndexTagMapping(node:NodeCustomView){
         let nodeIndex = nodes.count - 1
         node.tag = nodeIndex
@@ -267,27 +290,34 @@ extension NodeViewController{
         node.btnPdf.tag = nodeIndex
     }
     
+    //Mark: - Initiate node actions
     private func initiateNodeActions(node: NodeCustomView){
+        //Mark: - Receive edge action
         node.btnIncomeEdge.addTarget(self, action: #selector(NodeViewController.edgeToIncomeNodeAction(_:)), for: .touchUpInside)
+        //Mark: - Send edge action
         node.btnOutgoingEdge.addTarget(self, action: #selector(NodeViewController.edgeFromOutgoingNodeAction(_:)), for: .touchUpInside)
+        //Mark: - Open notes view for node
         node.btnNotes.addTarget(self, action:
             #selector(NodeViewController.popupNotes(_:)), for: .touchUpInside)
         node.btnPdf.addTarget(self, action: #selector(NodeViewController.openPDFView(_:)), for: .touchUpInside)
         
+        //Mark: - Drag nodes
         let panGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(NodeViewController.panGestureRecognizer(_:)))
         node.isUserInteractionEnabled = true
         node.addGestureRecognizer(panGestureRecognizer)
     }
 }
 
-// Node BUTTON ACTIONS
+//Mark: - Mind Map controller actions
 extension NodeViewController{
+    //Mark: - Draw line to Node action
     @objc func edgeToIncomeNodeAction(_ sender: UIButton){
         self.edgeToNode = nodes[sender.tag]
         
         nodesRelationMap[edgeFromNode.tag][edgeToNode.tag] = true
         nodesRelationMap[edgeToNode.tag][edgeFromNode.tag] = true
         
+        //Look-up map of graph
         self.addNewRelationDB(from: self.edgeFromNode, to: self.edgeToNode, text: "Background")
         
         self.drawArrow(from: self.edgeFromNode, to: self.edgeToNode, text:"Background", tailWidth: 2, headWidth: 6, headLength: 9)
@@ -299,6 +329,7 @@ extension NodeViewController{
         }
     }
     
+    //Mark: - Draw line from Node action
     @objc func edgeFromOutgoingNodeAction(_ sender: UIButton){
         let senderNode = nodes[sender.tag]
         
@@ -333,7 +364,7 @@ extension NodeViewController{
         }
     }
     
-    //TODO
+    //Mark: - popup notes view.
     @objc func popupNotes(_ sender: UIButton){
         self.currentNoteViewNode = nodes[sender.tag]
         
@@ -345,14 +376,18 @@ extension NodeViewController{
         txtNotesInSubView.text = text
         notesSubViewTitle.text = self.currentNoteViewNode.lblTitle.text
         self.view.bringSubview(toFront: self.visualEffect)
-        //txtNotesInSubView.sizeToFit()
+        
+        //Mark: - animate notes view
         animateIn()
     }
     
+    //Mark: - Open Pdf with references with.
     @objc func openPDFView(_ sender: UIButton){
         let node = nodes[sender.tag]
+        
         // Necessary for finding correct node after return to this controller
         self.pdfViewSenderNodeTag = sender.tag
+        //
         
         //Create new node for sending
         let doc = DocumentModel()
@@ -362,18 +397,22 @@ extension NodeViewController{
         doc.pdf_url = node.document.pdf_url
         doc.title = node.document.title
         doc.url = node.document.url
+        //
+        
         doc.references = self.converDocumentToDocumentModel(docs: self.transaction.getReferencesForPaper(paper_id: doc.id, mind_map_id: self.MindMap.id))
         
+        // Get References from ACM if no information in database
         if(doc.references.count == 0){
-        // Get References from ACM
             let spinner = self.displaySpinner(onView: self.view)
             
             DispatchQueue.global(qos: .background).async {
                 
                 let link = Constants.sharedInstance.acmCitationURL + node.document.url
                 print(link)
+                // Background request to the ACM
                 let documents = Engine.shared.getReferences(from: link)
-                
+                //
+                // Insert document to database in main thread
                 DispatchQueue.main.async {
                     self.transaction.addReferencesForPaper(mind_map_id: self.MindMap.id, paper_id: node.document.id, references: documents)
                     
@@ -383,6 +422,7 @@ extension NodeViewController{
                     
                     self.callPreviewPDFController(doc: doc)
                 }
+                //
             }
         //
         }else{
@@ -397,12 +437,15 @@ extension NodeViewController{
         }
     }
     
+    //Mark: - Read pdf document.
     func callPreviewPDFController(doc:DocumentModel){
+        // In case there are not references. Redirect to the pdfpreview controller
         if(doc.references.isEmpty){
             let previewController = iOSPDFPreviewController(pRootDocument: doc)
             previewController.isAddButtonHidden = true
             _ = navigationController?.pushViewController(previewController, animated: true)
         }
+        // Else pdf navigation controller
         else{
             let pdfNavigationController = iOSPDFNavigationController(rootDocument: doc, delegate: self)
         
@@ -410,6 +453,7 @@ extension NodeViewController{
         }
     }
     
+    //Mark: - Dragging event.
     @objc func panGestureRecognizer(_ sender: UIPanGestureRecognizer) {
         let draggedNode = sender.view as! NodeCustomView
         edgeFromNode = draggedNode
@@ -427,7 +471,7 @@ extension NodeViewController{
         }
         //
         
-        //DRAG
+        //DRAG Node
         let translation = sender.translation(in: self.view)
         let x = sender.view!.center.x + translation.x
         let y = sender.view!.center.y + translation.y
@@ -463,8 +507,10 @@ extension NodeViewController{
 }
 
 
-//DRAW MIND MAP AND NODES
+//Mark: - Draw Mind Map extension
 extension NodeViewController: UIGraphDelegate{
+    
+    //Mark: - Draw UIBezierPath and put CAShapeLayer object.
     func drawArrow(from: NodeCustomView, to: NodeCustomView, text:String, tailWidth: CGFloat, headWidth: CGFloat, headLength: CGFloat ){
         let arrow = UIBezierPath.arrow(from: from.center, to: to.center, tailWidth: tailWidth, headWidth: headWidth, headLength: headLength)
         
@@ -486,15 +532,18 @@ extension NodeViewController: UIGraphDelegate{
         self.view.bringSubview(toFront: textField)
     }
     
+    //Mark: - Draw Mind Map
     func drawMindMap(_ mindMap: Mind_map_model,_ view:UIView){
         //top-left point's coordinates
         let startingPointX = CGFloat(mindMap.map_cord_x) - (NodeConfig.width/2)
         let startingPointY = CGFloat(mindMap.map_cord_y) - (NodeConfig.height/2)
         //
         
+        //Draw root node.
         let rootNode = self.initRootNode(nodeInfo: mindMap, frame: CGRect(x:startingPointX,y:startingPointY, width:NodeConfig.width, height:NodeConfig.height))
         view.addSubview(rootNode)
         
+        //Draw reference paper nodes.
         mindMap.papers.forEach { doc in
             let nodeX = CGFloat(doc.paper_cord_x) - (NodeConfig.width/2)
             let nodeY = CGFloat(doc.paper_cord_y) - (NodeConfig.height/2)
@@ -505,6 +554,7 @@ extension NodeViewController: UIGraphDelegate{
         var from: NodeCustomView = NodeCustomView()
         var to: NodeCustomView = NodeCustomView()
         
+        //Add node mappings to look-up map
         mindMap.mappings.forEach{ mapping in
             print("Mapping from = \(mapping.paper_id)  to = \(mapping.connected_to_id) and isRoot=\(mapping.is_root_level)")
             if mapping.is_root_level == 1 {
@@ -523,6 +573,7 @@ extension NodeViewController: UIGraphDelegate{
         }
     }
     
+    //Mark: - Draw node.
     func drawNode(doc: Document){
         doc.paper_cord_x = Float(self.view.bounds.width/2)
         doc.paper_cord_y = Float(self.view.bounds.height/2)
@@ -538,6 +589,7 @@ extension NodeViewController: UIGraphDelegate{
         self.view.addSubview(node)
     }
     
+    //Mark: - Draw added references with links.
     func drawLinkedNodes(fromNodeIndex: Int, documents:[Document]){
         //top-left point's coordinates
         let startingPointX = self.view.bounds.width/2 - (NodeConfig.width/2)
@@ -564,6 +616,7 @@ extension NodeViewController: UIGraphDelegate{
         self.mindMapDelegate?.onMindMapAdd(new_map: self.MindMap)
     }
     
+    //Mark: - Get screenshot of the mind map in each update.
     private func screenShotMindMap(mind_map_id: Int32) {
         //Create the UIImage
         UIGraphicsBeginImageContext(view.frame.size)
@@ -595,6 +648,7 @@ extension NodeViewController: UIGraphDelegate{
     }
 }
 
+//Mark: - References selected protocol implementation.
 extension NodeViewController: iOSSelectedReferencesDelegate{
     func iOSDidSelectReferences(_ pDocuments: [DocumentModel]) {
         

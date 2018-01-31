@@ -165,9 +165,133 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9409607720223BD400304FD1 /* Enum */ = {
+			isa = PBXGroup;
+			children = (
+				94B16F5F20128549000CA597 /* NodeType.swift */,
+			);
+			path = Enum;
+			sourceTree = "<group>";
+		};
+		9409607820223CF600304FD1 /* Node */ = {
+			isa = PBXGroup;
+			children = (
+				946988A5200D1CD2008C63B0 /* Arrow.swift */,
+				94B16DE0200F6968000CA597 /* Node.swift */,
+				94E8F5EB201C9B9000C7F873 /* DocumentModel.swift */,
+			);
+			path = Node;
+			sourceTree = "<group>";
+		};
+		9409607920223D2100304FD1 /* Entity */ = {
+			isa = PBXGroup;
+			children = (
+				9409607B20223D5300304FD1 /* Generated */,
+				94E9BCD92014A682002F45B6 /* Importance.swift */,
+				94E9BCDC2014A682002F45B6 /* Mind_map.swift */,
+				94E9BCD62014A682002F45B6 /* Note.swift */,
+				94E9BCD72014A682002F45B6 /* Paper_mapping.swift */,
+				94E9BCDA2014A682002F45B6 /* Paper.swift */,
+				94E9BCCC2014A682002F45B6 /* Reference_mapping.swift */,
+				94E9BCD82014A682002F45B6 /* Storage.swift */,
+				94E9BCDB2014A682002F45B6 /* User.swift */,
+			);
+			path = Entity;
+			sourceTree = "<group>";
+		};
+		9409607B20223D5300304FD1 /* Generated */ = {
+			isa = PBXGroup;
+			children = (
+				94E9BCCE2014A682002F45B6 /* StorageProperties.swift */,
+				94E9BCCF2014A682002F45B6 /* Paper_mappingProperties.swift */,
+				94E9BCD02014A682002F45B6 /* PaperProperties.swift */,
+				94E9BCD12014A682002F45B6 /* UserProperties.swift */,
+				94E9BCD22014A682002F45B6 /* NoteProperties.swift */,
+				94E9BCD32014A682002F45B6 /* Reference_mappingProperties.swift */,
+				94E9BCD42014A682002F45B6 /* Mind_mapProperties.swift */,
+				94E9BCD52014A682002F45B6 /* ImportanceProperties.swift */,
+			);
+			path = Generated;
+			sourceTree = "<group>";
+		};
+		9409607C20223F5A00304FD1 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				9494A71720094744003968D2 /* NodeCustomView.swift */,
+				940CA4D8201A199700B96BC4 /* SearchTableViewCell.swift */,
+				94E8F5F8201CAC8D00C7F873 /* iOSReferencesCell.swift */,
+				94495F6520167DB0005509B2 /* ImportCell.swift */,
+				94495F6620167DB0005509B2 /* MapCell.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		9409607D202240AD00304FD1 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				94906FFB201B5302000DC0C1 /* NodeViewController+Math.swift */,
+				94E8F5F0201CAC8D00C7F873 /* iOSTextfieldExtension.swift */,
+				94906FFD201B5363000DC0C1 /* NodeViewController+Animation.swift */,
+				94906FFF201B53CF000DC0C1 /* NodeViewController+Spinner.swift */,
+				94E8F5ED201CA22700C7F873 /* NodeViewController+Converter.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		9409607E2022418C00304FD1 /* Constant */ = {
+			isa = PBXGroup;
+			children = (
+				940CA4CA20189ED600B96BC4 /* Constants.swift */,
+			);
+			path = Constant;
+			sourceTree = "<group>";
+		};
+		9409607F2022423B00304FD1 /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				94B16DE22010066A000CA597 /* UIGraphDelegate.swift */,
+			);
+			path = Protocol;
+			sourceTree = "<group>";
+		};
+		94096080202244CC00304FD1 /* MindMap */ = {
+			isa = PBXGroup;
+			children = (
+				9494A71B20094887003968D2 /* NodeViewController.swift */,
+			);
+			path = MindMap;
+			sourceTree = "<group>";
+		};
+		940960812022450400304FD1 /* Initial */ = {
+			isa = PBXGroup;
+			children = (
+				94495F6320167D94005509B2 /* ImportViewController.swift */,
+			);
+			path = Initial;
+			sourceTree = "<group>";
+		};
+		94096082202245A400304FD1 /* PDF */ = {
+			isa = PBXGroup;
+			children = (
+				94E8F5FD201CAC8D00C7F873 /* iOSPDFNavigationController.swift */,
+				94E8F5F6201CAC8D00C7F873 /* iOSPDFPreviewController.swift */,
+				94E8F5FB201CAC8D00C7F873 /* iOSPDFViewController.swift */,
+			);
+			path = PDF;
+			sourceTree = "<group>";
+		};
 		940CA4CC2018A1C000B96BC4 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				9409607820223CF600304FD1 /* Node */,
+				9409607920223D2100304FD1 /* Entity */,
+				9409607720223BD400304FD1 /* Enum */,
+				9409607E2022418C00304FD1 /* Constant */,
+				940CA4D5201A199700B96BC4 /* Structs.swift */,
+				94E8F5F1201CAC8D00C7F873 /* GlobalDefines.swift */,
+				94E9BCEF2014A695002F45B6 /* Document_model.swift */,
+				94E9BCED2014A695002F45B6 /* GenerateData.swift */,
+				94E9BCEE2014A695002F45B6 /* Mind_map_model.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -175,6 +299,13 @@
 		940CA4CD2018A26200B96BC4 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				94E8F5F9201CAC8D00C7F873 /* iOSReferencesCell.xib */,
+				94E8F5F5201CAC8D00C7F873 /* iOSPDFPreviewController.xib */,
+				9494A722200949E3003968D2 /* NodeCustomView.xib */,
+				94E8F5FC201CAC8D00C7F873 /* iOSPDFViewController.xib */,
+				940CA4D7201A199700B96BC4 /* SearchTableViewCell.xib */,
+				9494A70320092C74003968D2 /* Main.storyboard */,
+				9494A70B20092C74003968D2 /* LaunchScreen.storyboard */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -182,64 +313,24 @@
 		940CA4CE2018A26900B96BC4 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				94096082202245A400304FD1 /* PDF */,
+				940960812022450400304FD1 /* Initial */,
+				94096080202244CC00304FD1 /* MindMap */,
+				9409607D202240AD00304FD1 /* Extensions */,
+				940CA4D3201A199700B96BC4 /* SearchViewController.swift */,
+				94E8F5F2201CAC8D00C7F873 /* iOSPopupCreateNewMap.swift */,
 			);
 			path = Controllers;
-			sourceTree = "<group>";
-		};
-		940CA4CF2018A2FD00B96BC4 /* Stores */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Stores;
 			sourceTree = "<group>";
 		};
 		940CA4D02018A36000B96BC4 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
-			);
-			path = Helpers;
-			sourceTree = "<group>";
-		};
-		940CA4D1201A199700B96BC4 /* Engine */ = {
-			isa = PBXGroup;
-			children = (
-				940CA4D2201A199700B96BC4 /* Controller */,
-				940CA4D4201A199700B96BC4 /* Model */,
-				940CA4D6201A199700B96BC4 /* View */,
-				940CA4D9201A199700B96BC4 /* Helpers */,
-			);
-			path = Engine;
-			sourceTree = "<group>";
-		};
-		940CA4D2201A199700B96BC4 /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-				940CA4D3201A199700B96BC4 /* SearchViewController.swift */,
-			);
-			path = Controller;
-			sourceTree = "<group>";
-		};
-		940CA4D4201A199700B96BC4 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				940CA4D5201A199700B96BC4 /* Structs.swift */,
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		940CA4D6201A199700B96BC4 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				940CA4D7201A199700B96BC4 /* SearchTableViewCell.xib */,
-				940CA4D8201A199700B96BC4 /* SearchTableViewCell.swift */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		940CA4D9201A199700B96BC4 /* Helpers */ = {
-			isa = PBXGroup;
-			children = (
+				9484EF57201E0136001D5A3D /* Extra */,
+				9494A71620094744003968D2 /* UIBezierPath+Arrow.swift */,
 				940CA4DB201A199700B96BC4 /* Engine.swift */,
+				94E9BC912014A300002F45B6 /* DBImportExport.swift */,
+				94E9BCAF2014A300002F45B6 /* DBTransactions.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -259,17 +350,6 @@
 				9484EF5A201E0136001D5A3D /* checkmark.gif */,
 			);
 			path = GIF;
-			sourceTree = "<group>";
-		};
-		94906FFA201B52DF000DC0C1 /* Extensions */ = {
-			isa = PBXGroup;
-			children = (
-				94906FFB201B5302000DC0C1 /* NodeViewController+Math.swift */,
-				94906FFD201B5363000DC0C1 /* NodeViewController+Animation.swift */,
-				94906FFF201B53CF000DC0C1 /* NodeViewController+Spinner.swift */,
-				94E8F5ED201CA22700C7F873 /* NodeViewController+Converter.swift */,
-			);
-			path = Extensions;
 			sourceTree = "<group>";
 		};
 		9494A6F320092C74003968D2 = {
@@ -292,163 +372,19 @@
 		9494A6FE20092C74003968D2 /* MindMapi10 */ = {
 			isa = PBXGroup;
 			children = (
-				94E8F5EF201CAC8D00C7F873 /* iOSPopups */,
-				940CA4D1201A199700B96BC4 /* Engine */,
+				9409607F2022423B00304FD1 /* Protocol */,
+				9409607C20223F5A00304FD1 /* ViewModel */,
 				940CA4D02018A36000B96BC4 /* Helpers */,
-				940CA4CF2018A2FD00B96BC4 /* Stores */,
 				940CA4CE2018A26900B96BC4 /* Controllers */,
 				940CA4CD2018A26200B96BC4 /* Views */,
 				940CA4CC2018A1C000B96BC4 /* Models */,
-				94E9BC902014A182002F45B6 /* Database */,
-				9494A71A2009476C003968D2 /* Map */,
 				9494A6FF20092C74003968D2 /* AppDelegate.swift */,
 				9494A70120092C74003968D2 /* ViewController.swift */,
-				9494A70320092C74003968D2 /* Main.storyboard */,
 				9494A70920092C74003968D2 /* Assets.xcassets */,
-				9494A70B20092C74003968D2 /* LaunchScreen.storyboard */,
 				94E9BCF32014AC04002F45B6 /* MindMapi10.xcdatamodeld */,
 				9494A70E20092C74003968D2 /* Info.plist */,
 			);
 			path = MindMapi10;
-			sourceTree = "<group>";
-		};
-		9494A71A2009476C003968D2 /* Map */ = {
-			isa = PBXGroup;
-			children = (
-				94906FFA201B52DF000DC0C1 /* Extensions */,
-				9494A71F200948AF003968D2 /* Model */,
-				9494A71E200948A6003968D2 /* View */,
-				9494A71D20094891003968D2 /* Controller */,
-				94B16DE22010066A000CA597 /* UIGraphDelegate.swift */,
-			);
-			path = Map;
-			sourceTree = "<group>";
-		};
-		9494A71D20094891003968D2 /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-				94495F6320167D94005509B2 /* ImportViewController.swift */,
-				9494A71B20094887003968D2 /* NodeViewController.swift */,
-			);
-			path = Controller;
-			sourceTree = "<group>";
-		};
-		9494A71E200948A6003968D2 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				9494A722200949E3003968D2 /* NodeCustomView.xib */,
-				94495F6520167DB0005509B2 /* ImportCell.swift */,
-				94495F6620167DB0005509B2 /* MapCell.swift */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		9494A71F200948AF003968D2 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				9494A71620094744003968D2 /* UIBezierPath+Arrow.swift */,
-				9494A71720094744003968D2 /* NodeCustomView.swift */,
-				946988A5200D1CD2008C63B0 /* Arrow.swift */,
-				94B16DE0200F6968000CA597 /* Node.swift */,
-				94B16F5F20128549000CA597 /* NodeType.swift */,
-				940CA4CA20189ED600B96BC4 /* Constants.swift */,
-				94E8F5EB201C9B9000C7F873 /* DocumentModel.swift */,
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		94E8F5EF201CAC8D00C7F873 /* iOSPopups */ = {
-			isa = PBXGroup;
-			children = (
-				9484EF57201E0136001D5A3D /* Extra */,
-				94E8F5F0201CAC8D00C7F873 /* iOSTextfieldExtension.swift */,
-				94E8F5F1201CAC8D00C7F873 /* GlobalDefines.swift */,
-				94E8F5F2201CAC8D00C7F873 /* iOSPopupCreateNewMap.swift */,
-				94E8F5F3201CAC8D00C7F873 /* iOSPDFView */,
-			);
-			path = iOSPopups;
-			sourceTree = "<group>";
-		};
-		94E8F5F3201CAC8D00C7F873 /* iOSPDFView */ = {
-			isa = PBXGroup;
-			children = (
-				94E8F5F4201CAC8D00C7F873 /* iOSPDFPreviewController */,
-				94E8F5F7201CAC8D00C7F873 /* iOSReferenceCell */,
-				94E8F5FA201CAC8D00C7F873 /* iOSPDFViewController */,
-				94E8F5FD201CAC8D00C7F873 /* iOSPDFNavigationController.swift */,
-			);
-			path = iOSPDFView;
-			sourceTree = "<group>";
-		};
-		94E8F5F4201CAC8D00C7F873 /* iOSPDFPreviewController */ = {
-			isa = PBXGroup;
-			children = (
-				94E8F5F5201CAC8D00C7F873 /* iOSPDFPreviewController.xib */,
-				94E8F5F6201CAC8D00C7F873 /* iOSPDFPreviewController.swift */,
-			);
-			path = iOSPDFPreviewController;
-			sourceTree = "<group>";
-		};
-		94E8F5F7201CAC8D00C7F873 /* iOSReferenceCell */ = {
-			isa = PBXGroup;
-			children = (
-				94E8F5F8201CAC8D00C7F873 /* iOSReferencesCell.swift */,
-				94E8F5F9201CAC8D00C7F873 /* iOSReferencesCell.xib */,
-			);
-			path = iOSReferenceCell;
-			sourceTree = "<group>";
-		};
-		94E8F5FA201CAC8D00C7F873 /* iOSPDFViewController */ = {
-			isa = PBXGroup;
-			children = (
-				94E8F5FB201CAC8D00C7F873 /* iOSPDFViewController.swift */,
-				94E8F5FC201CAC8D00C7F873 /* iOSPDFViewController.xib */,
-			);
-			path = iOSPDFViewController;
-			sourceTree = "<group>";
-		};
-		94E9BC902014A182002F45B6 /* Database */ = {
-			isa = PBXGroup;
-			children = (
-				94E9BCEF2014A695002F45B6 /* Document_model.swift */,
-				94E9BCED2014A695002F45B6 /* GenerateData.swift */,
-				94E9BCEE2014A695002F45B6 /* Mind_map_model.swift */,
-				94E9BC912014A300002F45B6 /* DBImportExport.swift */,
-				94E9BCAF2014A300002F45B6 /* DBTransactions.swift */,
-				94E9BC942014A300002F45B6 /* Model */,
-			);
-			path = Database;
-			sourceTree = "<group>";
-		};
-		94E9BC942014A300002F45B6 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				94E9BCCD2014A682002F45B6 /* Generated */,
-				94E9BCD92014A682002F45B6 /* Importance.swift */,
-				94E9BCDC2014A682002F45B6 /* Mind_map.swift */,
-				94E9BCD62014A682002F45B6 /* Note.swift */,
-				94E9BCD72014A682002F45B6 /* Paper_mapping.swift */,
-				94E9BCDA2014A682002F45B6 /* Paper.swift */,
-				94E9BCCC2014A682002F45B6 /* Reference_mapping.swift */,
-				94E9BCD82014A682002F45B6 /* Storage.swift */,
-				94E9BCDB2014A682002F45B6 /* User.swift */,
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		94E9BCCD2014A682002F45B6 /* Generated */ = {
-			isa = PBXGroup;
-			children = (
-				94E9BCCE2014A682002F45B6 /* StorageProperties.swift */,
-				94E9BCCF2014A682002F45B6 /* Paper_mappingProperties.swift */,
-				94E9BCD02014A682002F45B6 /* PaperProperties.swift */,
-				94E9BCD12014A682002F45B6 /* UserProperties.swift */,
-				94E9BCD22014A682002F45B6 /* NoteProperties.swift */,
-				94E9BCD32014A682002F45B6 /* Reference_mappingProperties.swift */,
-				94E9BCD42014A682002F45B6 /* Mind_mapProperties.swift */,
-				94E9BCD52014A682002F45B6 /* ImportanceProperties.swift */,
-			);
-			path = Generated;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -719,14 +655,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = G59KX8J5Z4;
+				DEVELOPMENT_TEAM = 83QYJ4DFQQ;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = MindMapi10/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.halt.MindMapi101;
+				PRODUCT_BUNDLE_IDENTIFIER = com.halt.MindMapi10;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -738,14 +674,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = G59KX8J5Z4;
+				DEVELOPMENT_TEAM = 83QYJ4DFQQ;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = MindMapi10/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.halt.MindMapi101;
+				PRODUCT_BUNDLE_IDENTIFIER = com.halt.MindMapi10;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

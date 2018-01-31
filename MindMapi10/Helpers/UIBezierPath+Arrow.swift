@@ -9,8 +9,8 @@
 import Foundation
 import UIKit
 
+//Mark: - Arrow extension with tail, head width and height.
 public extension UIBezierPath {
-    
     static func arrow(from start: CGPoint, to end: CGPoint, tailWidth: CGFloat, headWidth: CGFloat, headLength: CGFloat) -> UIBezierPath {
         let length = hypot(end.x - start.x, end.y - start.y)
         let tailLength = length - headLength

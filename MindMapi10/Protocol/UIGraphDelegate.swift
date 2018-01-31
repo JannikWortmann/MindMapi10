@@ -8,6 +8,7 @@
 
 import Foundation
 
+// Informs when ready for drawing the node.
 protocol UIGraphDelegate: class {
     func drawNode(doc:Document)
 }

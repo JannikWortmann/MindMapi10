@@ -8,7 +8,9 @@
 
 import Foundation
 
+//Mark: - Convertion extension.
 extension NodeViewController {
+    //Mark: - Convert Document class to the DocumentModel class.
     func converDocumentToDocumentModel(docs: [Document])->[DocumentModel]{
         var documentModels = [DocumentModel]()
         
@@ -28,6 +30,7 @@ extension NodeViewController {
         return documentModels
     }
     
+    //Mark: - Convert DocumentModel class to the Document class.
     func converDocumentModelToDocument(docs: [DocumentModel])->[Document]{
         var documents = [Document]()
         

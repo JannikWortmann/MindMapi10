@@ -9,8 +9,9 @@
 import Foundation
 import UIKit
 
-// ANIMATION
+//Mark: - Animation extension.
 extension NodeViewController {
+    //Mark: - Bring note sub view with animation.
     func animateIn(){
         self.view.addSubview(notesSubView)
         notesSubView.center = self.view.center
@@ -26,6 +27,7 @@ extension NodeViewController {
         }
     }
     
+    //Mark: - Remove note sub view with animation.
     func animateOut(){
         UIView.animate(withDuration: 0.3, animations: {
             self.notesSubView.transform = CGAffineTransform.init(scaleX: 1.3, y: 1.3)

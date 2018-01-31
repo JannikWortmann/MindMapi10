@@ -17,16 +17,14 @@ import UIKit
     @IBOutlet weak var titleLabelHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var authorsLabelHeightConstraints: NSLayoutConstraint!
     @IBOutlet weak var lblTitle: UILabel!
-//    @IBOutlet weak var lblTopic: UILabel!
     
     @IBOutlet weak var btnOutgoingEdge: UIButton!
     @IBOutlet weak var btnIncomeEdge: UIButton!
     @IBOutlet var contentView: UIView!
     
-//    @IBOutlet weak var imgImportance: UIImageView!
-    
     @IBOutlet weak var btnNotes: UIButton!
     @IBOutlet weak var btnPdf: UIButton!
+    //
     
     //VARIABLES
     var document = Document()
@@ -35,7 +33,8 @@ import UIKit
     var outgoingEdgeLayers = [Arrow]()
     var isSelected = false
     var isRootNode = Bool()
-
+    //
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setup()
@@ -46,6 +45,7 @@ import UIKit
         setup()
     }
     
+    // Setup necessary properties to view.
     private func setup(){
         Bundle.main.loadNibNamed(String(describing: NodeCustomView.self), owner: self, options: nil)
         guard let contentView = contentView else { return }
