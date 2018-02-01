@@ -3,7 +3,7 @@
 //  iOSPopupDialogs
 //
 //  Created by Jannik Wortmann on 12.01.18.
-//  Copyright © 2018 Payload1337. All rights reserved.
+//  Copyright © 2018 Jannik Wortmann. All rights reserved.
 //
 
 import UIKit
@@ -259,15 +259,18 @@ extension iOSPopupCreateNewMap {
         self.cTopicTextfield.centerYAnchor.constraint(equalTo: self.cTopicView.centerYAnchor).isActive = true
         self.cTopicTextfield.rightAnchor.constraint(equalTo: self.cTopicView.rightAnchor, constant: -8).isActive = true
         
+        //add tapGestureRecognizer for tapping outside to dismiss
         let lTap = UITapGestureRecognizer(target: self, action: #selector(cDismissView))
         self.view.addGestureRecognizer(lTap)
     }
     
     @objc func cDismissView(sender: UITapGestureRecognizer) {
+        //if tap is inside cMainView do nothing
         guard !self.cMainView.bounds.contains(sender.location(in: self.cMainView)) else {
             return
         }
         
+        //else dismiss the view
         self.dismiss(animated: true, completion: nil)
 
     }

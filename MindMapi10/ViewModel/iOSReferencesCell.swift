@@ -1,9 +1,9 @@
 //
 //  iOSReferencesCell.swift
-//  ResearchPaperMindMap
+//  MindMapi10
 //
 //  Created by Jannik Wortmann on 16.01.18.
-//  Copyright © 2018 Payload1337. All rights reserved.
+//  Copyright © 2018 Jannik Wortmann. All rights reserved.
 //
 
 import UIKit

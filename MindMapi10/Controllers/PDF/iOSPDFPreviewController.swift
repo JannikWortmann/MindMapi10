@@ -3,7 +3,7 @@
 //  MindMapi10
 //
 //  Created by Jannik Wortmann on 24.01.18.
-//  Copyright © 2018 Halt. All rights reserved.
+//  Copyright © 2018 Jannik Wortmann. All rights reserved.
 //
 
 import UIKit
@@ -27,6 +27,7 @@ class iOSPDFPreviewController: UIViewController {
     
 //------------------------------------------------------------------------------------------
     //MARK: Variables
+    
     var cRootDocument: DocumentModel
     
     var isAddButtonHidden: Bool = false
@@ -53,21 +54,25 @@ class iOSPDFPreviewController: UIViewController {
 //------------------------------------------------------------------------------------------
     //MARK: UI Functions
     func setup() {
+        //Optional set the Add Button
         self.navigationItem.rightBarButtonItem = self.isAddButtonHidden ? nil : self.cAddReferenceButton
         
+        //Load the PDF from ACM and display it
         let url = cRootDocument.pdf_url.replacingOccurrences(of: "&#URLTOKEN#", with: "")
         let req = URLRequest(url: URL(string: url)!)
-        
         self.cWebView.load(req)
     }
 }
 
+
+extension iOSPDFPreviewController {
 //------------------------------------------------------------------------------------------
     //MARK: Button Actions
-extension iOSPDFPreviewController {
     @objc func cHandleAddReference() {
+        //Notify, that reference was selected
         self.delegate?.iOSDidAddedReference(self.cRootDocument)
         
+        //go to previous view
         self.navigationController?.popViewController(animated: true)
     }
 }

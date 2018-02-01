@@ -1,57 +1,54 @@
 //
 //  iOSPDFViewController.swift
-//  ResearchPaperMindMap
+//  MindMapi10
 //
 //  Created by Jannik Wortmann on 16.01.18.
-//  Copyright © 2018 Payload1337. All rights reserved.
+//  Copyright © 2018 Jannik Wortmann. All rights reserved.
 //
 
 import UIKit
 import WebKit
 
 //------------------------------------------------------------------------------------------
-//MARK: Protocols
+    //MARK: Protocols
+
+//Notifies, that a reference in preview was selected
 protocol iOSAddedReferenceDelegate {
     func iOSDidAddedReference(_ pDocument: DocumentModel)
 }
 
+//Notifies, that the given documents was selected
 protocol iOSSelectedReferencesDelegate {
     func iOSDidSelectReferences(_ pDocuments: [DocumentModel])
 }
 
 //------------------------------------------------------------------------------------------
-//MARK: iOSPDFCellStruct
+    //MARK: iOSPDFCellStruct
 struct iOSDocumentCellModel {
     var isSelected: Bool
     var document: DocumentModel
 }
 
 //------------------------------------------------------------------------------------------
-//MARK: iOSPDFViewController
+    //MARK: iOSPDFViewController
 class iOSPDFViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
 //------------------------------------------------------------------------------------------
     //MARK: XIB Variables
     @IBOutlet weak var cWebView: WKWebView!
     @IBOutlet weak var cReferencesCollectionView: UICollectionView!
     @IBOutlet weak var cHorizontalLine: UIView!
-    @IBOutlet weak var collectionVIewHeightConstraint: NSLayoutConstraint!
-    
-    @IBOutlet weak var cWebViewBottomConstraint: NSLayoutConstraint!
     
 //------------------------------------------------------------------------------------------
     //MARK: UI Variables
     lazy var cScrollIndicatorLeft: UIButton = {
-        let img = UIButton(type: .system)
-        img.translatesAutoresizingMaskIntoConstraints = false
-        img.setImage(UIImage(imageLiteralResourceName: "iconArrowLeft"), for: .normal)
-        //img.image = UIImage(imageLiteralResourceName: "iconArrowLeft")
-        img.layer.borderColor = UIColor.black.cgColor
-        img.contentMode = .scaleAspectFit
-        //img.layer.borderWidth = 1
-        //img.layer.cornerRadius = 15
-        img.clipsToBounds = true
-        img.addTarget(self, action: #selector(cScrollLeft), for: .touchUpInside)
-        return img
+        let btn = UIButton(type: .system)
+        btn.translatesAutoresizingMaskIntoConstraints = false
+        btn.setImage(UIImage(imageLiteralResourceName: "iconArrowLeft"), for: .normal)
+        btn.layer.borderColor = UIColor.black.cgColor
+        btn.contentMode = .scaleAspectFit
+        btn.clipsToBounds = true
+        btn.addTarget(self, action: #selector(cScrollLeft), for: .touchUpInside)
+        return btn
     }()
     
     @objc func cScrollLeft() {
@@ -62,18 +59,15 @@ class iOSPDFViewController: UIViewController, UICollectionViewDataSource, UIColl
     }
     
     lazy var cScrollIndicatorRight: UIButton = {
-        let img = UIButton(type: .system)
-        img.translatesAutoresizingMaskIntoConstraints = false
-        img.setImage(UIImage(imageLiteralResourceName: "iconArrowRight"), for: .normal)
-        img.contentMode = .scaleAspectFit
-        img.layer.borderColor = UIColor.black.cgColor
-        //img.layer.borderWidth = 1
-        //img.layer.cornerRadius = 15
-        img.clipsToBounds = true
-        img.addTarget(self, action: #selector(cScrollRight), for: .touchUpInside)
-        return img
+        let btn = UIButton(type: .system)
+        btn.translatesAutoresizingMaskIntoConstraints = false
+        btn.setImage(UIImage(imageLiteralResourceName: "iconArrowRight"), for: .normal)
+        btn.contentMode = .scaleAspectFit
+        btn.layer.borderColor = UIColor.black.cgColor
+        btn.clipsToBounds = true
+        btn.addTarget(self, action: #selector(cScrollRight), for: .touchUpInside)
+        return btn
     }()
-    
     
     @objc func cScrollRight() {
         let lNewPos = cReferencesCollectionView.contentOffset.x + cReferencesCollectionView.frame.width
@@ -108,6 +102,7 @@ class iOSPDFViewController: UIViewController, UICollectionViewDataSource, UIColl
         cRootDocument = rootDocument
         cDelegate = delegate
         
+        //Initalize the references struct. Default: NOT selected
         for lDoc in rootDocument.references {
             let lStruct = iOSDocumentCellModel(isSelected: false, document: lDoc)
             cReferences.append(lStruct)
@@ -121,6 +116,7 @@ class iOSPDFViewController: UIViewController, UICollectionViewDataSource, UIColl
     init(rootDocument: DocumentModel) {
         cRootDocument = rootDocument
         
+        //Initalize the references struct. Default: NOT selected
         for lDoc in rootDocument.references {
             let lStruct = iOSDocumentCellModel(isSelected: false, document: lDoc)
             cReferences.append(lStruct)
@@ -223,6 +219,7 @@ extension iOSPDFViewController {
         let lAddImage = lStruct.isSelected ? UIImage(imageLiteralResourceName: "iconCheck") : UIImage(imageLiteralResourceName: "iconPlus")
         cell.referenceAddButton.setImage(lAddImage, for: .normal)
         
+        //save the cell index
         cell.referenceAddButton.tag = indexPath.row
         cell.referenceAddButton.addTarget(self, action: #selector(handleSelectReference), for: .touchUpInside)
 
@@ -243,25 +240,21 @@ extension iOSPDFViewController {
     @objc func handleSelectReference(_ sender: UIButton) {
         self.cReferences[sender.tag].isSelected = !self.cReferences[sender.tag].isSelected
         
+        //get document from index of the button. Saved earlier in "cellForRowAt"
         let lDocument = self.cReferences[sender.tag]
         
         let lImage = lDocument.isSelected ? UIImage(imageLiteralResourceName: "iconCheck") : UIImage(imageLiteralResourceName: "iconPlus")
         
-        //add checkmark for feedback
-        let advTimeGif = UIImage.gif(name: "checkmark")
-        let imageView2 = UIImageView(image: advTimeGif)
-        imageView2.frame = CGRect(x: self.view.frame.size.width - 90.0, y: 50.0, width: 100, height: 100.0)
-        view.addSubview(imageView2)
-        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(4), execute: {
-            imageView2.removeFromSuperview()
-        })
+        showCheckMark()
         
+        //set Button Image
         sender.setImage(lImage, for: .normal)
     }
     
     @objc func handleReadReference(_ sender: UIButton) {
         let lDoc = self.cReferences[sender.tag].document
         
+        //create a new PDFPreview
         let nextVC = iOSPDFPreviewController(pRootDocument: lDoc)
         nextVC.delegate = self
         self.navigationController?.pushViewController(nextVC, animated: true)
@@ -291,15 +284,24 @@ extension iOSPDFViewController: iOSAddedReferenceDelegate {
             self.cReferences[lIndex].isSelected = true
         }
         
-        //add checkmark for feedback
-        let advTimeGif = UIImage.gif(name: "checkmark")
-        let imageView2 = UIImageView(image: advTimeGif)
-        imageView2.frame = CGRect(x: self.view.frame.size.width - 90.0, y: 50.0, width: 100, height: 100.0)
-        view.addSubview(imageView2)
-        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(4), execute: {
-            imageView2.removeFromSuperview()
-        })
+        showCheckMark()
         
+        //load the new checkmarks of the items
         self.cReferencesCollectionView.reloadData()
+    }
+}
+
+//------------------------------------------------------------------------------------------
+//MARK: UI Checkmark Function
+extension iOSPDFViewController {
+    func showCheckMark() {
+        let lAdvTimeGif = UIImage.gif(name: "checkmark")
+        let lImageView = UIImageView(image: lAdvTimeGif)
+        lImageView.frame = CGRect(x: self.view.frame.size.width - 90.0, y: 50.0, width: 100, height: 100.0)
+        view.addSubview(lImageView)
+        //show image for 4 seconds then remove it
+        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(4), execute: {
+            lImageView.removeFromSuperview()
+        })
     }
 }

@@ -3,7 +3,7 @@
 //  MindMapi10
 //
 //  Created by Jannik Wortmann on 18.01.18.
-//  Copyright © 2018 Halt. All rights reserved.
+//  Copyright © 2018 Jannik Wortmann. All rights reserved.
 //
 
 import UIKit
@@ -18,6 +18,7 @@ class iOSPDFNavigationController: UINavigationController {
     //Callback Delegate
     public var cDelegate: iOSSelectedReferencesDelegate?
 
+//------------------------------------------------------------------------------------------
     //MARK: Initializer
     init(rootDocument: DocumentModel, delegate: iOSSelectedReferencesDelegate?) {
         self.cRootDocument = rootDocument
@@ -40,12 +41,5 @@ class iOSPDFNavigationController: UINavigationController {
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-    }
-    
-//------------------------------------------------------------------------------------------
-    //MARK: Class Functions
-
-    @objc func handleCancelClick() {
-        self.dismiss(animated: true, completion: nil)
     }
 }
