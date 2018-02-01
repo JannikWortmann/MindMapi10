@@ -12,9 +12,9 @@ import CoreData
 public class DBImportExport {
     
     var controller: NSFetchedResultsController<Mind_map>!
-    var mind_map_mappings = [[String: Any]]()
     let db = DBTransactions()
     
+    //IMPORT A MIND MAP FROM A JSON FILE
     public func importMindMap(mind_map_title: String) -> Mind_map_model {
         var return_model = Mind_map_model()
         guard let documentDirectoryPath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else { return return_model }
@@ -24,7 +24,6 @@ public class DBImportExport {
             let json = try? JSONSerialization.jsonObject(with: textRead, options: [])
             print("Read text from import file")
             print(filePath)
-            print(textRead)
             
             let new_map_id = db.getNewID(forEntity: "Mind_map")
             var new_paper_id = db.getNewID(forEntity: "Paper")
@@ -206,15 +205,13 @@ public class DBImportExport {
         return return_model
     }
     
+    //EXPORT MIND MAP INTO JSON FORMAT
     public func exportMindMap(mind_map_id: Int32) {
         //FETCH DATA
-        mind_map_mappings = [[String: Any]]()
         let fetch_mind_map = NSFetchRequest<NSFetchRequestResult>(entityName: "Mind_map")
         fetch_mind_map.returnsObjectsAsFaults = false
         fetch_mind_map.predicate = NSPredicate(format: "id = %d", mind_map_id)
         
-        //let formatter = DateFormatter()
-        //formatter.dateFormat = "dd-MM-yyyy"
         do {
             //fetch the mind map
             let mind_map = try context.fetch(fetch_mind_map) as! [Mind_map] //NSManagedObject
@@ -259,7 +256,7 @@ public class DBImportExport {
             }
             
             //fetch mappings that are related to this mind map
-            getPaperMappings(mind_map_id: mind_map[0].value(forKey: "id") as! Int32)
+            let mind_map_mappings = getPaperMappings(mind_map_id: mind_map[0].value(forKey: "id") as! Int32)
             var cnt = 1
             var mappings_dictionary = [String: Any]()
             for mapping in mind_map_mappings {
@@ -283,41 +280,43 @@ public class DBImportExport {
     
     
     //helping function to export a mind map -> gets the papers hierachical relations/mappings
-    private func getPaperMappings(mind_map_id: Int32) {
+    //FETCH MIND MAP PAPER MAPPINGS - gets the paper's hierachical relations/mappings based on mind map
+    func getPaperMappings(mind_map_id: Int32) -> [[String: Any]] {
+        var mind_map_mappings = [[String: Any]]()
+        
+        //fetches all the papers that are directly connected to the root
         let fetch_mapping = NSFetchRequest<NSFetchRequestResult>(entityName: "Paper_mapping")
         fetch_mapping.predicate = NSPredicate(format: "mind_map_id = %d AND is_root_level = 1 AND paper_id = %d", mind_map_id, mind_map_id)
         do{
-            let mappings = try context.fetch(fetch_mapping)
+            let mappings = try context.fetch(fetch_mapping) as! [Paper_mapping]
             
-            for map in mappings as! [NSManagedObject] {
+            for map in mappings {
                 let temp_map_dictionary = createMappingDictionary(map_object: map)
                 mind_map_mappings.append(temp_map_dictionary)
-                
-                getPaperMappings(connected: map.value(forKey: "connected_to_id") as! Int32, mind_map_id: mind_map_id)
             }
         } catch {
             let error = error as NSError
             print("\(error)")
         }
-    }
-    
-    private func getPaperMappings(connected: Int32, mind_map_id: Int32) {
-        let fetch_mapping = NSFetchRequest<NSFetchRequestResult>(entityName: "Paper_mapping")
-        fetch_mapping.predicate = NSPredicate(format: "mind_map_id = %d AND paper_id = %d AND is_root_level = 0", mind_map_id, connected)
+        
+        //fetch all the papers that are not connected directly to root
+        let fetch_mapping_2 = NSFetchRequest<NSFetchRequestResult>(entityName: "Paper_mapping")
+        fetch_mapping_2.predicate = NSPredicate(format: "mind_map_id = %d AND is_root_level = 0", mind_map_id)
         do{
-            let mappings = try context.fetch(fetch_mapping) as! [NSManagedObject]
+            let mappings_2 = try context.fetch(fetch_mapping_2) as! [Paper_mapping]
             
-            for map in mappings  {
+            for map in mappings_2 {
                 let temp_map_dictionary = createMappingDictionary(map_object: map)
                 mind_map_mappings.append(temp_map_dictionary)
-                
-                getPaperMappings(connected: map.value(forKey: "connected_to_id") as! Int32, mind_map_id: mind_map_id)
             }
         } catch {
             let error = error as NSError
             print("\(error)")
         }
+        return mind_map_mappings
     }
+
+  
     //helping function to export a mind map
     func createMappingDictionary(map_object: NSManagedObject) -> [String: Any] {
         let temp_map_dictionary = [
@@ -401,8 +400,6 @@ public class DBImportExport {
         }catch {
             print("Error while creating and writing JSON to file : \(error)")
         }
-        
-        
     }
     
 }

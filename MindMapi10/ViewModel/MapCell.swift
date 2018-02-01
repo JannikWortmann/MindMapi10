@@ -22,6 +22,7 @@ class MapCell: UITableViewCell {
         // Initialization code
     }
     
+    //function called after each update of a mind map in the table view of the mind maps
     func updateUI(mind_map_model: Mind_map_model) {
         lblTitleMap.text = mind_map_model.title
         lblTopicMap.text = mind_map_model.topic
@@ -34,6 +35,7 @@ class MapCell: UITableViewCell {
             lblPapersMap.text = String(cnt) + " papers"
         }
         
+        //displays the screenshot of a mind map if it exists in the folder
         guard let documentDirectoryPath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else { return }
         do {
             let screenPath = documentDirectoryPath.appendingPathComponent("Screenshots").appendingPathComponent("mind_map_\(mind_map_model.id).png")
@@ -47,8 +49,5 @@ class MapCell: UITableViewCell {
         } catch {
             print("Error while fetchin the screenshot for mind map : \(error)")
         }
-        
-        
-        
     }
 }
