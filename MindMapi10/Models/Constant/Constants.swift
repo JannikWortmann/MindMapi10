@@ -14,6 +14,7 @@ enum NodeConfig {
     static let height:CGFloat = 110
 }
 
+// Constants for ACM URLs
 class Constants {
     static let sharedInstance = Constants()
     

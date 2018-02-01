@@ -9,13 +9,18 @@
 import UIKit
 import SwiftSoup
 
+// Enum to distinguish if it's a Reference or a Paper
+// Paper if no PaperType set
 enum PaperType {
     case References
 }
 
 class Engine {
+    // Singletone for Engine to work with only one copy of it
     static let shared = Engine()
     
+    // Method which allows to get easily all Titles(Document)
+    // after the search process and display them later on
     public func getData(from string: String) -> [Document] {
         let url = urlGenerator(from: string, for: nil)
         let html = getHTML(for: url)
@@ -23,9 +28,13 @@ class Engine {
         return getTitlesAndLinks(from: html)
     }
     
+    // Generates a URL from typed keywords in the SearchBar
     private func urlGenerator(from string: String, for type: PaperType?) -> String {
         let generatedText = String(string.map { $0 == " " ? "+" : $0 })
         
+        // Take different URLs from Constants depending on the type
+        // of request. If we are looking for references then use
+        // `acmCitationURL`, otherwise `acmQueryURL`
         if let type = type, type == .References {
             return Constants.sharedInstance.acmCitationURL + generatedText
         } else {
@@ -33,6 +42,7 @@ class Engine {
         }
     }
     
+    // Gets whole HTML code from the given URL
     private func getHTML(for url: String) -> String {
         if let url = URL(string: url) {
             do {
@@ -47,6 +57,9 @@ class Engine {
         return ""
     }
     
+    // Parse given HTML to get from there all required data
+    // `Titles`, `URL`, `PDF Link`, etc.
+    // with the help of 3rd party framework `SwiftSoup`
     private func getTitlesAndLinks(from html: String) -> [Document] {
         var papers = [Document]()
         
@@ -83,6 +96,10 @@ class Engine {
         return papers
     }
     
+    // If we are looking for only references of the paper
+    // then we call this method.
+    // It parses the given HTML to get from there
+    // `Title`, `Authors` and `PDF Link`
     private func getTitlesAndLinksForReference(from html: String) -> Document? {
         let paper = Document()
         
@@ -112,6 +129,11 @@ class Engine {
         }
     }
     
+    // Method which gets all references from the given paper
+    // and return it as array
+    // We will send the data what we get from here to the method
+    // `getTitlesAndLinksForReference` to get all required data
+    // described above
     public func getReferences(from url: String) -> [Document] {
         let url = url + "&preflayout=flat"
         let html = getHTML(for: url)
@@ -135,6 +157,9 @@ class Engine {
                             let url = urlGenerator(from: link, for: .References)
                             let html = getHTML(for: url)
                             
+                            // Here we get URL for each reference of the paper
+                            // get HTML from that URL and pass as a parameter
+                            // to the `getTitlesAndLinksForReference` method and from there we will get all required data
                             if let paper = getTitlesAndLinksForReference(from: html) {
                                 
                                 papers.append(paper)
