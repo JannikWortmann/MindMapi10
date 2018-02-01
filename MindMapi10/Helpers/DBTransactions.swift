@@ -1,6 +1,6 @@
 //
-//  File.swift
-//  MindMapTest
+//  DBTransactions.swift
+//  MindMapi10
 //
 //  Created by Jona Hebaj on 14.01.18.
 //  Copyright © 2018 Jona Hebaj. All rights reserved.
@@ -85,7 +85,7 @@ public class DBTransactions {
             //fetch the mappings between papers in this mind map
             let mind_map_mappings = getPaperMappingsForMindMap(mind_map_id: mind_map[0].value(forKey: "id") as! Int32)
             
-            //fetch all papers to be displayed - papers in the mind map
+            //fetch all papers to be displayed - papers in the mind map (no references included)
             let map_papers = getPapersForMindMap(mind_map_id: mind_map[0].value(forKey: "id") as! Int32)
             
             map_model.id = mind_map[0].value(forKey: "id") as! Int32
@@ -106,11 +106,11 @@ public class DBTransactions {
         return map_model
     }
     
-    //FETCH MIND MAP - gets the papers hierachical relations/mappings based on mind map
-    //fetches all the papers that are directly connected to the root
-    //fetch all the papers that are not connected directly to root
+    //FETCH MIND MAP PAPER MAPPINGS - gets the paper's hierachical relations/mappings based on mind map
     func getPaperMappingsForMindMap(mind_map_id: Int32) -> [Paper_mapping] {
         var mind_map_mappings = [Paper_mapping]()
+        
+        //fetches all the papers that are directly connected to the root
         let fetch_mapping = NSFetchRequest<NSFetchRequestResult>(entityName: "Paper_mapping")
         fetch_mapping.predicate = NSPredicate(format: "mind_map_id = %d AND is_root_level = 1 AND paper_id = %d", mind_map_id, mind_map_id)
         do{
@@ -124,6 +124,7 @@ public class DBTransactions {
             print("\(error)")
         }
 
+        //fetch all the papers that are not connected directly to root
         let fetch_mapping_2 = NSFetchRequest<NSFetchRequestResult>(entityName: "Paper_mapping")
         fetch_mapping_2.predicate = NSPredicate(format: "mind_map_id = %d AND is_root_level = 0", mind_map_id)
         do{
@@ -149,7 +150,7 @@ public class DBTransactions {
         do{
             let papers = try context.fetch(fetch_paper) as! [Paper]
             
-            //for each paper create the Document object for that paper and add it to the documents array of the mind map
+            //for each paper create the Document object for that paper and add it to the documents array of the papers of the mind map
             for paper in papers  {
                 
                 let paper_notes = getNotesForPaper(paper_id: paper.value(forKey: "id") as! Int32)
@@ -184,11 +185,13 @@ public class DBTransactions {
     }
     
     //FETCH ALL REFERENCES OF A PAPER (PAPER ENTITIES THAT ARE NOT ADDED TO THE MIND MAP YET or HAVE is_reference = 1)
+    //References are also saved as Paper entities with is_reference = 1
+    //Papers added to the mind map have is_reference = 0
     func getReferencesForPaper(paper_id: Int32, mind_map_id: Int32) -> [Document] {
         var references = [Document]()
         
         //get the references of that paper by fetching all the corresponding rows from reference_mapping
-        //for each reference check for each reference at Paper Entity if its is_reference = 1
+        //for each reference check Paper Entity if its is_reference = 1
         let fetch_reference_mapping = NSFetchRequest<NSFetchRequestResult>(entityName: "Reference_mapping")
         fetch_reference_mapping.predicate = NSPredicate(format: "paper_id = %d", paper_id)
         do {
@@ -210,7 +213,7 @@ public class DBTransactions {
         return references
     }
     
-    //ADD REFERENCES OF A PAPER
+    //ADD REFERENCES to A PAPER
     func addReferencesForPaper(mind_map_id: Int32, paper_id: Int32, references: [Document]) {
         for reference in references {
             reference.is_reference = 1
@@ -283,7 +286,7 @@ public class DBTransactions {
         return return_document
     }
     
-    //DEFINE FROM THE DATABASE THE BIGGGEST ID FOR MIND MAP/PAPER/NOTE ENTITIES AND ADDS 1 TO IT
+    //DEFINE FROM THE DATABASE THE BIGGGEST ID FOR MIND MAP/PAPER/NOTE ENTITIES AND ADD 1 TO IT
     func getNewID(forEntity: String) -> Int32 {
         let fetch_entity = NSFetchRequest<NSFetchRequestResult>(entityName: forEntity)
         
@@ -322,14 +325,13 @@ public class DBTransactions {
         mapping.relation_text = text
         mapping.is_root_level = is_root
         
-        print(mind_map_id, " " , from , " " , to, " " , is_root)
-        
         ad.saveContext()
     }
     
     //UPDATE MAPPINGS BETWEEM PAPERS - the text between two connected papers
     func updateConnectionText(mind_map_id: Int32, from: Int32, to: Int32, is_root: Int16, text: String) {
-        //searching for a connection between root and a paper
+        //searching for a connection between root and a paper if is_root = 1
+        //searching for a connection between two papers if is_root = 0
         if is_root == 1 {
             let fetch_mapping = NSFetchRequest<NSFetchRequestResult>(entityName: "Paper_mapping")
             fetch_mapping.predicate = NSPredicate(format: "mind_map_id = %d AND paper_id = %d AND connected_to_id = %d AND is_root_level = %d", mind_map_id, from, to, is_root)
@@ -337,6 +339,7 @@ public class DBTransactions {
                 let map = try context.fetch(fetch_mapping) as! [Paper_mapping]
                 if map.count > 0 {
                     map[0].setValue(text, forKey: "relation_text")
+                    ad.saveContext()
                 }
             } catch {
                 let error = error as NSError
@@ -353,10 +356,12 @@ public class DBTransactions {
                 let map1 = try context.fetch(fetch_mapping1) as! [Paper_mapping]
                 if map1.count > 0 {
                     map1[0].setValue(text, forKey: "relation_text")
+                    ad.saveContext()
                 } else {
                     let map2 = try context.fetch(fetch_mapping2) as! [Paper_mapping]
                     if map2.count > 0 {
                         map2[0].setValue(text, forKey: "relation_text")
+                        ad.saveContext()
                     }
                 }
             } catch {
@@ -372,7 +377,6 @@ public class DBTransactions {
         fetch_mind_map.predicate = NSPredicate(format: "id = %d", mind_map_id)
         
         do {
-            //fetch the mind map
             let mind_map = try context.fetch(fetch_mind_map) as! [NSManagedObject]
             mind_map[0].setValue(title, forKey: "title")
             ad.saveContext()
@@ -388,7 +392,6 @@ public class DBTransactions {
         fetch_mind_map.predicate = NSPredicate(format: "id = %d", mind_map_id)
         
         do {
-            //fetch the mind map
             let mind_map = try context.fetch(fetch_mind_map) as! [Mind_map]
             mind_map[0].setValue(topic, forKey: "topic")
             ad.saveContext()
@@ -532,6 +535,7 @@ public class DBTransactions {
         }
     }
     
+    //DELETE PAPER MAPPINGS FOR PAPER
     func deletePaperMappingForPaper(paper: Paper) {
         let fetch_paper = NSFetchRequest<NSFetchRequestResult>(entityName: "Paper_mapping")
         fetch_paper.predicate = NSPredicate(format: "mind_map_id = %d AND is_root_level = 1 and connected_to_id = %d", paper.mind_map_id, paper.id)
@@ -567,7 +571,7 @@ public class DBTransactions {
     }
     
     
-    //DELETE THE SCREENSHOT OF A MIND MAP FROM THE FOLDER
+    //DELETE THE SCREENSHOT OF A MIND MAP FROM THE SCREENSHOTS FOLDER
     func deleteScreenshot(mind_map_id: Int32) {
         guard let documentDirectoryPath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.appendingPathComponent("Screenshots") else { return }
         
@@ -587,6 +591,7 @@ public class DBTransactions {
         }
     }
     
+    //CHECKS IF A GIVEN PATH EXISTS
     public func directoryExistsAtPath(_ path: String) -> Bool {
         var isDirectory = ObjCBool(true)
         let exists = FileManager.default.fileExists(atPath: path, isDirectory: &isDirectory)
