@@ -7,23 +7,150 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		940CA4CB20189ED600B96BC4 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 940CA4CA20189ED600B96BC4 /* Constants.swift */; };
+		940CA4DC201A199800B96BC4 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 940CA4D3201A199700B96BC4 /* SearchViewController.swift */; };
+		940CA4DD201A199800B96BC4 /* Structs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 940CA4D5201A199700B96BC4 /* Structs.swift */; };
+		940CA4DE201A199800B96BC4 /* SearchTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 940CA4D7201A199700B96BC4 /* SearchTableViewCell.xib */; };
+		940CA4DF201A199800B96BC4 /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 940CA4D8201A199700B96BC4 /* SearchTableViewCell.swift */; };
+		940CA4E1201A199800B96BC4 /* Engine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 940CA4DB201A199700B96BC4 /* Engine.swift */; };
+		94495F6420167D95005509B2 /* ImportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94495F6320167D94005509B2 /* ImportViewController.swift */; };
+		94495F6720167DB0005509B2 /* ImportCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94495F6520167DB0005509B2 /* ImportCell.swift */; };
+		94495F6820167DB0005509B2 /* MapCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94495F6620167DB0005509B2 /* MapCell.swift */; };
+		946988A6200D1CD2008C63B0 /* Arrow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 946988A5200D1CD2008C63B0 /* Arrow.swift */; };
+		9484EF5B201E0136001D5A3D /* LoadGIF.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9484EF59201E0136001D5A3D /* LoadGIF.swift */; };
+		9484EF5C201E0136001D5A3D /* checkmark.gif in Resources */ = {isa = PBXBuildFile; fileRef = 9484EF5A201E0136001D5A3D /* checkmark.gif */; };
+		94906FF7201A2425000DC0C1 /* SwiftSoup.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94906FF5201A2415000DC0C1 /* SwiftSoup.framework */; };
+		94906FF8201A2425000DC0C1 /* SwiftSoup.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 94906FF5201A2415000DC0C1 /* SwiftSoup.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		94906FFC201B5302000DC0C1 /* NodeViewController+Math.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94906FFB201B5302000DC0C1 /* NodeViewController+Math.swift */; };
+		94906FFE201B5363000DC0C1 /* NodeViewController+Animation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94906FFD201B5363000DC0C1 /* NodeViewController+Animation.swift */; };
+		94907000201B53CF000DC0C1 /* NodeViewController+Spinner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94906FFF201B53CF000DC0C1 /* NodeViewController+Spinner.swift */; };
 		9494A70020092C74003968D2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9494A6FF20092C74003968D2 /* AppDelegate.swift */; };
 		9494A70220092C74003968D2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9494A70120092C74003968D2 /* ViewController.swift */; };
 		9494A70520092C74003968D2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9494A70320092C74003968D2 /* Main.storyboard */; };
-		9494A70820092C74003968D2 /* MindMapi10.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9494A70620092C74003968D2 /* MindMapi10.xcdatamodeld */; };
 		9494A70A20092C74003968D2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9494A70920092C74003968D2 /* Assets.xcassets */; };
 		9494A70D20092C74003968D2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9494A70B20092C74003968D2 /* LaunchScreen.storyboard */; };
+		9494A71820094744003968D2 /* UIBezierPath+Arrow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9494A71620094744003968D2 /* UIBezierPath+Arrow.swift */; };
+		9494A71920094744003968D2 /* NodeCustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9494A71720094744003968D2 /* NodeCustomView.swift */; };
+		9494A71C20094887003968D2 /* NodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9494A71B20094887003968D2 /* NodeViewController.swift */; };
+		9494A723200949E3003968D2 /* NodeCustomView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9494A722200949E3003968D2 /* NodeCustomView.xib */; };
+		94B16DE1200F6968000CA597 /* Node.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94B16DE0200F6968000CA597 /* Node.swift */; };
+		94B16DE32010066A000CA597 /* UIGraphDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94B16DE22010066A000CA597 /* UIGraphDelegate.swift */; };
+		94B16F6020128549000CA597 /* NodeType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94B16F5F20128549000CA597 /* NodeType.swift */; };
+		94E8F5EC201C9B9000C7F873 /* DocumentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94E8F5EB201C9B9000C7F873 /* DocumentModel.swift */; };
+		94E8F5EE201CA22700C7F873 /* NodeViewController+Converter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94E8F5ED201CA22700C7F873 /* NodeViewController+Converter.swift */; };
+		94E8F5FE201CAC8D00C7F873 /* iOSTextfieldExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94E8F5F0201CAC8D00C7F873 /* iOSTextfieldExtension.swift */; };
+		94E8F5FF201CAC8D00C7F873 /* GlobalDefines.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94E8F5F1201CAC8D00C7F873 /* GlobalDefines.swift */; };
+		94E8F600201CAC8D00C7F873 /* iOSPopupCreateNewMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94E8F5F2201CAC8D00C7F873 /* iOSPopupCreateNewMap.swift */; };
+		94E8F601201CAC8D00C7F873 /* iOSPDFPreviewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 94E8F5F5201CAC8D00C7F873 /* iOSPDFPreviewController.xib */; };
+		94E8F602201CAC8D00C7F873 /* iOSPDFPreviewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94E8F5F6201CAC8D00C7F873 /* iOSPDFPreviewController.swift */; };
+		94E8F603201CAC8D00C7F873 /* iOSReferencesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94E8F5F8201CAC8D00C7F873 /* iOSReferencesCell.swift */; };
+		94E8F604201CAC8D00C7F873 /* iOSReferencesCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 94E8F5F9201CAC8D00C7F873 /* iOSReferencesCell.xib */; };
+		94E8F605201CAC8D00C7F873 /* iOSPDFViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94E8F5FB201CAC8D00C7F873 /* iOSPDFViewController.swift */; };
+		94E8F606201CAC8D00C7F873 /* iOSPDFViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 94E8F5FC201CAC8D00C7F873 /* iOSPDFViewController.xib */; };
+		94E8F607201CAC8D00C7F873 /* iOSPDFNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94E8F5FD201CAC8D00C7F873 /* iOSPDFNavigationController.swift */; };
+		94E9BCB02014A300002F45B6 /* DBImportExport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94E9BC912014A300002F45B6 /* DBImportExport.swift */; };
+		94E9BCCB2014A300002F45B6 /* DBTransactions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94E9BCAF2014A300002F45B6 /* DBTransactions.swift */; };
+		94E9BCDD2014A682002F45B6 /* Reference_mapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94E9BCCC2014A682002F45B6 /* Reference_mapping.swift */; };
+		94E9BCDE2014A682002F45B6 /* StorageProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94E9BCCE2014A682002F45B6 /* StorageProperties.swift */; };
+		94E9BCDF2014A682002F45B6 /* Paper_mappingProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94E9BCCF2014A682002F45B6 /* Paper_mappingProperties.swift */; };
+		94E9BCE02014A682002F45B6 /* PaperProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94E9BCD02014A682002F45B6 /* PaperProperties.swift */; };
+		94E9BCE12014A682002F45B6 /* UserProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94E9BCD12014A682002F45B6 /* UserProperties.swift */; };
+		94E9BCE22014A682002F45B6 /* NoteProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94E9BCD22014A682002F45B6 /* NoteProperties.swift */; };
+		94E9BCE32014A682002F45B6 /* Reference_mappingProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94E9BCD32014A682002F45B6 /* Reference_mappingProperties.swift */; };
+		94E9BCE42014A682002F45B6 /* Mind_mapProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94E9BCD42014A682002F45B6 /* Mind_mapProperties.swift */; };
+		94E9BCE52014A682002F45B6 /* ImportanceProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94E9BCD52014A682002F45B6 /* ImportanceProperties.swift */; };
+		94E9BCE62014A682002F45B6 /* Note.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94E9BCD62014A682002F45B6 /* Note.swift */; };
+		94E9BCE72014A682002F45B6 /* Paper_mapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94E9BCD72014A682002F45B6 /* Paper_mapping.swift */; };
+		94E9BCE82014A682002F45B6 /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94E9BCD82014A682002F45B6 /* Storage.swift */; };
+		94E9BCE92014A682002F45B6 /* Importance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94E9BCD92014A682002F45B6 /* Importance.swift */; };
+		94E9BCEA2014A682002F45B6 /* Paper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94E9BCDA2014A682002F45B6 /* Paper.swift */; };
+		94E9BCEB2014A682002F45B6 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94E9BCDB2014A682002F45B6 /* User.swift */; };
+		94E9BCEC2014A682002F45B6 /* Mind_map.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94E9BCDC2014A682002F45B6 /* Mind_map.swift */; };
+		94E9BCF02014A696002F45B6 /* GenerateData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94E9BCED2014A695002F45B6 /* GenerateData.swift */; };
+		94E9BCF12014A696002F45B6 /* Mind_map_model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94E9BCEE2014A695002F45B6 /* Mind_map_model.swift */; };
+		94E9BCF22014A696002F45B6 /* Document_model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94E9BCEF2014A695002F45B6 /* Document_model.swift */; };
+		94E9BCF52014AC04002F45B6 /* MindMapi10.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 94E9BCF32014AC04002F45B6 /* MindMapi10.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		94906FF9201A2425000DC0C1 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				94906FF8201A2425000DC0C1 /* SwiftSoup.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		940CA4CA20189ED600B96BC4 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		940CA4D3201A199700B96BC4 /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		940CA4D5201A199700B96BC4 /* Structs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Structs.swift; sourceTree = "<group>"; };
+		940CA4D7201A199700B96BC4 /* SearchTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchTableViewCell.xib; sourceTree = "<group>"; };
+		940CA4D8201A199700B96BC4 /* SearchTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchTableViewCell.swift; sourceTree = "<group>"; };
+		940CA4DB201A199700B96BC4 /* Engine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Engine.swift; sourceTree = "<group>"; };
+		94495F6320167D94005509B2 /* ImportViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImportViewController.swift; sourceTree = "<group>"; };
+		94495F6520167DB0005509B2 /* ImportCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImportCell.swift; sourceTree = "<group>"; };
+		94495F6620167DB0005509B2 /* MapCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapCell.swift; sourceTree = "<group>"; };
+		946988A5200D1CD2008C63B0 /* Arrow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Arrow.swift; sourceTree = "<group>"; };
+		9484EF59201E0136001D5A3D /* LoadGIF.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadGIF.swift; sourceTree = "<group>"; };
+		9484EF5A201E0136001D5A3D /* checkmark.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = checkmark.gif; sourceTree = "<group>"; };
+		94906FF5201A2415000DC0C1 /* SwiftSoup.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SwiftSoup.framework; sourceTree = "<group>"; };
+		94906FFB201B5302000DC0C1 /* NodeViewController+Math.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NodeViewController+Math.swift"; sourceTree = "<group>"; };
+		94906FFD201B5363000DC0C1 /* NodeViewController+Animation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NodeViewController+Animation.swift"; sourceTree = "<group>"; };
+		94906FFF201B53CF000DC0C1 /* NodeViewController+Spinner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NodeViewController+Spinner.swift"; sourceTree = "<group>"; };
 		9494A6FC20092C74003968D2 /* MindMapi10.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MindMapi10.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9494A6FF20092C74003968D2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9494A70120092C74003968D2 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		9494A70420092C74003968D2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		9494A70720092C74003968D2 /* MindMapi10.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MindMapi10.xcdatamodel; sourceTree = "<group>"; };
 		9494A70920092C74003968D2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9494A70C20092C74003968D2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9494A70E20092C74003968D2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9494A71620094744003968D2 /* UIBezierPath+Arrow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIBezierPath+Arrow.swift"; sourceTree = "<group>"; };
+		9494A71720094744003968D2 /* NodeCustomView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NodeCustomView.swift; sourceTree = "<group>"; };
+		9494A71B20094887003968D2 /* NodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NodeViewController.swift; sourceTree = "<group>"; };
+		9494A722200949E3003968D2 /* NodeCustomView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NodeCustomView.xib; sourceTree = "<group>"; };
+		94B16DE0200F6968000CA597 /* Node.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Node.swift; sourceTree = "<group>"; };
+		94B16DE22010066A000CA597 /* UIGraphDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIGraphDelegate.swift; sourceTree = "<group>"; };
+		94B16F5F20128549000CA597 /* NodeType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NodeType.swift; sourceTree = "<group>"; };
+		94E8F5EB201C9B9000C7F873 /* DocumentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentModel.swift; sourceTree = "<group>"; };
+		94E8F5ED201CA22700C7F873 /* NodeViewController+Converter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NodeViewController+Converter.swift"; sourceTree = "<group>"; };
+		94E8F5F0201CAC8D00C7F873 /* iOSTextfieldExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = iOSTextfieldExtension.swift; sourceTree = "<group>"; };
+		94E8F5F1201CAC8D00C7F873 /* GlobalDefines.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlobalDefines.swift; sourceTree = "<group>"; };
+		94E8F5F2201CAC8D00C7F873 /* iOSPopupCreateNewMap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = iOSPopupCreateNewMap.swift; sourceTree = "<group>"; };
+		94E8F5F5201CAC8D00C7F873 /* iOSPDFPreviewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = iOSPDFPreviewController.xib; sourceTree = "<group>"; };
+		94E8F5F6201CAC8D00C7F873 /* iOSPDFPreviewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = iOSPDFPreviewController.swift; sourceTree = "<group>"; };
+		94E8F5F8201CAC8D00C7F873 /* iOSReferencesCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = iOSReferencesCell.swift; sourceTree = "<group>"; };
+		94E8F5F9201CAC8D00C7F873 /* iOSReferencesCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = iOSReferencesCell.xib; sourceTree = "<group>"; };
+		94E8F5FB201CAC8D00C7F873 /* iOSPDFViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = iOSPDFViewController.swift; sourceTree = "<group>"; };
+		94E8F5FC201CAC8D00C7F873 /* iOSPDFViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = iOSPDFViewController.xib; sourceTree = "<group>"; };
+		94E8F5FD201CAC8D00C7F873 /* iOSPDFNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = iOSPDFNavigationController.swift; sourceTree = "<group>"; };
+		94E9BC912014A300002F45B6 /* DBImportExport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DBImportExport.swift; sourceTree = "<group>"; };
+		94E9BCAF2014A300002F45B6 /* DBTransactions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DBTransactions.swift; sourceTree = "<group>"; };
+		94E9BCCC2014A682002F45B6 /* Reference_mapping.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reference_mapping.swift; sourceTree = "<group>"; };
+		94E9BCCE2014A682002F45B6 /* StorageProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StorageProperties.swift; sourceTree = "<group>"; };
+		94E9BCCF2014A682002F45B6 /* Paper_mappingProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Paper_mappingProperties.swift; sourceTree = "<group>"; };
+		94E9BCD02014A682002F45B6 /* PaperProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaperProperties.swift; sourceTree = "<group>"; };
+		94E9BCD12014A682002F45B6 /* UserProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProperties.swift; sourceTree = "<group>"; };
+		94E9BCD22014A682002F45B6 /* NoteProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoteProperties.swift; sourceTree = "<group>"; };
+		94E9BCD32014A682002F45B6 /* Reference_mappingProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reference_mappingProperties.swift; sourceTree = "<group>"; };
+		94E9BCD42014A682002F45B6 /* Mind_mapProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Mind_mapProperties.swift; sourceTree = "<group>"; };
+		94E9BCD52014A682002F45B6 /* ImportanceProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImportanceProperties.swift; sourceTree = "<group>"; };
+		94E9BCD62014A682002F45B6 /* Note.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Note.swift; sourceTree = "<group>"; };
+		94E9BCD72014A682002F45B6 /* Paper_mapping.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Paper_mapping.swift; sourceTree = "<group>"; };
+		94E9BCD82014A682002F45B6 /* Storage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
+		94E9BCD92014A682002F45B6 /* Importance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Importance.swift; sourceTree = "<group>"; };
+		94E9BCDA2014A682002F45B6 /* Paper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Paper.swift; sourceTree = "<group>"; };
+		94E9BCDB2014A682002F45B6 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		94E9BCDC2014A682002F45B6 /* Mind_map.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Mind_map.swift; sourceTree = "<group>"; };
+		94E9BCED2014A695002F45B6 /* GenerateData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenerateData.swift; sourceTree = "<group>"; };
+		94E9BCEE2014A695002F45B6 /* Mind_map_model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Mind_map_model.swift; sourceTree = "<group>"; };
+		94E9BCEF2014A695002F45B6 /* Document_model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Document_model.swift; sourceTree = "<group>"; };
+		94E9BCF42014AC04002F45B6 /* MindMapTest.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MindMapTest.xcdatamodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,15 +158,204 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				94906FF7201A2425000DC0C1 /* SwiftSoup.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9409607720223BD400304FD1 /* Enum */ = {
+			isa = PBXGroup;
+			children = (
+				94B16F5F20128549000CA597 /* NodeType.swift */,
+			);
+			path = Enum;
+			sourceTree = "<group>";
+		};
+		9409607820223CF600304FD1 /* Node */ = {
+			isa = PBXGroup;
+			children = (
+				946988A5200D1CD2008C63B0 /* Arrow.swift */,
+				94B16DE0200F6968000CA597 /* Node.swift */,
+				94E8F5EB201C9B9000C7F873 /* DocumentModel.swift */,
+			);
+			path = Node;
+			sourceTree = "<group>";
+		};
+		9409607920223D2100304FD1 /* Entity */ = {
+			isa = PBXGroup;
+			children = (
+				9409607B20223D5300304FD1 /* Generated */,
+				94E9BCD92014A682002F45B6 /* Importance.swift */,
+				94E9BCDC2014A682002F45B6 /* Mind_map.swift */,
+				94E9BCD62014A682002F45B6 /* Note.swift */,
+				94E9BCD72014A682002F45B6 /* Paper_mapping.swift */,
+				94E9BCDA2014A682002F45B6 /* Paper.swift */,
+				94E9BCCC2014A682002F45B6 /* Reference_mapping.swift */,
+				94E9BCD82014A682002F45B6 /* Storage.swift */,
+				94E9BCDB2014A682002F45B6 /* User.swift */,
+			);
+			path = Entity;
+			sourceTree = "<group>";
+		};
+		9409607B20223D5300304FD1 /* Generated */ = {
+			isa = PBXGroup;
+			children = (
+				94E9BCCE2014A682002F45B6 /* StorageProperties.swift */,
+				94E9BCCF2014A682002F45B6 /* Paper_mappingProperties.swift */,
+				94E9BCD02014A682002F45B6 /* PaperProperties.swift */,
+				94E9BCD12014A682002F45B6 /* UserProperties.swift */,
+				94E9BCD22014A682002F45B6 /* NoteProperties.swift */,
+				94E9BCD32014A682002F45B6 /* Reference_mappingProperties.swift */,
+				94E9BCD42014A682002F45B6 /* Mind_mapProperties.swift */,
+				94E9BCD52014A682002F45B6 /* ImportanceProperties.swift */,
+			);
+			path = Generated;
+			sourceTree = "<group>";
+		};
+		9409607C20223F5A00304FD1 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				9494A71720094744003968D2 /* NodeCustomView.swift */,
+				940CA4D8201A199700B96BC4 /* SearchTableViewCell.swift */,
+				94E8F5F8201CAC8D00C7F873 /* iOSReferencesCell.swift */,
+				94495F6520167DB0005509B2 /* ImportCell.swift */,
+				94495F6620167DB0005509B2 /* MapCell.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		9409607D202240AD00304FD1 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				94906FFB201B5302000DC0C1 /* NodeViewController+Math.swift */,
+				94E8F5F0201CAC8D00C7F873 /* iOSTextfieldExtension.swift */,
+				94906FFD201B5363000DC0C1 /* NodeViewController+Animation.swift */,
+				94906FFF201B53CF000DC0C1 /* NodeViewController+Spinner.swift */,
+				94E8F5ED201CA22700C7F873 /* NodeViewController+Converter.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		9409607E2022418C00304FD1 /* Constant */ = {
+			isa = PBXGroup;
+			children = (
+				940CA4CA20189ED600B96BC4 /* Constants.swift */,
+			);
+			path = Constant;
+			sourceTree = "<group>";
+		};
+		9409607F2022423B00304FD1 /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				94B16DE22010066A000CA597 /* UIGraphDelegate.swift */,
+			);
+			path = Protocol;
+			sourceTree = "<group>";
+		};
+		94096080202244CC00304FD1 /* MindMap */ = {
+			isa = PBXGroup;
+			children = (
+				9494A71B20094887003968D2 /* NodeViewController.swift */,
+			);
+			path = MindMap;
+			sourceTree = "<group>";
+		};
+		940960812022450400304FD1 /* Initial */ = {
+			isa = PBXGroup;
+			children = (
+				94495F6320167D94005509B2 /* ImportViewController.swift */,
+			);
+			path = Initial;
+			sourceTree = "<group>";
+		};
+		94096082202245A400304FD1 /* PDF */ = {
+			isa = PBXGroup;
+			children = (
+				94E8F5FD201CAC8D00C7F873 /* iOSPDFNavigationController.swift */,
+				94E8F5F6201CAC8D00C7F873 /* iOSPDFPreviewController.swift */,
+				94E8F5FB201CAC8D00C7F873 /* iOSPDFViewController.swift */,
+			);
+			path = PDF;
+			sourceTree = "<group>";
+		};
+		940CA4CC2018A1C000B96BC4 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				9409607820223CF600304FD1 /* Node */,
+				9409607920223D2100304FD1 /* Entity */,
+				9409607720223BD400304FD1 /* Enum */,
+				9409607E2022418C00304FD1 /* Constant */,
+				940CA4D5201A199700B96BC4 /* Structs.swift */,
+				94E8F5F1201CAC8D00C7F873 /* GlobalDefines.swift */,
+				94E9BCEF2014A695002F45B6 /* Document_model.swift */,
+				94E9BCED2014A695002F45B6 /* GenerateData.swift */,
+				94E9BCEE2014A695002F45B6 /* Mind_map_model.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		940CA4CD2018A26200B96BC4 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				94E8F5F9201CAC8D00C7F873 /* iOSReferencesCell.xib */,
+				94E8F5F5201CAC8D00C7F873 /* iOSPDFPreviewController.xib */,
+				9494A722200949E3003968D2 /* NodeCustomView.xib */,
+				94E8F5FC201CAC8D00C7F873 /* iOSPDFViewController.xib */,
+				940CA4D7201A199700B96BC4 /* SearchTableViewCell.xib */,
+				9494A70320092C74003968D2 /* Main.storyboard */,
+				9494A70B20092C74003968D2 /* LaunchScreen.storyboard */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		940CA4CE2018A26900B96BC4 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				94096082202245A400304FD1 /* PDF */,
+				940960812022450400304FD1 /* Initial */,
+				94096080202244CC00304FD1 /* MindMap */,
+				9409607D202240AD00304FD1 /* Extensions */,
+				940CA4D3201A199700B96BC4 /* SearchViewController.swift */,
+				94E8F5F2201CAC8D00C7F873 /* iOSPopupCreateNewMap.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		940CA4D02018A36000B96BC4 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				9484EF57201E0136001D5A3D /* Extra */,
+				9494A71620094744003968D2 /* UIBezierPath+Arrow.swift */,
+				940CA4DB201A199700B96BC4 /* Engine.swift */,
+				94E9BC912014A300002F45B6 /* DBImportExport.swift */,
+				94E9BCAF2014A300002F45B6 /* DBTransactions.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		9484EF57201E0136001D5A3D /* Extra */ = {
+			isa = PBXGroup;
+			children = (
+				9484EF58201E0136001D5A3D /* GIF */,
+			);
+			path = Extra;
+			sourceTree = "<group>";
+		};
+		9484EF58201E0136001D5A3D /* GIF */ = {
+			isa = PBXGroup;
+			children = (
+				9484EF59201E0136001D5A3D /* LoadGIF.swift */,
+				9484EF5A201E0136001D5A3D /* checkmark.gif */,
+			);
+			path = GIF;
+			sourceTree = "<group>";
+		};
 		9494A6F320092C74003968D2 = {
 			isa = PBXGroup;
 			children = (
+				94906FF5201A2415000DC0C1 /* SwiftSoup.framework */,
 				9494A6FE20092C74003968D2 /* MindMapi10 */,
 				9494A6FD20092C74003968D2 /* Products */,
 			);
@@ -56,13 +372,17 @@
 		9494A6FE20092C74003968D2 /* MindMapi10 */ = {
 			isa = PBXGroup;
 			children = (
+				9409607F2022423B00304FD1 /* Protocol */,
+				9409607C20223F5A00304FD1 /* ViewModel */,
+				940CA4D02018A36000B96BC4 /* Helpers */,
+				940CA4CE2018A26900B96BC4 /* Controllers */,
+				940CA4CD2018A26200B96BC4 /* Views */,
+				940CA4CC2018A1C000B96BC4 /* Models */,
 				9494A6FF20092C74003968D2 /* AppDelegate.swift */,
 				9494A70120092C74003968D2 /* ViewController.swift */,
-				9494A70320092C74003968D2 /* Main.storyboard */,
 				9494A70920092C74003968D2 /* Assets.xcassets */,
-				9494A70B20092C74003968D2 /* LaunchScreen.storyboard */,
+				94E9BCF32014AC04002F45B6 /* MindMapi10.xcdatamodeld */,
 				9494A70E20092C74003968D2 /* Info.plist */,
-				9494A70620092C74003968D2 /* MindMapi10.xcdatamodeld */,
 			);
 			path = MindMapi10;
 			sourceTree = "<group>";
@@ -77,6 +397,7 @@
 				9494A6F820092C74003968D2 /* Sources */,
 				9494A6F920092C74003968D2 /* Frameworks */,
 				9494A6FA20092C74003968D2 /* Resources */,
+				94906FF9201A2425000DC0C1 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -126,9 +447,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				94E8F604201CAC8D00C7F873 /* iOSReferencesCell.xib in Resources */,
 				9494A70D20092C74003968D2 /* LaunchScreen.storyboard in Resources */,
+				9484EF5C201E0136001D5A3D /* checkmark.gif in Resources */,
 				9494A70A20092C74003968D2 /* Assets.xcassets in Resources */,
+				940CA4DE201A199800B96BC4 /* SearchTableViewCell.xib in Resources */,
+				94E8F601201CAC8D00C7F873 /* iOSPDFPreviewController.xib in Resources */,
+				94E8F606201CAC8D00C7F873 /* iOSPDFViewController.xib in Resources */,
 				9494A70520092C74003968D2 /* Main.storyboard in Resources */,
+				9494A723200949E3003968D2 /* NodeCustomView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -139,8 +466,57 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9494A70820092C74003968D2 /* MindMapi10.xcdatamodeld in Sources */,
+				94E8F5FE201CAC8D00C7F873 /* iOSTextfieldExtension.swift in Sources */,
+				94906FFC201B5302000DC0C1 /* NodeViewController+Math.swift in Sources */,
+				94E9BCB02014A300002F45B6 /* DBImportExport.swift in Sources */,
+				94E8F602201CAC8D00C7F873 /* iOSPDFPreviewController.swift in Sources */,
+				94495F6720167DB0005509B2 /* ImportCell.swift in Sources */,
+				94E9BCDD2014A682002F45B6 /* Reference_mapping.swift in Sources */,
+				94495F6420167D95005509B2 /* ImportViewController.swift in Sources */,
+				94E9BCF52014AC04002F45B6 /* MindMapi10.xcdatamodeld in Sources */,
+				94E9BCEA2014A682002F45B6 /* Paper.swift in Sources */,
+				94E9BCEC2014A682002F45B6 /* Mind_map.swift in Sources */,
+				94E9BCE32014A682002F45B6 /* Reference_mappingProperties.swift in Sources */,
+				94E9BCF22014A696002F45B6 /* Document_model.swift in Sources */,
+				9494A71920094744003968D2 /* NodeCustomView.swift in Sources */,
+				94E9BCF02014A696002F45B6 /* GenerateData.swift in Sources */,
+				94495F6820167DB0005509B2 /* MapCell.swift in Sources */,
+				9494A71820094744003968D2 /* UIBezierPath+Arrow.swift in Sources */,
+				94E8F607201CAC8D00C7F873 /* iOSPDFNavigationController.swift in Sources */,
+				94E9BCE02014A682002F45B6 /* PaperProperties.swift in Sources */,
+				94E8F605201CAC8D00C7F873 /* iOSPDFViewController.swift in Sources */,
+				94E9BCF12014A696002F45B6 /* Mind_map_model.swift in Sources */,
+				94E8F600201CAC8D00C7F873 /* iOSPopupCreateNewMap.swift in Sources */,
+				94E9BCDE2014A682002F45B6 /* StorageProperties.swift in Sources */,
+				940CA4DD201A199800B96BC4 /* Structs.swift in Sources */,
+				94B16F6020128549000CA597 /* NodeType.swift in Sources */,
+				94E9BCE12014A682002F45B6 /* UserProperties.swift in Sources */,
+				940CA4E1201A199800B96BC4 /* Engine.swift in Sources */,
+				9484EF5B201E0136001D5A3D /* LoadGIF.swift in Sources */,
+				94E9BCE72014A682002F45B6 /* Paper_mapping.swift in Sources */,
+				94E8F5FF201CAC8D00C7F873 /* GlobalDefines.swift in Sources */,
+				940CA4CB20189ED600B96BC4 /* Constants.swift in Sources */,
+				94E9BCE42014A682002F45B6 /* Mind_mapProperties.swift in Sources */,
+				94B16DE1200F6968000CA597 /* Node.swift in Sources */,
+				94E9BCE82014A682002F45B6 /* Storage.swift in Sources */,
+				94E9BCE62014A682002F45B6 /* Note.swift in Sources */,
+				94E9BCDF2014A682002F45B6 /* Paper_mappingProperties.swift in Sources */,
+				94E8F603201CAC8D00C7F873 /* iOSReferencesCell.swift in Sources */,
 				9494A70220092C74003968D2 /* ViewController.swift in Sources */,
+				94E9BCEB2014A682002F45B6 /* User.swift in Sources */,
+				94E9BCE52014A682002F45B6 /* ImportanceProperties.swift in Sources */,
+				94907000201B53CF000DC0C1 /* NodeViewController+Spinner.swift in Sources */,
+				94E9BCCB2014A300002F45B6 /* DBTransactions.swift in Sources */,
+				94B16DE32010066A000CA597 /* UIGraphDelegate.swift in Sources */,
+				940CA4DF201A199800B96BC4 /* SearchTableViewCell.swift in Sources */,
+				94E8F5EE201CA22700C7F873 /* NodeViewController+Converter.swift in Sources */,
+				940CA4DC201A199800B96BC4 /* SearchViewController.swift in Sources */,
+				946988A6200D1CD2008C63B0 /* Arrow.swift in Sources */,
+				9494A71C20094887003968D2 /* NodeViewController.swift in Sources */,
+				94E9BCE92014A682002F45B6 /* Importance.swift in Sources */,
+				94E8F5EC201C9B9000C7F873 /* DocumentModel.swift in Sources */,
+				94E9BCE22014A682002F45B6 /* NoteProperties.swift in Sources */,
+				94906FFE201B5363000DC0C1 /* NodeViewController+Animation.swift in Sources */,
 				9494A70020092C74003968D2 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -280,6 +656,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 83QYJ4DFQQ;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = MindMapi10/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.halt.MindMapi10;
@@ -295,6 +675,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 83QYJ4DFQQ;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = MindMapi10/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.halt.MindMapi10;
@@ -328,12 +712,12 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		9494A70620092C74003968D2 /* MindMapi10.xcdatamodeld */ = {
+		94E9BCF32014AC04002F45B6 /* MindMapi10.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				9494A70720092C74003968D2 /* MindMapi10.xcdatamodel */,
+				94E9BCF42014AC04002F45B6 /* MindMapTest.xcdatamodel */,
 			);
-			currentVersion = 9494A70720092C74003968D2 /* MindMapi10.xcdatamodel */;
+			currentVersion = 94E9BCF42014AC04002F45B6 /* MindMapTest.xcdatamodel */;
 			path = MindMapi10.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
